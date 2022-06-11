@@ -115,6 +115,14 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Formularios\Clientes\ClientesABM.aspx" />
+    <Content Include="Formularios\Compras\ComprasABM.aspx" />
+    <Content Include="Formularios\Configuraciones\Configuraciones.aspx" />
+    <Content Include="Formularios\Facturacion\FacturacionABM.aspx" />
+    <Content Include="Formularios\Productos\ProductosABM.aspx" />
+    <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
+    <Content Include="Formularios\Usuarios\UsuariosABM.aspx" />
+    <Content Include="Formularios\Vendedores\VendedoresABM.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -183,6 +191,62 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Clientes\ClientesABM.aspx.cs">
+      <DependentUpon>ClientesABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Clientes\ClientesABM.aspx.designer.cs">
+      <DependentUpon>ClientesABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Compras\ComprasABM.aspx.cs">
+      <DependentUpon>ComprasABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Compras\ComprasABM.aspx.designer.cs">
+      <DependentUpon>ComprasABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Configuraciones\Configuraciones.aspx.cs">
+      <DependentUpon>Configuraciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Configuraciones\Configuraciones.aspx.designer.cs">
+      <DependentUpon>Configuraciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Facturacion\FacturacionABM.aspx.cs">
+      <DependentUpon>FacturacionABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Facturacion\FacturacionABM.aspx.designer.cs">
+      <DependentUpon>FacturacionABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Productos\ProductosABM.aspx.cs">
+      <DependentUpon>ProductosABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Productos\ProductosABM.aspx.designer.cs">
+      <DependentUpon>ProductosABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\ProveedoresABM.aspx.cs">
+      <DependentUpon>ProveedoresABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\ProveedoresABM.aspx.designer.cs">
+      <DependentUpon>ProveedoresABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Usuarios\UsuariosABM.aspx.cs">
+      <DependentUpon>UsuariosABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Usuarios\UsuariosABM.aspx.designer.cs">
+      <DependentUpon>UsuariosABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Vendedores\VendedoresABM.aspx.cs">
+      <DependentUpon>VendedoresABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Vendedores\VendedoresABM.aspx.designer.cs">
+      <DependentUpon>VendedoresABM.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,12 +260,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

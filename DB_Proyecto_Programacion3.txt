@@ -1,0 +1,164 @@
+use master
+go
+Create Database COMERCIO_P3
+go
+Use COMERCIO_P3
+go
+
+Create table Marcas(
+id int not null primary key identity (1,1),
+descripcion varchar(30) not null,
+Estado int null
+)
+
+Create table Categorias(
+id int not null primary key identity (1,1),
+descripcion varchar(30) not null,
+Estado int null
+)
+
+Create table Productos (
+id int not null primary key identity (1,1),
+codigo varchar(25) null,
+descripcion varchar(50) null,
+precioVenta decimal null,
+costo decimal null,
+idCategoria int not null foreign key references Categorias(id),
+idMarca int not null foreign key references Marcas(id),
+Observaciones varchar(255) null,
+Estado int null
+)
+
+Create table Stock(
+Id int not null primary key identity (1, 1),
+idProducto int not null foreign key references Productos(id),
+Stock int null,
+StockMinimo int null,
+Estado int null
+)
+
+Create table Proveedores (
+id int not null primary key identity (1,1),
+codigo varchar(25) not null,
+razonSocial varchar(50) not null,
+CUIT varchar(20) not null,
+domicilio varchar(50) null,
+telefono varchar(20) null,
+email varchar(50) null,
+Estado int null
+)
+
+Create table TipoUsuarios(
+id int not null primary key identity (1,1),
+tipoUser varchar(30) not null,
+Estado int null
+)
+
+Create table Usuarios (
+id int not null primary key identity (1,1),
+usuario varchar(50) not null,
+contraseña varchar(50) not null,
+email varchar(50) not null,
+telefono varchar(20) not null,
+fechaNacimiento datetime null,
+idTipoUsuario int not null foreign key references TipoUsuarios(id),
+Estado int null
+)
+
+Create table Permisos (
+id int not null primary key identity (1,1),
+nombrePermiso varchar(50) not null,
+Estado int null
+)
+
+Create table Permisos_Usuarios (
+id int not null primary key identity (1,1),
+idPermiso int not null foreign key references Permisos(id),
+idUsuario int not null foreign key references Usuarios(id),
+Estado int null
+)
+
+Create Table Proveedores_Productos(
+id int not null identity (1,1),
+IDProducto int not null foreign key references Productos(ID),
+IDProveedor int not null foreign key references Proveedores(ID),
+Estado int null
+)
+
+Create table Clientes (
+id int not null primary key identity (1,1),
+codigo varchar(25) not null,
+nombres varchar(25) not null,
+apellidos varchar(25) not null,
+fechaNacimiento datetime null,
+CUIT varchar(20) not null,
+domicilio varchar(50) null,
+telefono varchar(20) null,
+email varchar(50) null,
+Estado int null
+)
+
+Create Table FormasDePago(
+ID int not null primary key identity (1,1),
+Tipo varchar(50) not null,
+Estado int null
+)
+
+Create Table Compras(
+ID int not null primary key identity (1, 1),
+NumeroCompra int,
+IDProveedor int not null foreign key references Proveedores(ID),
+IdFormaDePago int not null foreign key references FormasDePago(ID),
+Subtotal decimal,
+Descuento decimal,
+Total decimal,
+Fecha datetime,
+Observaciones varchar (255)
+)
+
+Create Table Compras_Items(
+ID int not null primary key identity (1, 1),
+IdCompra int not null foreign key references Compras(ID),
+IdProducto int not null foreign key references Productos(ID),
+Cantidad int,
+Subtotal decimal,
+Descuento decimal,
+Total decimal,
+)
+
+Create table Vendedores (
+id int not null primary key identity (1,1),
+codigo varchar(25) not null,
+nombres varchar(50) not null,
+apellidos varchar(50) not null,
+telefono varchar(20) null,
+email varchar(50) null,
+fechaNacimiento datetime null,
+Estado int null
+)
+
+Create Table Facturas(
+ID int not null primary key identity (1, 1),
+NumeroFactura int,
+idCliente int not null foreign key references Clientes(ID),
+idVendedor int not null foreign key references Vendedores(ID),
+IdFormaDePago int not null foreign key references FormasDePago(ID),
+Subtotal decimal,
+Descuento decimal,
+Total decimal,
+Fecha datetime,
+Observaciones varchar (255)
+)
+
+Create Table Facturas_Items(
+ID int not null primary key identity (1, 1),
+IdFactura int not null foreign key references Facturas(ID),
+IdProducto int not null foreign key references Productos(ID),
+Cantidad int,
+Subtotal decimal,
+Descuento decimal,
+Total decimal,
+)
+
+INSERT INTO Clientes 
+VALUES (1,'Lucas Andres','Zabalett','1999-05-27 15:32:00.000','20-41972108-6','Av Mi Casa','1112345678','lucaszabalett@gmail.com',1)

@@ -67,7 +67,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Todos gatos</p>
+                <p>&copy; <%: DateTime.Now.Year %> - uwu</p>
             </footer>
         </div>
 

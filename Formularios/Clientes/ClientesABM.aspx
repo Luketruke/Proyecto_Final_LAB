@@ -4,4 +4,8 @@
     <h2><%: Title %>Clientes</h2>
     <h3>Clientela</h3>
     <p>Gestion de clientes</p>
+
+    <asp:label ID="lblCliente" runat="server" Text="Cliente: "></asp:label>
+    <asp:TextBox ID="txtCliente" runat="server" CssClass="auto-style2"></asp:TextBox>
+    
 </asp:Content>

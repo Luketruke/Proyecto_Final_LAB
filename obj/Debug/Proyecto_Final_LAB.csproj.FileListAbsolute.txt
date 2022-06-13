@@ -74,3 +74,7 @@ C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Pro
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.csproj.CopyComplete
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.pdb
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\dominios.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\negocios.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\dominios.pdb
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\negocios.pdb

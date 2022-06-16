@@ -13,12 +13,9 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Cliente_Negocio cn = new Cliente_Negocio();
-            Cliente c = new Cliente();
-
-            c = cn.obtenerCliente();
-
-            txtCliente.Text = c.Nombres.ToString() + " " + c.Apellidos.ToString();
+            ClienteNegocio cn = new ClienteNegocio();
+            dgvClientes.DataSource = cn.obtenerClientesTodos();
+            dgvClientes.DataBind();
         }
     }
 }

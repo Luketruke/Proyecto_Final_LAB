@@ -119,6 +119,7 @@
     <Content Include="Formularios\Compras\ComprasABM.aspx" />
     <Content Include="Formularios\Configuraciones\Configuraciones.aspx" />
     <Content Include="Formularios\Facturacion\FacturacionABM.aspx" />
+    <Content Include="Formularios\Productos\Productos.aspx" />
     <Content Include="Formularios\Productos\ProductosABM.aspx" />
     <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
     <Content Include="Formularios\Usuarios\UsuariosABM.aspx" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Formularios\Facturacion\FacturacionABM.aspx.designer.cs">
       <DependentUpon>FacturacionABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Productos\Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Productos\Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Productos\ProductosABM.aspx.cs">
       <DependentUpon>ProductosABM.aspx</DependentUpon>

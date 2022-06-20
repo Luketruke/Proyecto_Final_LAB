@@ -43,12 +43,18 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             p.Codigo = txtCodigo.Text;
             p.Descripcion = txtDescripcion.Text;
             p.PrevioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
-            p.Costo = Convert.ToDecimal(txtCosto.Text);        
+            p.Costo = Convert.ToDecimal(txtCosto.Text);
             int idCategoria = Convert.ToInt32(ddlCategoria.SelectedValue);
             int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
             p.Observaciones = txtObservaciones.Text;
 
-            pn.agregarProducto(p, idCategoria, idMarca);
+            if (pn.agregarProducto(p, idCategoria, idMarca))
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "swal('Producto agregado', '', 'success')",true);
+                //Response.Redirect("~");
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Producto agregado con exito')", true);
+            }
         }
     }
 }

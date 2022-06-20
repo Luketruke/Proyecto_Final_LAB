@@ -9,21 +9,28 @@
     <div class="mb-3">
         <label for="txtCodigo" class="form-label">Codigo</label>
         <asp:TextBox runat="server" ID="txtCodigo" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCodigo" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 
     <div class="mb-3">
         <label for="txtDescripcion" class="form-label">Descripcion</label>
         <asp:TextBox runat="server" ID="txtDescripcion" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtDescripcion" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 
     <div class="mb-3">
         <label for="txtPrecioVenta" class="form-label">Precio Venta</label>
-        <asp:TextBox runat="server" ID="txtPrecioVenta" class="form-control" />
+        <asp:TextBox runat="server" ID="txtPrecioVenta" class="form-control"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtPrecioVenta" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 
     <div class="mb-3">
         <label for="txtCosto" class="form-label">Costo</label>
-        <asp:TextBox runat="server" ID="txtCosto" class="form-control" />
+        <asp:TextBox runat="server" ID="txtCosto" class="form-control"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCosto" ErrorMessage="*"></asp:RequiredFieldValidator>
+
     </div>
 
     <div>

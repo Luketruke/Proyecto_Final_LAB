@@ -5,9 +5,9 @@ VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto_Final_LAB", "Proyecto_Final_LAB.csproj", "{67C6772C-0B1D-4824-9E0A-AD8AE8160EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominios", "..\dominio\dominios.csproj", "{E6EADD10-27BC-4234-AA00-CFF4A8404280}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominios", "dominio\dominios.csproj", "{E6EADD10-27BC-4234-AA00-CFF4A8404280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocios", "..\negocio\negocios.csproj", "{1A939514-3A67-4A3A-9708-9725F46ECEB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocios", "negocio\negocios.csproj", "{1A939514-3A67-4A3A-9708-9725F46ECEB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

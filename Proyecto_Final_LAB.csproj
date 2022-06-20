@@ -296,11 +296,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dominio\dominios.csproj">
+    <ProjectReference Include="dominio\dominios.csproj">
       <Project>{e6eadd10-27bc-4234-aa00-cff4a8404280}</Project>
       <Name>dominios</Name>
     </ProjectReference>
-    <ProjectReference Include="..\negocio\negocios.csproj">
+    <ProjectReference Include="negocio\negocios.csproj">
       <Project>{1a939514-3a67-4a3a-9708-9725f46eceb1}</Project>
       <Name>negocios</Name>
     </ProjectReference>

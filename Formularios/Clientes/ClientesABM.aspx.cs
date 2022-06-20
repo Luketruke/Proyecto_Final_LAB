@@ -15,10 +15,12 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
         //error
         protected void Page_Load(object sender, EventArgs e)
         {
+            Title = "Cliente REGISTROS : ";
+            //Se carga los datos clientes
             ClienteNegocio cn = new ClienteNegocio();
             dgvClientes.DataSource = cn.obtenerClientesTodos();
             dgvClientes.DataBind();
-            Title = "Cliente REGISTROS :";
+            
         }
     }
    

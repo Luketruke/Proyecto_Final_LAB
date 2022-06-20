@@ -78,3 +78,7 @@ C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Pro
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\negocios.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\dominios.pdb
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\negocios.pdb
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.dll
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.pdb

@@ -4,6 +4,13 @@
 
     <h2><%: Title %>Productos</h2>
 
-    <asp:GridView ID="dgvProductos" runat="server" CssClass="table"></asp:GridView>
+    <div style="text-align: right;">
+        <asp:LinkButton href="ProductosABM.aspx" ID="btnAgregar" class="btn btn-secondary btn-lg" Text="Agregar" runat="server"></asp:LinkButton>
+    </div>
+
+    <div>
+        <asp:GridView ID="dgvProductos" runat="server" CssClass="table"></asp:GridView>
+    </div>
+
 
 </asp:Content>

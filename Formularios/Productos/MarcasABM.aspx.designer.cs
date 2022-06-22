@@ -11,25 +11,16 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 {
 
 
-    public partial class Productos
+    public partial class MarcasABM
     {
 
         /// <summary>
-        /// Control btnAgregar.
+        /// Control dgvMarcas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
-
-        /// <summary>
-        /// Control dgvProductos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvProductos;
+        protected global::System.Web.UI.WebControls.GridView dgvMarcas;
     }
 }

@@ -115,13 +115,10 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Formularios\Clientes\Clientes.aspx" />
     <Content Include="Formularios\Clientes\ClientesABM.aspx" />
     <Content Include="Formularios\Compras\ComprasABM.aspx" />
     <Content Include="Formularios\Configuraciones\Configuraciones.aspx" />
     <Content Include="Formularios\Facturacion\FacturacionABM.aspx" />
-    <Content Include="Formularios\Productos\CategoriasABM.aspx" />
-    <Content Include="Formularios\Productos\MarcasABM.aspx" />
     <Content Include="Formularios\Productos\Productos.aspx" />
     <Content Include="Formularios\Productos\ProductosABM.aspx" />
     <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
@@ -195,13 +192,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Clientes\Clientes.aspx.cs">
-      <DependentUpon>Clientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Clientes\Clientes.aspx.designer.cs">
-      <DependentUpon>Clientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\Clientes\ClientesABM.aspx.cs">
       <DependentUpon>ClientesABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,20 +219,6 @@
     </Compile>
     <Compile Include="Formularios\Facturacion\FacturacionABM.aspx.designer.cs">
       <DependentUpon>FacturacionABM.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Productos\CategoriasABM.aspx.cs">
-      <DependentUpon>CategoriasABM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Productos\CategoriasABM.aspx.designer.cs">
-      <DependentUpon>CategoriasABM.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Productos\MarcasABM.aspx.cs">
-      <DependentUpon>MarcasABM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Productos\MarcasABM.aspx.designer.cs">
-      <DependentUpon>MarcasABM.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Productos\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>

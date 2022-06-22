@@ -88,7 +88,7 @@ namespace negocios
                 {
                     Producto p = new Producto();
 
-                    p.Id = (int)conexion.Lector["Id"];
+                    //p.Id = (int)conexion.Lector["Id"];
                     p.Codigo = (string)conexion.Lector["Codigo"];
                     p.Descripcion = (string)conexion.Lector["Descripcion"];
                     p.PrevioVenta = (decimal)conexion.Lector["PrecioVenta"];

@@ -49,7 +49,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" style="font-size: 20px" href="#">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" style="font-size: 20px" href="#"><  Inicio  >  <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Facturacion/FacturacionABM.aspx">Facturar</a>
@@ -58,9 +58,9 @@
                         <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/Productos.aspx">Productos</a>
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/MarcasABM.aspx">Marcas</a>
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/CategoriasABM.aspx">Categorias</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/ProductosABM.aspx">Productos</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/ProductosABM.aspx">Marcas</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/ProductosABM.aspx">Categorias</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -83,7 +83,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%:DateTime.Now.Year %> - Application Z&A</p>        
+                <p>&copy; <%:DateTime.Now.Year %> - Aplication Z&A >>> SUPORT: zabargaña@company.utn</p>        
             </footer>
         </div>
 

@@ -7,6 +7,7 @@ C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\neg
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\negocio\obj\Debug\negocios.csproj.CopyComplete
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\negocio\obj\Debug\negocios.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\negocio\obj\Debug\negocios.pdb
+<<<<<<< HEAD
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\bin\Debug\negocios.dll
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\bin\Debug\negocios.pdb
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\bin\Debug\dominios.dll
@@ -16,3 +17,14 @@ C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\obj\De
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.csproj.CopyComplete
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.dll
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.pdb
+=======
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\bin\Debug\negocios.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\bin\Debug\negocios.pdb
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\bin\Debug\dominios.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\bin\Debug\dominios.pdb
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.csproj.AssemblyReference.cache
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.csproj.CoreCompileInputs.cache
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.csproj.CopyComplete
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\negocio\obj\Debug\negocios.pdb
+>>>>>>> parent of 96f5054 (Revert "agregados clientes y mejoras")

@@ -13,17 +13,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            Title = "Cliente REGISTROS : ";
-            //Se carga los datos clientes
-            ClienteNegocio cn = new ClienteNegocio();
-            dgvClientes.DataSource = cn.obtenerClientesTodos();
-            dgvClientes.DataBind();
-            
-=======
-
         }
-
         public void btnAgregar_Click(object sender, EventArgs e)
         {
             ClienteNegocio cn = new ClienteNegocio();
@@ -45,9 +35,6 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 //Response.Redirect("~");
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cliente agregado con exito')", true);
             }
->>>>>>> parent of 96f5054 (Revert "agregados clientes y mejoras")
         }
     }
 }
-
-

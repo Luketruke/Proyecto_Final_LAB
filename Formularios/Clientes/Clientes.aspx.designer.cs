@@ -15,6 +15,15 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
     {
 
         /// <summary>
+        /// Control btnAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
+
+        /// <summary>
         /// Control dgvClientes.
         /// </summary>
         /// <remarks>

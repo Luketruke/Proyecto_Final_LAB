@@ -2,7 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%:Title %>Clientes </h2>
-    <h3>Clientela</h3>
+
+    <div style="text-align: right;">
+        <asp:LinkButton href="ClientesABM.aspx" ID="btnAgregar" class="btn btn-secondary btn-lg" Text="Agregar" runat="server"></asp:LinkButton>
+    </div>
 
     <asp:GridView runat="server" ID="dgvClientes" CssClass="table"></asp:GridView>
  

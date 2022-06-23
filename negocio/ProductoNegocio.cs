@@ -74,7 +74,48 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public bool agregarCategoria(CategoriaProducto c)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarCategoria");
+                conexion.setearParametro("@Descripcion", c.Categoria);
 
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool agregarMarca(Marca m)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarMarca");
+                conexion.setearParametro("@Descripcion", m.Descripcion);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public List<Producto> listarProductos()
         {
             List<Producto> lista = new List<Producto>();

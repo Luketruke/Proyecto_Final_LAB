@@ -18,5 +18,19 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             dgvCategorias.DataSource = pn.obtenerCategorias();
             dgvCategorias.DataBind();
         }
+
+        public void btnAgregar_Click(object sender, EventArgs e)
+        {
+            ProductoNegocio pn = new ProductoNegocio();
+            CategoriaProducto c = new CategoriaProducto();
+
+            c.Categoria = txtCategoria.Text;
+
+            if (pn.agregarCategoria(c))
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "swal('Categoria agregada', '', 'success')", true);
+            }
+        }
     }
 }

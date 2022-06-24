@@ -5,7 +5,7 @@
      <table style="width: 100%">
         <tbody>
             <tr>
-                <td style="width: 60%">
+                <td style="width: 90%">
                     <div class="form-group">
                         <label class="col-md-2">Proveedor a cargar:</label>
                         <div class="col-md-6">

@@ -11,6 +11,8 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        //    ClienteNegocio cn = new ClienteNegocio();
+        //   Cliente c = new Cliente();
 
         }
     }

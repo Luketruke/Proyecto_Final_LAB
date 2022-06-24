@@ -18,8 +18,8 @@ namespace negocios
             try
             {
                 comando = new SqlCommand();
-                conexion = new SqlConnection("server=localhost; database=COMERCIO_P3; integrated security=true;"); //Lucas
-                //conexion = new SqlConnection("Data Source=.\\SQLEXPRESS; database=COMERCIO_P3; integrated security=true;"); //Gaston
+              // conexion = new SqlConnection("server=localhost; database=COMERCIO_P3; integrated security=true;"); //Lucas
+               conexion = new SqlConnection("server=.\\SQLEXPRESS; database=COMERCIO_P3; integrated security=true;"); //Gaston
             }
             catch (Exception ex)
             {
@@ -41,9 +41,11 @@ namespace negocios
         public SqlDataReader ejecutarConexion()
         {
             comando.Connection = conexion;
-            conexion.Open();
-            lector = comando.ExecuteReader();
-            return lector;
+           
+               conexion.Open();
+               lector = comando.ExecuteReader();
+               return lector;
+              
         }
         public void setearParametro(string nombre, object valor)
         {

@@ -125,7 +125,7 @@
     <Content Include="Formularios\Productos\Productos.aspx" />
     <Content Include="Formularios\Productos\ProductosABM.aspx" />
     <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
-    <Content Include="Formularios\Usuarios\UsuariosABM.aspx" />
+    <Content Include="Formularios\Proveedores\Usuarios\UsuariosABM.aspx" />
     <Content Include="Formularios\Vendedores\VendedoresABM.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -265,11 +265,11 @@
     <Compile Include="Formularios\Proveedores\ProveedoresABM.aspx.designer.cs">
       <DependentUpon>ProveedoresABM.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Usuarios\UsuariosABM.aspx.cs">
+    <Compile Include="Formularios\Proveedores\Usuarios\UsuariosABM.aspx.cs">
       <DependentUpon>UsuariosABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Formularios\Usuarios\UsuariosABM.aspx.designer.cs">
+    <Compile Include="Formularios\Proveedores\Usuarios\UsuariosABM.aspx.designer.cs">
       <DependentUpon>UsuariosABM.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Vendedores\VendedoresABM.aspx.cs">

@@ -50,7 +50,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -115,6 +125,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Formulario web1.aspx" />
     <Content Include="Formularios\Clientes\Clientes.aspx" />
     <Content Include="Formularios\Clientes\ClientesABM.aspx" />
     <Content Include="Formularios\Compras\ComprasABM.aspx" />
@@ -124,6 +135,7 @@
     <Content Include="Formularios\Productos\MarcasABM.aspx" />
     <Content Include="Formularios\Productos\Productos.aspx" />
     <Content Include="Formularios\Productos\ProductosABM.aspx" />
+    <Content Include="Formularios\Proveedores\Proveedores.aspx" />
     <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
     <Content Include="Formularios\Proveedores\Usuarios\UsuariosABM.aspx" />
     <Content Include="Formularios\Vendedores\VendedoresABM.aspx" />
@@ -195,6 +207,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formulario web1.aspx.cs">
+      <DependentUpon>Formulario web1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulario web1.aspx.designer.cs">
+      <DependentUpon>Formulario web1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Clientes\Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +276,13 @@
     </Compile>
     <Compile Include="Formularios\Productos\ProductosABM.aspx.designer.cs">
       <DependentUpon>ProductosABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\Proveedores.aspx.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\Proveedores.aspx.designer.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Proveedores\ProveedoresABM.aspx.cs">
       <DependentUpon>ProveedoresABM.aspx</DependentUpon>

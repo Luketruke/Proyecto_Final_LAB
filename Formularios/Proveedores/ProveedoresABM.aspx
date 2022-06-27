@@ -1,31 +1,64 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="ProveedoresABM.aspx.cs" Inherits="Proyecto_Final_LAB.Formularios.Proveedores.ProveedoresABM" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProveedoresABM.aspx.cs" Inherits="Proyecto_Final_LAB.Formularios.Proveedores.ProveedoresABM1" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>  
-    <table style="width: 100%">
-        <tbody>
-            <tr>
-                <td style="width: 90%">
-                    <div class="form-group">
-                        <label class="col-md-2">Proveedor a cargar:</label>
-                        <div class="col-md-6">
-                            <asp:TextBox runat="server" ID="txtProveedor" class="form-control" />
-                        </div>
-                    </div>
-                </td>
-                <td style="width: 30%"></td>
-                <td style="width: 10%">
-                    <div class="col-md-1">
-                        <div class="shortcuts">
-                            <asp:Button ID="btnAgregarPv" runat="server" Text="Agregar" />
-                        </div>
-                    </div>
-                </td>
-            </tr>       
-        </tbody>
-    </table>
-    <div>
-    <asp:GridView ID="dgvProveedores" runat="server"  CssClass=" table"></asp:GridView>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Aca va el cargar Proveedor nuevo</h1>
+    <br />
+
+    <div class="mb-3">
+        <label for="txtCod" class="form-label">Codigo</label>       
+        <asp:TextBox runat="server" ID="txtCodigo" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCodigo" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
+    <div class="mb-3">
+        <label for="txtRazonSocial" class="form-label">Razon Social</label>       
+        <asp:TextBox runat="server" ID="txtRazonSocial" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtRazonSocial" ErrorMessage="*"></asp:RequiredFieldValidator>
+    </div>
+      <div class="mb-3">
+        <label for="CUIT" class="form-label">CUIT</label>       
+        <asp:TextBox runat="server" ID="txtCuit" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCuit" ErrorMessage="*"></asp:RequiredFieldValidator>
+    </div>
+     <div class="mb-3">
+        <label for="Domicilio" class="form-label">Domicilio</label>       
+        <asp:TextBox runat="server" ID="txtDomicilio" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtDomicilio" ErrorMessage="*"></asp:RequiredFieldValidator>
+    </div>
+      <div class="mb-3">
+        <label for="Telefono" class="form-label">Telefono</label>       
+        <asp:TextBox runat="server" ID="txtTelefono" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*"></asp:RequiredFieldValidator>
+    </div>
+      <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>       
+        <asp:TextBox runat="server" ID="txtEmail" class="form-control" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtEmail" ErrorMessage="*"></asp:RequiredFieldValidator>
+    </div>
+
+   <br />
+
+    <asp:Button ID="btnAgregar" runat="server" Text="Aceptar" />
+
+
+
+    <script>
+        //valida los campos solo numeros 
+        function validarSoloNro(e) {
+            var key;
+            if (window.event) 
+            {
+                key = e.keyCode;
+            }
+            else if (e.which) 
+            {
+                key = e.which;
+            }
+
+            if (key < 48 || key > 57) {
+                return false;
+            }
+            else { return true; }
+        }
+    </script>
 
 </asp:Content>

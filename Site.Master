@@ -67,7 +67,7 @@
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Clientes/Clientes.aspx">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Proveedores/ProveedoresABM.aspx">Proveedores</a>
+                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Proveedores/Proveedores.aspx">Proveedores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Vendedores/VendedoresABM.aspx">Vendedores</a>

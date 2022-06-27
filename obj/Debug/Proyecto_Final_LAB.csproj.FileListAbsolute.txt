@@ -158,3 +158,12 @@ C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proy
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.csproj.CopyComplete
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.dll
 C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\obj\Debug\Proyecto_Final_LAB.pdb
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\System.Net.Http.Formatting.dll
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\System.Web.Http.dll
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\System.Web.Http.WebHost.dll
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\System.Net.Http.Formatting.xml
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\System.Web.Http.xml
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\System.Web.Http.WebHost.xml
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\es\System.Net.Http.Formatting.resources.dll
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\es\System.Web.Http.resources.dll
+C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\bin\es\System.Web.Http.WebHost.resources.dll

@@ -9,7 +9,20 @@
     </div>
 
     <div>
-        <asp:GridView ID="dgvProductos" runat="server" CssClass="table"></asp:GridView>
+        <asp:GridView ID="dgvProductos" runat="server" CssClass="table" AutoGenerateColumns="false">
+            <Columns>
+                <asp:BoundField HeaderText="ID" DataField="Id" />
+                <asp:BoundField HeaderText="Código" DataField="Codigo" />
+                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
+                <asp:BoundField HeaderText="Precio Venta" DataField="PrevioVenta" />
+                <asp:BoundField HeaderText="Costo" DataField="Costo" />
+                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Categoria" />
+                <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+                <asp:BoundField HeaderText="Observaciones" DataField="Observaciones" />
+
+            </Columns>
+
+        </asp:GridView>
     </div>
 
 

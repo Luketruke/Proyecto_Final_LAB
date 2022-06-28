@@ -33,7 +33,7 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
                if (pn.agregarProveedor(p))
                {
                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                      "swal('Cliente agregado', '', 'success')", true);
+                      "swal('Proveedor agregado', '', 'success')", true);
                }           
         }
     }

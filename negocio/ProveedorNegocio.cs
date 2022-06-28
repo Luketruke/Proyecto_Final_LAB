@@ -28,6 +28,39 @@ namespace negocios
             return dt;
         }
     }
-   }
+
+
+
+        public bool agregarProveedor(Proveedor pv)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarProveedor");
+                conexion.setearParametro("@Codigo", pv.Codigo);
+                conexion.setearParametro("@RazonSocial", pv.RazonSocial);
+                conexion.setearParametro("@CUIT", pv.Cuit);
+                conexion.setearParametro("@domicilio", pv.Domicilio);
+                conexion.setearParametro("@telefono", pv.Telefono);
+                conexion.setearParametro("@Email", pv.Email);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+
+
+
+    }
 }
 

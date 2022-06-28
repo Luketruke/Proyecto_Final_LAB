@@ -37,7 +37,7 @@
 
    <br />
 
-    <asp:Button ID="btnAgregar" runat="server" Text="Aceptar" />
+    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
 
 
 

@@ -9,7 +9,7 @@
     </div>
 
     <div>
-        <asp:GridView ID="dgvProductos" runat="server" CssClass="table" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvProductos" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="ID" DataField="Id" />
                 <asp:BoundField HeaderText="Código" DataField="Codigo" />

@@ -21,11 +21,12 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
              dgvProveedores.DataBind();
            
         }
-       
 
-
-
-
+        protected void dgvProveedores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var Id = dgvProveedores.SelectedDataKey.Value.ToString();
+            Response.Redirect("ProveedoresABM.aspx?id=" + Id);
+        }
     }
    
 }

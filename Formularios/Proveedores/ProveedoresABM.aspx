@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProveedoresABM.aspx.cs" Inherits="Proyecto_Final_LAB.Formularios.Proveedores.ProveedoresABM1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Aca va el cargar Proveedor nuevo</h1>
+    <h1>Proveedor</h1>
     <br />
 
     <div class="mb-3">
@@ -36,11 +36,10 @@
     </div>
 
    <br />
-
-    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-
-
-
+  
+    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" class="btn btn-success" />
+              
+                      
     <script>
         //valida los campos solo numeros 
         function validarSoloNro(e) {

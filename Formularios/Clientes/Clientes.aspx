@@ -7,6 +7,6 @@
         <asp:LinkButton href="ClientesABM.aspx" ID="btnAgregar" class="btn btn-secondary btn-lg" Text="Agregar" runat="server"></asp:LinkButton>
     </div>
 
-    <asp:GridView runat="server" ID="dgvClientes" CssClass="table"></asp:GridView>
+    <asp:GridView runat="server" ID="dgvClientes" CssClass="table table-dark table-bordered"></asp:GridView>
  
 </asp:Content>

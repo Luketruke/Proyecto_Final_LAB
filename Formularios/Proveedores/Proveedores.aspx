@@ -23,7 +23,21 @@
         </tbody>
     </table>
     <div>
-    <asp:GridView ID="dgvProveedores" runat="server"  CssClass=" table"></asp:GridView>
+    <asp:GridView ID="dgvProveedores" runat="server" DataKeyNames="Id" OnSelectedIndexChanged="dgvProveedores_SelectedIndexChanged" CssClass=" table table-dark table-bordered" AutoGenerateColumns="false">
+        <Columns>
+            <%--<asp:BoundField HeaderText="ID" DataField="Id"/>--%>
+            <asp:BoundField HeaderText="Codigo" DataField="Codigo"/>
+            <asp:BoundField HeaderText="Razon Social" DataField="RazonSocial"/>
+            <asp:BoundField HeaderText="CUIT" DataField="Cuit" />
+            <asp:BoundField HeaderText="Domicilio" DataField="Domicilio"/>
+            <asp:BoundField HeaderText="Telefono" DataField="Telefono"/>
+            <asp:BoundField HeaderText="Email" DataField="Email"/>
+            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Eliminar"/>
+            
+        </Columns>
+
+    </asp:GridView>
+       
     </div>
 
 </asp:Content>

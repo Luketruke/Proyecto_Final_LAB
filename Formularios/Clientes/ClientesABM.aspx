@@ -55,7 +55,7 @@
     </div>
 
     <div class="mb-3">
-        <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" Text="Agregar" />
+        <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" class="btn btn-success" runat="server" Text="Agregar" />
     </div>
 
     <script>

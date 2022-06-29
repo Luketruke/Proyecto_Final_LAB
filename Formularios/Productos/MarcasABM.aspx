@@ -32,7 +32,7 @@
     <br />
 
     <div>
-        <asp:GridView ID="dgvMarcas" runat="server" CssClass="table"></asp:GridView>
+        <asp:GridView ID="dgvMarcas" runat="server" CssClass="table table-dark table-bordered"></asp:GridView>
     </div>
 
 </asp:Content>

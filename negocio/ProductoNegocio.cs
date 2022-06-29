@@ -95,6 +95,29 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+
+        public bool modificarCategoria(CategoriaProducto c)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarCategoria");
+                conexion.setearParametro("@Id", c.Id);
+                conexion.setearParametro("@Descripcion", c.Categoria);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public bool agregarMarca(Marca m)
         {
             ConexionSQL conexion = new ConexionSQL();

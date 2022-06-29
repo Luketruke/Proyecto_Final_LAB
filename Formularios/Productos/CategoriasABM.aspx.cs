@@ -14,11 +14,30 @@ namespace Proyecto_Final_LAB.Formularios.Productos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio pn = new ProductoNegocio();
-            dgvCategorias.DataSource = pn.obtenerCategorias();
-            dgvCategorias.DataBind();
-        }
+            if (Session["dtCategorias"] == null)
+            {
+                ProductoNegocio pn = new ProductoNegocio();
+                Session.Add("dtCategorias", pn.obtenerCategorias());
+            }
 
+            dgvCategorias.DataSource = Session["dtCategorias"];
+            dgvCategorias.DataBind();
+
+            if (Request.QueryString["id"] != null)
+            {
+                int id = int.Parse(Request.QueryString["id"].ToString());
+                DataTable dtTemp = (DataTable)Session["dtCategorias"];
+                btnAgregar.Visible = false;
+                btnModificarOk.Visible = true;
+                for (int i = 0; i < dtTemp.Rows.Count; i++)
+                {
+                    if (Convert.ToInt32(dtTemp.Rows[i]["Id"])==id && !IsPostBack)
+                    {
+                        txtCategoria.Text = dtTemp.Rows[i]["Descripcion"].ToString();
+                    }
+                }
+            }
+        }
         public void btnAgregar_Click(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();
@@ -30,7 +49,45 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "swal('Categoria agregada', '', 'success')", true);
+
+                Session["dtCategorias"] = null;
+
+                Response.Redirect("CategoriasABM.aspx");
             }
+        }
+        public void btnModificarOk_Click(object sender, EventArgs e)
+        {
+            ProductoNegocio pn = new ProductoNegocio();
+            CategoriaProducto c = new CategoriaProducto();
+
+            c.Id = int.Parse(Request.QueryString["id"].ToString());
+            c.Categoria = txtCategoria.Text;
+
+            if (pn.modificarCategoria(c))
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    "swal('Categoria modificada', '', 'success')", true);
+
+                Session["dtCategorias"] = null;
+
+                Response.Redirect("CategoriasABM.aspx");
+            }
+        }
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+            GridView gv = clickedRow.NamingContainer as GridView;
+            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+            Response.Redirect("CategoriasABM.aspx?id=" + id);
+        }
+
+        //Falta el cartel de confirmacion y la funcion.
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+            GridView gv = clickedRow.NamingContainer as GridView;
+            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+            
         }
     }
 }

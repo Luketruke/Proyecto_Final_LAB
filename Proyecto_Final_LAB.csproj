@@ -125,7 +125,6 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Formulario web1.aspx" />
     <Content Include="Formularios\Clientes\Clientes.aspx" />
     <Content Include="Formularios\Clientes\ClientesABM.aspx" />
     <Content Include="Formularios\Compras\ComprasABM.aspx" />
@@ -207,13 +206,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formulario web1.aspx.cs">
-      <DependentUpon>Formulario web1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formulario web1.aspx.designer.cs">
-      <DependentUpon>Formulario web1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Clientes\Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>

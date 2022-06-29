@@ -31,6 +31,11 @@ namespace negocios
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.CommandText = procedure;
         }
+        public void setearQuery(string consulta)
+        {
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = consulta;
+        }
 
         public void cerrarConexion()
         {
@@ -47,12 +52,30 @@ namespace negocios
                return lector;
               
         }
+
+        public void ejecutarLector()
+        {
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public void setearParametro(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
         public SqlDataReader Lector { get { return lector; } }
     }
+
+
+    
 }
 
 

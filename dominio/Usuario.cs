@@ -9,11 +9,17 @@ namespace dominios
     public class Usuario
     {
         public int Id { get; set; }
-        public string Codigo { get; set; }
         public string User { get; set; }
         public string Contraseña { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-        public TipoUsuario Marca { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public TipoUsuario IdTipo { get; set; }
+
+       public Usuario(string user, string pass) 
+        { 
+        User = user;
+        Contraseña = pass;
+        }
     }
 }

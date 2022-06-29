@@ -33,12 +33,10 @@
 
         </tbody>
     </table>
-
     <br />
     <br />
-
     <div class="col-md-12 col-xs-12">
-        <asp:GridView ID="dgvCategorias" runat="server" DataKeyNames="Id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvCategorias" runat="server" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
                 <asp:TemplateField HeaderText="Accion" ItemStyle-Width="75" HeaderStyle-Width="75">

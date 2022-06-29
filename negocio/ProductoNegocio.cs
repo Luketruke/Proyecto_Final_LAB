@@ -55,7 +55,35 @@ namespace negocios
                 conexion.setearProcedure("AgregarProducto");
                 conexion.setearParametro("@Codigo", p.Codigo);
                 conexion.setearParametro("@Descripcion", p.Descripcion);
-                conexion.setearParametro("@PrevioVenta", p.PrevioVenta);
+                conexion.setearParametro("@PrevioVenta", p.PrecioVenta);
+                conexion.setearParametro("@Costo", p.Costo);
+                conexion.setearParametro("@IdCategoria", idCategoria);
+                conexion.setearParametro("@IdMarca", idMarca);
+                conexion.setearParametro("@Observaciones", p.Observaciones);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool modificarProducto(Producto p, int idCategoria, int idMarca)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarProducto");
+                conexion.setearParametro("@Id", p.Id);
+                conexion.setearParametro("@Codigo", p.Codigo);
+                conexion.setearParametro("@Descripcion", p.Descripcion);
+                conexion.setearParametro("@PrevioVenta", p.PrecioVenta);
                 conexion.setearParametro("@Costo", p.Costo);
                 conexion.setearParametro("@IdCategoria", idCategoria);
                 conexion.setearParametro("@IdMarca", idMarca);
@@ -177,7 +205,7 @@ namespace negocios
                     p.Id = (int)conexion.Lector["Id"];
                     p.Codigo = (string)conexion.Lector["Codigo"];
                     p.Descripcion = (string)conexion.Lector["Descripcion"];
-                    p.PrevioVenta = (decimal)conexion.Lector["PrecioVenta"];
+                    p.PrecioVenta = (decimal)conexion.Lector["PrecioVenta"];
                     p.Costo = (decimal)conexion.Lector["Costo"];
 
                     p.Marca = new Marca();

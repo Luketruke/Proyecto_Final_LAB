@@ -52,7 +52,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 
                 Session["dtMarca"] = null;
 
-                Response.Redirect("MarcaABM.aspx");
+                Response.Redirect("MarcasABM.aspx");
             }
         }
         public void btnModificarOk_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 
                 Session["dtMarca"] = null;
 
-                Response.Redirect("MarcaABM.aspx");
+                Response.Redirect("MarcasABM.aspx");
             }
         }
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
             GridView gv = clickedRow.NamingContainer as GridView;
             var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-            Response.Redirect("MarcaABM.aspx?id=" + id);
+            Response.Redirect("MarcasABM.aspx?id=" + id);
         }
 
         //Falta el cartel de confirmacion y la funcion.

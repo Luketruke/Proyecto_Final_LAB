@@ -25,7 +25,6 @@
                             <asp:LinkButton ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Visible="false">
                             <i class="fa-solid fa-check"></i>
                             </asp:LinkButton>
-
                         </div>
                     </div>
                 </td>
@@ -38,7 +37,7 @@
     <br />
 
     <div class="col-md-12 col-xs-12">
-        <asp:GridView ID="dgvMarcas" runat="server" DataKeyNames="Id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvMarcas" runat="server" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
                 <asp:TemplateField HeaderText="Accion" ItemStyle-Width="75" HeaderStyle-Width="75">

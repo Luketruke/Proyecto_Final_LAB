@@ -12,9 +12,26 @@ namespace Proyecto_Final_LAB.Formularios.Productos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio pn = new ProductoNegocio();
-            dgvProductos.DataSource = pn.listarProductos();
-            dgvProductos.DataBind();
+            if (Session["listaProductos"] == null)
+            {
+                ProductoNegocio pn = new ProductoNegocio();
+                Session.Add("listaProductos", pn.listarProductos());
+                dgvProductos.DataSource = Session["listaProductos"];
+                dgvProductos.DataBind();
+            }
+
+        }
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ProductosABM.aspx?accion=1");
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+            GridView gv = clickedRow.NamingContainer as GridView;
+            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+            Response.Redirect("ProductosABM.aspx?accion=2&id=" + id);
         }
     }
 }

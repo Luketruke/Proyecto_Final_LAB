@@ -38,9 +38,6 @@
     <br />
 
     <div class="col-md-12 col-xs-12">
-<<<<<<< Updated upstream
-        <asp:GridView ID="dgvCategorias" runat="server" CssClass="table table-dark table-bordered"></asp:GridView>
-=======
         <asp:GridView ID="dgvCategorias" runat="server" DataKeyNames="Id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
@@ -55,10 +52,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-
-
         </asp:GridView>
->>>>>>> Stashed changes
     </div>
 
 </asp:Content>

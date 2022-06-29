@@ -95,7 +95,6 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-
         public bool modificarCategoria(CategoriaProducto c)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -124,6 +123,29 @@ namespace negocios
             try
             {
                 conexion.setearProcedure("AgregarMarca");
+                conexion.setearParametro("@Descripcion", m.Descripcion);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public bool modificarMarca(Marca m)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarMarca");
+                conexion.setearParametro("@Id", m.Id);
                 conexion.setearParametro("@Descripcion", m.Descripcion);
 
                 conexion.ejecutarConexion();

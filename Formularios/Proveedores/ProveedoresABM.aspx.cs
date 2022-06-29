@@ -14,10 +14,12 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+             /*
             if (Request.QueryString["id"] != null)
-            { 
-
-            }
+            {             
+                int id = int.Parse(Request.QueryString["id"].ToString());                        
+            }  
+             */
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)

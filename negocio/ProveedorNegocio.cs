@@ -28,6 +28,33 @@ namespace negocios
             return dt;
         }
     }
+        public List<Proveedor> listar()
+        {
+            Proveedor aux;
+            ConexionSQL conexion = new ConexionSQL();
+            List<Proveedor> lista = new List<Proveedor>();
+            try
+            {
+
+                conexion.setearProcedure("ObtenerProveedores");
+                conexion.ejecutarConexion();
+
+                while (conexion.Lector.Read())
+                {
+                    aux = new Proveedor((int)conexion.Lector["Id"], (string)conexion.Lector["Codigo"], (string)conexion.Lector["RazonSocial"], (string)conexion.Lector["Cuit"], (string)conexion.Lector["Domicilio"], (string)conexion.Lector["Telefono"], (string)conexion.Lector["Email"]);
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
 
 
 
@@ -57,9 +84,6 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-
-
-
 
     }
 }

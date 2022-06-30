@@ -26,7 +26,7 @@
 
     <div class="mb-3">
         <label for="txtFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-        <asp:TextBox runat="server" ID="txtFechaNacimiento" TextMode="Date" class="form-control" />
+        <asp:TextBox runat="server" ID="txtFechaNacimiento" DateFormat="dd/MM/yyyy" TextMode="Date" class="form-control" />
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtFechaNacimiento" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 
@@ -55,7 +55,8 @@
     </div>
 
     <div class="mb-3">
-        <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" class="btn btn-success" runat="server" Text="Agregar" />
+        <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
+        <asp:Button ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false"/>
     </div>
 
     <script>

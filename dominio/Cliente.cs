@@ -13,6 +13,7 @@ namespace dominios
         public string Codigo { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
+        public string NombreCompleto { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Cuit { get; set; }
         public string Domicilio { get; set; }

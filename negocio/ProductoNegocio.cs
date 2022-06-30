@@ -10,43 +10,7 @@ using dominios;
 namespace negocios
 {
     public class ProductoNegocio
-    {
-        public DataTable obtenerCategorias()
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
-            {
-                {
-                    conexion.setearProcedure("ObtenerCategoriasProductos");
-                    dt.Load(conexion.ejecutarConexion());
-                }
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
-            }
-        }
-        public DataTable obtenerMarcas()
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
-            {
-                {
-                    conexion.setearProcedure("ObtenerMarcasProductos");
-                    dt.Load(conexion.ejecutarConexion());
-                }
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
-            }
-        }
+    {    
         public bool agregarProducto(Producto p, int idCategoria, int idMarca)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -60,121 +24,6 @@ namespace negocios
                 conexion.setearParametro("@IdCategoria", idCategoria);
                 conexion.setearParametro("@IdMarca", idMarca);
                 conexion.setearParametro("@Observaciones", p.Observaciones);
-
-                conexion.ejecutarConexion();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-        public bool modificarProducto(Producto p, int idCategoria, int idMarca)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            try
-            {
-                conexion.setearProcedure("ModificarProducto");
-                conexion.setearParametro("@Id", p.Id);
-                conexion.setearParametro("@Codigo", p.Codigo);
-                conexion.setearParametro("@Descripcion", p.Descripcion);
-                conexion.setearParametro("@PrevioVenta", p.PrecioVenta);
-                conexion.setearParametro("@Costo", p.Costo);
-                conexion.setearParametro("@IdCategoria", idCategoria);
-                conexion.setearParametro("@IdMarca", idMarca);
-                conexion.setearParametro("@Observaciones", p.Observaciones);
-
-                conexion.ejecutarConexion();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-        public bool agregarCategoria(CategoriaProducto c)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            try
-            {
-                conexion.setearProcedure("AgregarCategoria");
-                conexion.setearParametro("@Descripcion", c.Categoria);
-
-                conexion.ejecutarConexion();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-        public bool modificarCategoria(CategoriaProducto c)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            try
-            {
-                conexion.setearProcedure("ModificarCategoria");
-                conexion.setearParametro("@Id", c.Id);
-                conexion.setearParametro("@Descripcion", c.Categoria);
-
-                conexion.ejecutarConexion();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-        public bool agregarMarca(Marca m)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            try
-            {
-                conexion.setearProcedure("AgregarMarca");
-                conexion.setearParametro("@Descripcion", m.Descripcion);
-
-                conexion.ejecutarConexion();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-
-        public bool modificarMarca(Marca m)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            try
-            {
-                conexion.setearProcedure("ModificarMarca");
-                conexion.setearParametro("@Id", m.Id);
-                conexion.setearParametro("@Descripcion", m.Descripcion);
 
                 conexion.ejecutarConexion();
 
@@ -227,6 +76,158 @@ namespace negocios
             {
                 lista = null;
                 return lista;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool modificarProducto(Producto p, int idCategoria, int idMarca)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarProducto");
+                conexion.setearParametro("@Id", p.Id);
+                conexion.setearParametro("@Codigo", p.Codigo);
+                conexion.setearParametro("@Descripcion", p.Descripcion);
+                conexion.setearParametro("@PrevioVenta", p.PrecioVenta);
+                conexion.setearParametro("@Costo", p.Costo);
+                conexion.setearParametro("@IdCategoria", idCategoria);
+                conexion.setearParametro("@IdMarca", idMarca);
+                conexion.setearParametro("@Observaciones", p.Observaciones);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public DataTable obtenerCategorias()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                {
+                    conexion.setearProcedure("ObtenerCategoriasProductos");
+                    dt.Load(conexion.ejecutarConexion());
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
+            }
+        }
+        public bool agregarCategoria(CategoriaProducto c)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarCategoria");
+                conexion.setearParametro("@Descripcion", c.Categoria);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool modificarCategoria(CategoriaProducto c)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarCategoria");
+                conexion.setearParametro("@Id", c.Id);
+                conexion.setearParametro("@Descripcion", c.Categoria);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable obtenerMarcas()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                {
+                    conexion.setearProcedure("ObtenerMarcasProductos");
+                    dt.Load(conexion.ejecutarConexion());
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
+            }
+        }
+        public bool agregarMarca(Marca m)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarMarca");
+                conexion.setearParametro("@Descripcion", m.Descripcion);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public bool modificarMarca(Marca m)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarMarca");
+                conexion.setearParametro("@Id", m.Id);
+                conexion.setearParametro("@Descripcion", m.Descripcion);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
             finally
             {

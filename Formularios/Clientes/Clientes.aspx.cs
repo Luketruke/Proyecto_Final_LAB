@@ -13,9 +13,26 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClienteNegocio cn = new ClienteNegocio();
-            dgvClientes.DataSource = cn.obtenerClientesTodos();
+            if (Session["listaClientes"] == null)
+            {
+                ClienteNegocio cn = new ClienteNegocio();
+                Session.Add("listaClientes", cn.obtenerClientesTodos());
+            }
+            dgvClientes.DataSource = Session["listaClientes"];
             dgvClientes.DataBind();
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientesABM.aspx?accion=1");
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+            GridView gv = clickedRow.NamingContainer as GridView;
+            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+            Response.Redirect("ClientesABM.aspx?accion=2&id=" + id);
         }
     }
 }

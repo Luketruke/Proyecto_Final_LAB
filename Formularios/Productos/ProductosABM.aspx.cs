@@ -84,7 +84,6 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 Console.WriteLine(ex);
             }
         }
-
         public void btnModificar_Click(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();

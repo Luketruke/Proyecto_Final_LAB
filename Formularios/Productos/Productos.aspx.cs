@@ -16,10 +16,9 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             {
                 ProductoNegocio pn = new ProductoNegocio();
                 Session.Add("listaProductos", pn.listarProductos());
-                dgvProductos.DataSource = Session["listaProductos"];
-                dgvProductos.DataBind();
             }
-
+            dgvProductos.DataSource = Session["listaProductos"];
+            dgvProductos.DataBind();
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {

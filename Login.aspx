@@ -11,7 +11,6 @@
             <asp:TextBox runat="server" placeholder="*****" id="txtPassword" CssClass="form-control" TextMode="Password"/>
        </div>
        
-     <asp:Button ID="btnLogin" runat="server" Text="LOGIN" OnClick="btnLogin_Click" />
+     <asp:Button ID="btnLogin" runat="server" Text="LOGIN" />
 
-    </div>
 </asp:Content>

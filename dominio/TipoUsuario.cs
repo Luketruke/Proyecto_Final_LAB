@@ -9,7 +9,10 @@ namespace dominios
     public class TipoUsuario
     {
         public int Id { get; set; }
-        public bool Tipo { get; set; }
-        
+        public string Tipo { get; set; }
+        public override string ToString()
+        {
+            return Tipo;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,46 +15,59 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
         protected void Page_Load(object sender, EventArgs e)
         {
             ClienteNegocio cn = new ClienteNegocio();
-
-            if (Convert.ToInt32(Request.QueryString["accion"]) == 2 && !IsPostBack)
+            try
             {
-                int id = Convert.ToInt32(Request.QueryString["id"]);
-                List<Cliente> temp = (List<Cliente>)Session["listaClientes"];
-                Cliente selected = temp.Find(x => x.Id == id);
-                btnAgregar.Visible = false;
-                btnModificar.Visible = true;
-                txtCodigo.Text = selected.Codigo;
-                txtNombres.Text = selected.Nombres;
-                txtApellidos.Text = selected.Apellidos; 
-                txtFechaNacimiento.Text = selected.FechaNacimiento.ToString("dd/MM/yyyy");
-                txtCuit.Text = selected.Cuit;
-                txtDomicilio.Text = selected.Domicilio;
-                txtTelefono.Text = selected.Telefono;
-                txtEmail.Text = selected.Email;
+                if (Convert.ToInt32(Request.QueryString["accion"]) == 2 && !IsPostBack)
+                {
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    List<Cliente> temp = (List<Cliente>)Session["listaClientes"];
+                    DataTable dt = cn.obtenerDireccionCliente(id);
+                    Cliente selected = temp.Find(x => x.Id == id);
+                    btnAgregar.Visible = false;
+                    btnModificar.Visible = true;
+                    txtCodigo.Text = selected.Codigo;
+                    txtNombres.Text = selected.Nombres;
+                    txtApellidos.Text = selected.Apellidos;
+                    txtFechaNacimiento.Text = selected.FechaNacimiento.ToString("dd/MM/yyyy");
+                    txtCuit.Text = selected.Cuit;
+                    txtTelefono.Text = selected.Telefono;
+                    txtEmail.Text = selected.Email;
+                    txtDomicilio.Text = dt.Rows[0]["Direccion"].ToString();
+                    txtLocalidad.Text = dt.Rows[0]["Localidad"].ToString();
+                    txtCodigoPostal.Text = dt.Rows[0]["CodigoPostal"].ToString();
+                    txtObservaciones.Text = dt.Rows[0]["Observaciones"].ToString();
+                }
+                Session["listaClientes"] = null;
             }
-
-            Session["listaProductos"] = null;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         public void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
                 ClienteNegocio cn = new ClienteNegocio();
+                Direccion d = new Direccion();
                 Cliente c = new Cliente();
                 c.Codigo = txtCodigo.Text;
                 c.Nombres = txtNombres.Text;
                 c.Apellidos = txtApellidos.Text;
                 c.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
                 c.Cuit = txtCuit.Text;
-                c.Domicilio = txtDomicilio.Text;
                 c.Telefono = txtTelefono.Text;
                 c.Email = txtEmail.Text;
+                d.Domicilio = txtDomicilio.Text;
+                d.Localidad = txtLocalidad.Text;
+                d.CodigoPostal = txtCodigoPostal.Text;
+                d.Observaciones = txtObservaciones.Text;
 
-                if (cn.agregarCliente(c))
+                if (cn.agregarCliente(c, d))
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                        "swal('Cliente agregado', '', 'success')", true);
-                    //Response.Redirect("~");
+                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                    //    "swal('Cliente agregado', '', 'success')", true);
+                    Response.Redirect("Clientes.aspx");
                     //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cliente agregado con exito')", true);
                 }
             }
@@ -68,17 +82,21 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
             try
             {
                 ClienteNegocio cn = new ClienteNegocio();
+                Direccion d = new Direccion();
                 Cliente c = new Cliente();
                 c.Codigo = txtCodigo.Text;
                 c.Nombres = txtNombres.Text;
                 c.Apellidos = txtApellidos.Text;
                 c.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
                 c.Cuit = txtCuit.Text;
-                c.Domicilio = txtDomicilio.Text;
                 c.Telefono = txtTelefono.Text;
                 c.Email = txtEmail.Text;
+                d.Domicilio = txtDomicilio.Text;
+                d.Localidad = txtLocalidad.Text;
+                d.CodigoPostal = txtCodigoPostal.Text;
+                d.Observaciones = txtObservaciones.Text;
 
-                if (cn.modificarCliente(c))
+                if (cn.modificarCliente(c, d))
                 {
                     //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     //    "swal('Producto modificado', '', 'success')", true);

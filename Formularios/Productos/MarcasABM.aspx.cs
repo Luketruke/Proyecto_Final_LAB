@@ -14,80 +14,112 @@ namespace Proyecto_Final_LAB.Formularios.Productos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["dtMarca"] == null)
+            try
             {
-                ProductoNegocio pn = new ProductoNegocio();
-                Session.Add("dtMarca", pn.obtenerMarcas());
-            }
-
-            dgvMarcas.DataSource = Session["dtMarca"];
-            dgvMarcas.DataBind();
-
-            if (Request.QueryString["id"] != null)
-            {
-                int id = int.Parse(Request.QueryString["id"].ToString());
-                DataTable dtTemp = (DataTable)Session["dtMarca"];
-                btnAgregar.Visible = false;
-                btnModificarOk.Visible = true;
-                for (int i = 0; i < dtTemp.Rows.Count; i++)
+                if (Session["dtMarca"] == null)
                 {
-                    if (Convert.ToInt32(dtTemp.Rows[i]["Id"])==id && !IsPostBack)
+                    ProductoNegocio pn = new ProductoNegocio();
+                    Session.Add("dtMarca", pn.obtenerMarcas());
+                }
+
+                dgvMarcas.DataSource = Session["dtMarca"];
+                dgvMarcas.DataBind();
+
+                if (Request.QueryString["id"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["id"].ToString());
+                    DataTable dtTemp = (DataTable)Session["dtMarca"];
+                    btnAgregar.Visible = false;
+                    btnModificarOk.Visible = true;
+                    for (int i = 0; i < dtTemp.Rows.Count; i++)
                     {
-                        txtMarca.Text = dtTemp.Rows[i]["Descripcion"].ToString();
+                        if (Convert.ToInt32(dtTemp.Rows[i]["Id"])==id && !IsPostBack)
+                        {
+                            txtMarca.Text = dtTemp.Rows[i]["Descripcion"].ToString();
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
         public void btnAgregar_Click(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();
             Marca m = new Marca();
-
-            m.Descripcion = txtMarca.Text;
-
-            if (pn.agregarMarca(m))
+            try
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "swal('Marca agregada', '', 'success')", true);
+                m.Descripcion = txtMarca.Text;
 
-                Session["dtMarca"] = null;
+                if (pn.agregarMarca(m))
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                        "swal('Marca agregada', '', 'success')", true);
 
-                Response.Redirect("MarcasABM.aspx");
+                    Session["dtMarca"] = null;
+
+                    Response.Redirect("MarcasABM.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
         public void btnModificarOk_Click(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();
             Marca m = new Marca();
-
-            m.Id = int.Parse(Request.QueryString["id"].ToString());
-            m.Descripcion = txtMarca.Text;
-
-            if (pn.modificarMarca(m))
+            try
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "swal('Marca modificada', '', 'success')", true);
+                m.Id = int.Parse(Request.QueryString["id"].ToString());
+                m.Descripcion = txtMarca.Text;
 
-                Session["dtMarca"] = null;
+                if (pn.modificarMarca(m))
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                        "swal('Marca modificada', '', 'success')", true);
 
-                Response.Redirect("MarcasABM.aspx");
+                    Session["dtMarca"] = null;
+
+                    Response.Redirect("MarcasABM.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-            GridView gv = clickedRow.NamingContainer as GridView;
-            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-            Response.Redirect("MarcasABM.aspx?id=" + id);
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Response.Redirect("MarcasABM.aspx?id=" + id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         //Falta el cartel de confirmacion y la funcion.
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-            GridView gv = clickedRow.NamingContainer as GridView;
-            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
     }

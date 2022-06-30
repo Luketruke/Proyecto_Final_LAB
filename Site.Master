@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<body>
+<body style="padding-top:0px">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -42,7 +42,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-radius:0px">
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Facturacion/FacturacionABM.aspx">Facturar</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
+                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlProductos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/Productos.aspx">Productos</a>
@@ -64,8 +64,13 @@
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Productos/CategoriasABM.aspx">Categorias</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Clientes/Clientes.aspx">Clientes</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlClientes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Clientes/Clientes.aspx">Clientes</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Clientes/CuentaCorrienteClientes.aspx">Cuenta Corriente</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Proveedores/Proveedores.aspx">Proveedores</a>
@@ -78,7 +83,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>
+        </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

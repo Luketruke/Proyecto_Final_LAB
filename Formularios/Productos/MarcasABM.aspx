@@ -9,7 +9,7 @@
             <tr>
                 <td style="width: 60%">
                     <div class="form-group">
-                        <label class="col-md-2">Marca</label>
+                        <label style="font-size: 20px;" class="col-md-2">Marca</label>
                         <div class="col-md-6">
                             <asp:TextBox runat="server" ID="txtMarca" class="form-control" />
                         </div>

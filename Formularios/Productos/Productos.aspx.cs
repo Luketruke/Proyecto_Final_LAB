@@ -12,13 +12,20 @@ namespace Proyecto_Final_LAB.Formularios.Productos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["listaProductos"] == null)
+            try
             {
-                ProductoNegocio pn = new ProductoNegocio();
-                Session.Add("listaProductos", pn.listarProductos());
+                if (Session["listaProductos"] == null)
+                {
+                    ProductoNegocio pn = new ProductoNegocio();
+                    Session.Add("listaProductos", pn.listarProductos());
+                }
+                dgvProductos.DataSource = Session["listaProductos"];
+                dgvProductos.DataBind();
             }
-            dgvProductos.DataSource = Session["listaProductos"];
-            dgvProductos.DataBind();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -27,10 +34,17 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-            GridView gv = clickedRow.NamingContainer as GridView;
-            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-            Response.Redirect("ProductosABM.aspx?accion=2&id=" + id);
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Response.Redirect("ProductosABM.aspx?accion=2&id=" + id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

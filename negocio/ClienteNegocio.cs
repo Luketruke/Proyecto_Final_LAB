@@ -31,7 +31,6 @@ namespace negocios
                     c.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
                     c.FechaNacimiento = (DateTime)conexion.Lector["FechaNacimiento"];
                     c.Cuit = (string)conexion.Lector["Cuit"];
-                    c.Domicilio = (string)conexion.Lector["Domicilio"];
                     c.Telefono = (string)conexion.Lector["Telefono"];
                     c.Email = (string)conexion.Lector["Email"];
 
@@ -49,20 +48,43 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool agregarCliente(Cliente c)
+        public DataTable obtenerDireccionCliente(int idCliente)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                {
+                    conexion.setearProcedure("ObtenerDireccionCliente");
+                    conexion.setearParametro("@idCliente", idCliente);
+                    dt.Load(conexion.ejecutarConexion());
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
+            }
+        }
+        public bool agregarCliente(Cliente c, Direccion d)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 conexion.setearProcedure("AgregarCliente");
+                conexion.setearParametro("@idCliente", 0);
                 conexion.setearParametro("@Codigo", c.Codigo);
                 conexion.setearParametro("@Nombres", c.Nombres);
                 conexion.setearParametro("@Apellidos", c.Apellidos);
                 conexion.setearParametro("@FechaNacimiento", c.FechaNacimiento);
                 conexion.setearParametro("@Cuit", c.Cuit);
-                conexion.setearParametro("@Domicilio", c.Domicilio);
                 conexion.setearParametro("@Telefono", c.Telefono);
                 conexion.setearParametro("@Email", c.Email);
+                conexion.setearParametro("@Direccion", d.Domicilio);
+                conexion.setearParametro("@Localidad", d.Localidad);
+                conexion.setearParametro("@CodigoPostal", d.CodigoPostal);
+                conexion.setearParametro("@Observaciones", d.Observaciones);
 
                 conexion.ejecutarConexion();
 
@@ -77,21 +99,45 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-
-        public bool modificarCliente(Cliente c)
+        public bool modificarCliente(Cliente c, Direccion d)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("AgregarCliente");
+                conexion.setearProcedure("ModificarCliente");
                 conexion.setearParametro("@Codigo", c.Codigo);
                 conexion.setearParametro("@Nombres", c.Nombres);
                 conexion.setearParametro("@Apellidos", c.Apellidos);
                 conexion.setearParametro("@FechaNacimiento", c.FechaNacimiento);
                 conexion.setearParametro("@Cuit", c.Cuit);
-                conexion.setearParametro("@Domicilio", c.Domicilio);
+                conexion.setearParametro("@IdDomicilio", c.IdDireccion);
                 conexion.setearParametro("@Telefono", c.Telefono);
                 conexion.setearParametro("@Email", c.Email);
+                conexion.setearParametro("@Direccion", d.Domicilio);
+                conexion.setearParametro("@Localidad", d.Localidad);
+                conexion.setearParametro("@CodigoPostal", d.CodigoPostal);
+                conexion.setearParametro("@Observaciones", d.Observaciones);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool eliminarCliente(int IdCliente)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("EliminarCliente");
+                conexion.setearParametro("@Id", IdCliente);
 
                 conexion.ejecutarConexion();
 

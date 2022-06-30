@@ -15,45 +15,52 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         protected void Page_Load(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();
-            DataTable dtCagerorias = pn.obtenerCategorias();
-            DataTable dtMarcas = pn.obtenerMarcas();
-            ListItem li;
-
-            if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
+            try
             {
-                ddlCategoria.Items.Add("Seleccione categoria...");
-                ddlMarca.Items.Add("Seleccione marca...");
-            }
+                DataTable dtCagerorias = pn.obtenerCategorias();
+                DataTable dtMarcas = pn.obtenerMarcas();
+                ListItem li;
 
-            foreach (DataRow r in dtCagerorias.Rows)
+                if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
+                {
+                    ddlCategoria.Items.Add("Seleccione categoria...");
+                    ddlMarca.Items.Add("Seleccione marca...");
+                }
+
+                foreach (DataRow r in dtCagerorias.Rows)
+                {
+                    li = new ListItem(r["Descripcion"].ToString(), r["Id"].ToString());
+                    ddlCategoria.Items.Add(li);
+                }
+
+                foreach (DataRow r in dtMarcas.Rows)
+                {
+                    li = new ListItem(r["Descripcion"].ToString(), r["Id"].ToString());
+                    ddlMarca.Items.Add(li);
+                }
+
+                if (Convert.ToInt32(Request.QueryString["accion"]) == 2 && !IsPostBack)
+                {
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    List<Producto> temp = (List<Producto>)Session["listaProductos"];
+                    Producto selected = temp.Find(x => x.Id == id);
+                    btnAgregar.Visible = false;
+                    btnModificar.Visible = true;
+                    txtCodigo.Text = selected.Codigo;
+                    txtDescripcion.Text = selected.Descripcion;
+                    txtPrecioVenta.Text = selected.PrecioVenta.ToString();
+                    txtCosto.Text = selected.Costo.ToString();
+                    txtObservaciones.Text = selected.Observaciones;
+                    ddlCategoria.SelectedValue = selected.Categoria.Id.ToString();
+                    ddlMarca.SelectedValue = selected.Marca.Id.ToString();
+                }
+
+                Session["listaProductos"] = null;
+            }
+            catch (Exception ex)
             {
-                li = new ListItem(r["Descripcion"].ToString(), r["Id"].ToString());
-                ddlCategoria.Items.Add(li);
+                Console.WriteLine(ex);
             }
-
-            foreach (DataRow r in dtMarcas.Rows)
-            {
-                li = new ListItem(r["Descripcion"].ToString(), r["Id"].ToString());
-                ddlMarca.Items.Add(li);
-            }
-
-            if (Convert.ToInt32(Request.QueryString["accion"]) == 2 && !IsPostBack)
-            {
-                int id = Convert.ToInt32(Request.QueryString["id"]);  
-                List<Producto> temp = (List<Producto>)Session["listaProductos"];
-                Producto selected = temp.Find(x => x.Id == id);
-                btnAgregar.Visible = false;
-                btnModificar.Visible = true;
-                txtCodigo.Text = selected.Codigo;
-                txtDescripcion.Text = selected.Descripcion;
-                txtPrecioVenta.Text = selected.PrecioVenta.ToString();
-                txtCosto.Text = selected.Costo.ToString();
-                txtObservaciones.Text = selected.Observaciones;
-                ddlCategoria.SelectedValue = selected.Categoria.Id.ToString();
-                ddlMarca.SelectedValue = selected.Marca.Id.ToString();
-            }
-
-            Session["listaProductos"] = null;
         }
 
         public void btnAgregar_Click(object sender, EventArgs e)
@@ -79,7 +86,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                     //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Producto agregado con exito')", true);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }

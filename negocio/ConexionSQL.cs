@@ -49,8 +49,7 @@ namespace negocios
            
                conexion.Open();
                lector = comando.ExecuteReader();
-               return lector;
-              
+               return lector;            
         }
 
         public void ejecutarLector()
@@ -66,8 +65,12 @@ namespace negocios
             }
         }
 
-
         public void setearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
+
+        public void setearParametroOutput(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }

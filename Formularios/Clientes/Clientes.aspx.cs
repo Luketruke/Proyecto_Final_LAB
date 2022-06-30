@@ -13,13 +13,20 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["listaClientes"] == null)
+            try
             {
-                ClienteNegocio cn = new ClienteNegocio();
-                Session.Add("listaClientes", cn.obtenerClientesTodos());
+                if (Session["listaClientes"] == null)
+                {
+                    ClienteNegocio cn = new ClienteNegocio();
+                    Session.Add("listaClientes", cn.obtenerClientesTodos());
+                }
+                dgvClientes.DataSource = Session["listaClientes"];
+                dgvClientes.DataBind();
             }
-            dgvClientes.DataSource = Session["listaClientes"];
-            dgvClientes.DataBind();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -29,10 +36,33 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-            GridView gv = clickedRow.NamingContainer as GridView;
-            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-            Response.Redirect("ClientesABM.aspx?accion=2&id=" + id);
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Response.Redirect("ClientesABM.aspx?accion=2&id=" + id);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClienteNegocio cn = new ClienteNegocio();
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+
+                cn.eliminarCliente(Convert.ToInt32(id));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

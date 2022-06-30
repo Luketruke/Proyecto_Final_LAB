@@ -28,7 +28,6 @@
     <br />
     <br />
 
-
     <asp:GridView runat="server" ID="dgvClientes" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField HeaderText="Código" DataField="Codigo" />

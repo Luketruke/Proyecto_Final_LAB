@@ -132,6 +132,8 @@
     <Content Include="Formularios\Configuraciones\Configuraciones.aspx" />
     <Content Include="Formularios\Facturacion\FacturacionABM.aspx" />
     <Content Include="Formularios\Facturacion\Facturas.aspx" />
+    <Content Include="Formularios\Login\ErrorLogin.aspx" />
+    <Content Include="Formularios\Login\MenuLogin.aspx" />
     <Content Include="Formularios\Productos\CategoriasABM.aspx" />
     <Content Include="Formularios\Productos\MarcasABM.aspx" />
     <Content Include="Formularios\Productos\Productos.aspx" />
@@ -150,7 +152,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Login.aspx" />
+    <Content Include="Formularios\Login\Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -258,6 +260,20 @@
     <Compile Include="Formularios\Facturacion\Facturas.aspx.designer.cs">
       <DependentUpon>Facturas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Login\ErrorLogin.aspx.cs">
+      <DependentUpon>ErrorLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Login\ErrorLogin.aspx.designer.cs">
+      <DependentUpon>ErrorLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Login\MenuLogin.aspx.cs">
+      <DependentUpon>MenuLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Login\MenuLogin.aspx.designer.cs">
+      <DependentUpon>MenuLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Productos\CategoriasABM.aspx.cs">
       <DependentUpon>CategoriasABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -317,11 +333,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Formularios\Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Formularios\Login\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,13 +14,14 @@ namespace negocios
             ConexionSQL datos = new ConexionSQL();
             try
             {
-                datos.setearQuery("Select Id, TipoUser from usuarios Where usuario = @user AND pass = @pass");
+                datos.setearQuery("Select Id, idTipoUsuario from usuarios Where usuario = @user AND contraseña = @pass");
                 datos.setearParametro("@user", usuario.User);
                 datos.setearParametro("@pass", usuario.Contraseña);
-                datos.ejecutarLector();
+                datos.ejecutarConexion();
                 while (datos.Lector.Read())
                 {
                     usuario.Id = (int)datos.Lector["Id"];
+                    usuario.idTipoUsuario = (int)(datos.Lector["idTipoUsuario"]) == 2 ? TipoUsuer.Admin : TipoUsuer.Vendedor;
                     return true;
                 }
                 return false;

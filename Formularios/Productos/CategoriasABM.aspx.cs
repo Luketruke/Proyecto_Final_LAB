@@ -59,8 +59,9 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                         "swal('Categoria agregada', '', 'success')", true);
 
                     Session["dtCategorias"] = null;
-
+                    Session["alerta"] = "agregado";
                     Response.Redirect("CategoriasABM.aspx");
+
                 }
             }
             catch (Exception ex)
@@ -83,7 +84,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                         "swal('Categoria modificada', '', 'success')", true);
 
                     Session["dtCategorias"] = null;
-
+                    Session["alerta"] = "modificado";
                     Response.Redirect("CategoriasABM.aspx");
                 }
             }
@@ -106,19 +107,40 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 Console.WriteLine(ex);
             }
         }
-
-        //Falta el cartel de confirmacion y la funcion.
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
+                ProductoNegocio pn = new ProductoNegocio();
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                pn.eliminarCategoria(Convert.ToInt32(id));
+                Session["alerta"] = "eliminado";
+                Session["dtCategorias"] = null;
+                Response.Redirect("CategoriasABM.aspx");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+        protected void alerta()
+        {
+            switch (Session["alerta"])
+            {
+                case "agregado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Categoria agregada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "eliminado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Categoria eliminada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "modificado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Categoria modificada')", true);
+                    Session["alerta"] = null;
+                    break;
             }
         }
     }

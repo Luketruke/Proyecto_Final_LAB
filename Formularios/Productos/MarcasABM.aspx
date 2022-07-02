@@ -4,32 +4,30 @@
 
     <%--<h2><%: Title %>Marcas</h2>--%>
 
-    <table style="width: 100%">
+    <table style="width: 100%" class="table table-striped table-bordered">
         <tbody>
             <tr>
-                <td style="width: 60%">
+                <td style="width: 99%">
                     <div class="form-group">
                         <label style="font-size: 20px;" class="col-md-2">Marca</label>
                         <div class="col-md-6">
-                            <asp:TextBox runat="server" ID="txtMarca" class="form-control" />
+                            <asp:TextBox runat="server" ID="txtMarca" class="form-control" style="min-width: 800px; height: 30px"/>
                         </div>
                     </div>
                 </td>
-                <td style="width: 30%"></td>
-                <td style="width: 10%">
+                <td style="width: 1%">
                     <div class="col-md-1">
                         <div class="shortcuts">
                             <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success">
-                            <i class="fa-solid fa-check"></i>
+                            <i style="font-size: 15px;">Agregar</i>
                             </asp:LinkButton>
-                            <asp:LinkButton ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Visible="false">
-                            <i class="fa-solid fa-check"></i>
+                            <asp:LinkButton ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Visible="false" OnClientClick="return confirm('Estas seguro de eliminar la marca?');">
+                            <i style="font-size: 15px;">Modificar</i>
                             </asp:LinkButton>
                         </div>
                     </div>
                 </td>
             </tr>
-
         </tbody>
     </table>
 
@@ -40,7 +38,7 @@
         <asp:GridView ID="dgvMarcas" runat="server" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="75" HeaderStyle-Width="75">
+                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
                             <i class="fa-solid fa-pencil"></i>

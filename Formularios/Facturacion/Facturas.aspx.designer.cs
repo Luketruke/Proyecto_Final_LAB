@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Proyecto_Final_LAB.Formularios.Clientes
+namespace Proyecto_Final_LAB.Formularios.Facturacion
 {
 
 
-    public partial class CuentaCorrienteClientes
+    public partial class Facturas
     {
     }
 }

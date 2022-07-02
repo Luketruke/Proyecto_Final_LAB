@@ -46,5 +46,41 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 Console.WriteLine(ex);
             }
         }
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductoNegocio pn = new ProductoNegocio();
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                pn.eliminarProducto(Convert.ToInt32(id));
+                Session["alerta"] = "eliminado";
+                Session["listaProductos"] = null;
+                Response.Redirect("Productos.aspx");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void alerta()
+        {
+            switch (Session["alerta"])
+            {
+                case "agregado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Producto agregado')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "eliminado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Producto eliminado')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "modificado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Producto modificado')", true);
+                    Session["alerta"] = null;
+                    break;
+            }
+        }
     }
 }

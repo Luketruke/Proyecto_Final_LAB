@@ -80,10 +80,8 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 
                 if (pn.agregarProducto(p, idCategoria, idMarca))
                 {
-                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //    "swal('Producto agregado', '', 'success')", true);
+                    Session["alerta"] = "agregado";
                     Response.Redirect("Productos.aspx");
-                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Producto agregado con exito')", true);
                 }
             }
             catch (Exception ex)
@@ -109,10 +107,8 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 
                 if (pn.modificarProducto(p, idCategoria, idMarca))
                 {
-                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //    "swal('Producto modificado', '', 'success')", true);
+                    Session["alerta"] = "modificado";
                     Response.Redirect("Productos.aspx");
-                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Producto modificado con exito')", true);
                 }
             }
             catch (Exception ex)

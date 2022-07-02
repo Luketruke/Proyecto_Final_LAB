@@ -127,9 +127,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Formularios\Clientes\Clientes.aspx" />
     <Content Include="Formularios\Clientes\ClientesABM.aspx" />
+    <Content Include="Formularios\Clientes\CuentaCorrienteClientes.aspx" />
     <Content Include="Formularios\Compras\ComprasABM.aspx" />
     <Content Include="Formularios\Configuraciones\Configuraciones.aspx" />
     <Content Include="Formularios\Facturacion\FacturacionABM.aspx" />
+    <Content Include="Formularios\Facturacion\Facturas.aspx" />
     <Content Include="Formularios\Productos\CategoriasABM.aspx" />
     <Content Include="Formularios\Productos\MarcasABM.aspx" />
     <Content Include="Formularios\Productos\Productos.aspx" />
@@ -221,6 +223,13 @@
     <Compile Include="Formularios\Clientes\ClientesABM.aspx.designer.cs">
       <DependentUpon>ClientesABM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Clientes\CuentaCorrienteClientes.aspx.cs">
+      <DependentUpon>CuentaCorrienteClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Clientes\CuentaCorrienteClientes.aspx.designer.cs">
+      <DependentUpon>CuentaCorrienteClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Compras\ComprasABM.aspx.cs">
       <DependentUpon>ComprasABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -241,6 +250,13 @@
     </Compile>
     <Compile Include="Formularios\Facturacion\FacturacionABM.aspx.designer.cs">
       <DependentUpon>FacturacionABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Facturacion\Facturas.aspx.cs">
+      <DependentUpon>Facturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Facturacion\Facturas.aspx.designer.cs">
+      <DependentUpon>Facturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Productos\CategoriasABM.aspx.cs">
       <DependentUpon>CategoriasABM.aspx</DependentUpon>

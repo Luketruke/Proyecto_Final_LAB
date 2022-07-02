@@ -28,7 +28,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                     txtCodigo.Text = selected.Codigo;
                     txtNombres.Text = selected.Nombres;
                     txtApellidos.Text = selected.Apellidos;
-                    txtFechaNacimiento.Text = selected.FechaNacimiento.ToString("dd/MM/yyyy");
+                    txtFechaNacimiento.Text = selected.FechaNacimiento.ToString("yyyy-MM-dd");
                     txtCuit.Text = selected.Cuit;
                     txtTelefono.Text = selected.Telefono;
                     txtEmail.Text = selected.Email;
@@ -65,10 +65,8 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
 
                 if (cn.agregarCliente(c, d))
                 {
-                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //    "swal('Cliente agregado', '', 'success')", true);
+                    Session["alerta"] = "agregado";
                     Response.Redirect("Clientes.aspx");
-                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cliente agregado con exito')", true);
                 }
             }
             catch (Exception ex)
@@ -98,10 +96,8 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
 
                 if (cn.modificarCliente(c, d))
                 {
-                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    //    "swal('Producto modificado', '', 'success')", true);
+                    Session["alerta"] = "modificado";
                     Response.Redirect("Clientes.aspx");
-                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Producto modificado con exito')", true);
                 }
             }
             catch (Exception ex)

@@ -111,6 +111,27 @@ namespace negocios
             }
         }
 
+        public bool eliminarProducto(int IdProducto)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("EliminarProducto");
+                conexion.setearParametro("@Id", IdProducto);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public DataTable obtenerCategorias()
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -158,6 +179,28 @@ namespace negocios
                 conexion.setearProcedure("ModificarCategoria");
                 conexion.setearParametro("@Id", c.Id);
                 conexion.setearParametro("@Descripcion", c.Categoria);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public bool eliminarCategoria(int IdCategoria)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("EliminarCategoria");
+                conexion.setearParametro("@Id", IdCategoria);
 
                 conexion.ejecutarConexion();
 
@@ -220,6 +263,27 @@ namespace negocios
                 conexion.setearProcedure("ModificarMarca");
                 conexion.setearParametro("@Id", m.Id);
                 conexion.setearParametro("@Descripcion", m.Descripcion);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool eliminarMarca(int IdMarca)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("EliminarMarca");
+                conexion.setearParametro("@Id", IdMarca);
 
                 conexion.ejecutarConexion();
 

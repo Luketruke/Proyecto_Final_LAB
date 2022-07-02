@@ -26,7 +26,7 @@
 
     <div class="mb-3">
         <label for="txtFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-        <asp:TextBox runat="server" ID="txtFechaNacimiento" DateFormat="dd/MM/yyyy" TextMode="Date" class="form-control" />
+        <asp:TextBox runat="server" ID="txtFechaNacimiento" TextMode="Date" class="form-control" />
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtFechaNacimiento" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 

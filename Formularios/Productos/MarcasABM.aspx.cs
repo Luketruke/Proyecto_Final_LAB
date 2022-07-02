@@ -59,7 +59,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                         "swal('Marca agregada', '', 'success')", true);
 
                     Session["dtMarca"] = null;
-
+                    Session["alerta"] = "agregado";
                     Response.Redirect("MarcasABM.aspx");
                 }
             }
@@ -83,7 +83,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                         "swal('Marca modificada', '', 'success')", true);
 
                     Session["dtMarca"] = null;
-
+                    Session["alerta"] = "modificado";
                     Response.Redirect("MarcasABM.aspx");
                 }
             }
@@ -106,19 +106,40 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 Console.WriteLine(ex);
             }
         }
-
-        //Falta el cartel de confirmacion y la funcion.
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
+                ProductoNegocio pn = new ProductoNegocio();
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                pn.eliminarMarca(Convert.ToInt32(id));
+                Session["alerta"] = "eliminado";
+                Session["dtMarcas"] = null;
+                Response.Redirect("MarcasABM.aspx");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+
+            }
+        }
+        protected void alerta()
+        {
+            switch (Session["alerta"])
+            {
+                case "agregado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Marca agregada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "eliminado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Marca eliminada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "modificado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Marca modificada')", true);
+                    Session["alerta"] = null;
+                    break;
             }
         }
 

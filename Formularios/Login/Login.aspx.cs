@@ -40,5 +40,11 @@ namespace Proyecto_Final_LAB
                 Session.Add("error", ex.ToString());
             }
         }
+
+        protected void btnDesloguear_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Login.aspx");
+        }
     }
 }

@@ -9,8 +9,29 @@
         <div class="mb-3">
             <label class="form-label">Password</label>
             <asp:TextBox runat="server" placeholder="*****" id="txtPassword" CssClass="form-control" TextMode="Password"/>
+       </div>      
+        <asp:Button ID="btnLogin" CssClass="btn btn-success" runat="server" Text="Login" OnClick="btnLogin_Click " />
        </div>
-       
-     <asp:Button ID="btnLogin" runat="server" Text="LOGIN" OnClick="btnLogin_Click" />
+    <div class="col-md-6">      
+         <div class="mb-3">
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+             <br />
+         </div>
+        <%  if ( Session["USUARIO"] != null && ((dominios.Usuario)Session["USUARIO"]).idTipoUsuario == dominios.TipoUsuer.Admin) 
+            { %>
+             <i class="fas fa-walking"></i>
+             <asp:LinkButton ID="btnDesloguear" runat="server" CssClass="btn btn-danger" OnClick="btnDesloguear_Click">
+            <i style="font-size: 15px;">Desloguearme</i>
+             </asp:LinkButton>
+        <%}%>
+  
     </div>
+
+
+
 </asp:Content>

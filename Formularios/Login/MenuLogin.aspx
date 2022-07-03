@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
  
     <h1>Bienvenido!<h1>
-         <i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-thumbs-up"></i>   
+         <i class="fas fa-user-check" style="color:limegreen"></i> <i style="color:limegreen" class="glyphicon glyphicon-thumbs-up"></i>   
         <p style="font-size: 15px;">Ingresaste Correctamente</p>
          <div>
     

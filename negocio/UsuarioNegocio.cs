@@ -36,5 +36,13 @@ namespace negocios
                 datos.cerrarConexion();
             }
         }
+        public bool permisos(Usuario usuario)
+        {
+            if ((usuario == null) || (usuario.idTipoUsuario!= TipoUsuer.Admin))
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

@@ -14,7 +14,12 @@ namespace Proyecto_Final_LAB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-       
+            Usuario usuario = (Usuario)Session["USUARIO"];
+            UsuarioNegocio aux = new UsuarioNegocio();
+            if(aux.permisos(usuario))
+            {
+                Response.Redirect("Formularios/Login/ErrorLogin.aspx");
+            }
+            }
         }
     }
-}

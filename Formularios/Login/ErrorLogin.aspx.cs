@@ -11,8 +11,19 @@ namespace Proyecto_Final_LAB.Formularios.Login
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["error"] != null )
                 lblMensaje.Text = Session["error"].ToString();
+        }
+
+        protected void btnloguear_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void btnloguearme_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

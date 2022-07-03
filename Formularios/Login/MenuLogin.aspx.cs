@@ -11,7 +11,16 @@ namespace Proyecto_Final_LAB.Formularios.Login
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"]== null)
+            {
+                Session.Add("error", "Disculpe debe loguearse para acceder aqui...");
+                Response.Redirect("ErrorLogin.aspx", false);
+            }
+        }
 
+        protected void btnMenu_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../../Default.aspx", false);
         }
     }
 }

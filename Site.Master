@@ -99,7 +99,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%:DateTime.Now.Year %> - Application Z&A</p>
+                <p style="font-size: 12px">&copy; <%:DateTime.Now.Year %> - Application Z&A</p>
             </footer>
         </div>
     </form>

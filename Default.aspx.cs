@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocios;
+using dominios;
+
 
 namespace Proyecto_Final_LAB
 {
@@ -11,7 +14,7 @@ namespace Proyecto_Final_LAB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+       
         }
     }
 }

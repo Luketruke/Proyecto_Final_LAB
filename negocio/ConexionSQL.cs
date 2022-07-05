@@ -73,6 +73,21 @@ namespace negocios
             }
         }
 
+        public int ejecutarScalar()
+        {
+            try
+            {
+                comando.Connection = conexion;
+                conexion.Open();
+                int id = (int)comando.ExecuteScalar();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void setearParametro(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);

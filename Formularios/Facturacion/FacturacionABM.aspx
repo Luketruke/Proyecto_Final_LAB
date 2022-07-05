@@ -38,6 +38,7 @@
                                         <asp:TextBox runat="server" ID="txtFechaFactura" ReadOnly="true" TextMode="Date" class="form-control" />
                                     </div>
                                     <div class="col-md-9" style="text-align: right">
+                                        <asp:Label class="labels" ID="lblTipoFactura" runat="server" />
                                         <asp:Label class="labels" ID="lblNroFactura" runat="server" />
                                     </div>
                                 </div>
@@ -194,7 +195,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <asp:LinkButton ID="btnDescuentoFactura" runat="server" CssClass="btn btn-info" AutoPostBack="true">
+                                                <asp:LinkButton ID="btnDescuentoFactura" OnClick="btnDescuentoFactura_Click" runat="server" CssClass="btn btn-info" AutoPostBack="true">
                             <i class="fa-solid fa-plus"></i>
                                                 </asp:LinkButton>
                                             </div>

@@ -137,6 +137,24 @@ namespace negocios
                 return null;
             }
         }
+        public string obtenerTipoFactura(int idTipoDocumento)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.setearProcedure("ObtenerTipoFactura");
+                conexion.setearParametro("@idTipoDocumento", idTipoDocumento);
+                dt.Load(conexion.ejecutarConexion());
+
+                string tipoDocumento = dt.Rows[0]["tipoDocumento"].ToString();
+                return tipoDocumento;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public int obtenerTipoClienteEspecifico(int idCliente)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -155,7 +173,7 @@ namespace negocios
                 dt = null;
                 return -1;
             }
-        }    
+        }
         public int agregarFactura(Factura f, int idCliente, int idVendedor, int idFormaPago, int idSucursal, int idPuntoVenta, int idTipoDocumento)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -174,16 +192,40 @@ namespace negocios
                 conexion.setearParametro("@idSucursal", idSucursal);
                 conexion.setearParametro("@idTipoDocumento", idTipoDocumento);
                 conexion.setearParametro("@idPuntoDeVenta", idPuntoVenta);
-                SqlCommand command = conexion.ejecutarComando();
 
-                //int idFactura = (int)command.ExecuteScalar();
-                int idFactura = 1;
-
+                int idFactura = conexion.ejecutarScalar();
+        
                 return idFactura;
             }
             catch (Exception ex)
             {
                 return -1;
+            }
+        }
+
+        public bool agregarItemsFactura(ItemFactura i, int idFactura)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarItemFactura");
+                conexion.setearParametro("@idFactura", idFactura);
+                conexion.setearParametro("@idProducto", i.IdProducto);
+                conexion.setearParametro("@Cantidad", i.Cantidad);
+                conexion.setearParametro("@Subtotal", i.SubTotal);
+                conexion.setearParametro("@Descuento", i.Descuento);
+                conexion.setearParametro("@Total", i.PrecioTotal);
+                conexion.setearParametro("@codigo", i.Codigo);
+                conexion.setearParametro("@PrecioUnitario", i.PrecioVenta);
+                conexion.setearParametro("@Descripcion", i.Descripcion);
+
+                SqlCommand command = conexion.ejecutarComando();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 

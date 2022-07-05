@@ -96,6 +96,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 int idPuntoVenta = Convert.ToInt32(ddlPuntoVenta.SelectedValue);
                 int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
 
+                lblTipoFactura.Text = fn.obtenerTipoFactura(Convert.ToInt32(Session["TipoCliente"]));
                 lblNroFactura.Text = fn.obtenerNumeroFactura(idPuntoVenta, Convert.ToInt32(Session["TipoCliente"]));
             }
             catch (Exception ex)
@@ -144,6 +145,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 Session["TipoCliente"] = fn.obtenerTipoClienteEspecifico(Convert.ToInt32(ddlClientes.SelectedValue));
                 int idPuntoVenta = Convert.ToInt32(ddlPuntoVenta.SelectedValue);
                 int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
+                lblTipoFactura.Text = fn.obtenerTipoFactura(Convert.ToInt32(Session["TipoCliente"]));
                 lblNroFactura.Text = fn.obtenerNumeroFactura(idPuntoVenta, Convert.ToInt32(Session["TipoCliente"]));
             }
             catch (Exception ex)
@@ -210,7 +212,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     i.NumeroItem = 1;
                 }
 
-                i.Id = Convert.ToInt32(Session["idProductoSeleccionado"]);
+                i.IdProducto = Convert.ToInt32(Session["idProductoSeleccionado"]);
                 i.Codigo = txtCodigoProducto.Text;
                 i.Cantidad = Convert.ToInt32(txtCantidad.Text);
                 i.Descripcion = txtDescripcion.Text;
@@ -231,7 +233,9 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 decimal precioTotal = Convert.ToDecimal(txtTotalFactura.Value);
                 precioTotal = precioTotal + i.PrecioTotal;
 
+                txtSubtotalFactura.Value = precioTotal.ToString();
                 txtTotalFactura.Value = precioTotal.ToString();
+
 
                 dgvItemsFactura.DataSource = Session["listaItemsFactura"];
                 dgvItemsFactura.DataBind();
@@ -268,6 +272,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         protected void btnFacturar_Click(object sender, EventArgs e)
         {
             FacturasNegocio fn = new FacturasNegocio();
+            ItemFactura i = new ItemFactura();
             Factura f = new Factura();
 
             f.NumeroFactura = lblNroFactura.Text;
@@ -284,6 +289,31 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
             int idPuntoVenta = Convert.ToInt32(ddlPuntoVenta.SelectedValue);
 
             int idFactura = fn.agregarFactura(f, idCliente, idVendedor, idFormaPago, idSucursal, idPuntoVenta, idTipoDocumento);
+
+            List<ItemFactura> temp = (List<ItemFactura>)Session["listaItemsFactura"];
+
+            for (int x = 0; x < temp.Count; x++)
+            {
+                i.IdProducto = temp[x].IdProducto;
+                i.Cantidad = temp[x].Cantidad;
+                i.SubTotal = temp[x].SubTotal;
+                i.Descuento = temp[x].Descuento;
+                i.PrecioTotal = temp[x].PrecioTotal;
+                i.Codigo = temp[x].Codigo;
+                i.PrecioVenta = temp[x].PrecioVenta;
+                i.Descripcion = temp[x].Descripcion;
+
+                fn.agregarItemsFactura(i, idFactura);
+            }
+
+        }
+
+        protected void btnDescuentoFactura_Click(object sender, EventArgs e)
+        {
+            decimal precioTotal = Convert.ToDecimal(txtSubtotalFactura.Value);
+            decimal descuento = Convert.ToDecimal(txtDescuentoFactura.Value);
+            precioTotal = precioTotal - descuento;
+            txtTotalFactura.Value = precioTotal.ToString();
         }
     }
 }

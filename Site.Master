@@ -59,8 +59,13 @@
                     <li class="nav-item active">
                         <a class="nav-link" style="font-size: 20px" href="/Default.aspx">Inicio<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Facturacion/FacturacionABM.aspx">Facturar</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlFacturas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facturacion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/Facturas.aspx">Facturas</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/FacturacionABM.aspx">Agregar factura</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlProductos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos

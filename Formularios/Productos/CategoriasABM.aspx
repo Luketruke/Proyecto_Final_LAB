@@ -7,7 +7,7 @@
             <tr>
                 <td style="width: 99%">
                     <div class="form-group">
-                        <label style="font-size: 20px;" class="col-md-2">Categoria</label>
+                        <label style="font-size: 20px;" class="col-md-2">Categorias</label>
                         <div class="col-md-6">
                             <asp:TextBox runat="server" ID="txtCategoria" class="form-control" Style="min-width: 800px; height: 30px" />
                         </div>
@@ -30,7 +30,7 @@
         <asp:GridView ID="dgvCategorias" runat="server" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
-                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100">
+                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
                             <i class="fa-solid fa-pencil"></i>

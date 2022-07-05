@@ -27,12 +27,12 @@
 
     <asp:GridView runat="server" ID="dgvClientes" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
         <Columns>
-            <asp:BoundField HeaderText="Código" DataField="Codigo" />
-            <asp:BoundField HeaderText="NombreCompleto" DataField="NombreCompleto" />
-            <asp:BoundField HeaderText="CUIT" DataField="Cuit" />
-            <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-            <asp:BoundField HeaderText="Mail" DataField="Email" />
-            <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100">
+            <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+            <asp:BoundField HeaderText="Nombre Completo" DataField="NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+            <asp:BoundField HeaderText="CUIT" DataField="Cuit" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+            <asp:BoundField HeaderText="Telefono" DataField="Telefono" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+            <asp:BoundField HeaderText="Mail" DataField="Email" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
+            <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
                             <i class="fa-solid fa-pencil"></i>

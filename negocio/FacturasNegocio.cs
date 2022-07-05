@@ -229,6 +229,25 @@ namespace negocios
             }
         }
 
+        public bool modificarNumeracion(int idTipoDocumento, int idPuntoVenta)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarNumeracion");
+                conexion.setearParametro("@idTipoDocumento", idTipoDocumento);
+                conexion.setearParametro("@idPuntoVenta", idPuntoVenta);
+
+                SqlCommand command = conexion.ejecutarComando();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public List<Producto> listarProductosFactura()
         {
             List<Producto> lista = new List<Producto>();

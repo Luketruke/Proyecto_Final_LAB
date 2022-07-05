@@ -123,13 +123,13 @@
                             </td>
                             <td style="width: 12%">
                                 <asp:TextBox runat="server" ID="txtId" class="form-control" Visible="false" />
-                                <asp:TextBox runat="server" ID="txtCantidad" class="form-control" />
+                                <asp:TextBox runat="server" ID="txtCantidad" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');"/>
                             </td>
                             <td style="width: 25%">
                                 <asp:TextBox runat="server" ID="txtDescripcion" class="form-control" ReadOnly="true" />
                             </td>
                             <td style="width: 7%">
-                                <asp:TextBox runat="server" ID="txtDescuento" class="form-control" />
+                                <asp:TextBox runat="server" ID="txtDescuento" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');"/>
                             </td>
                             <td style="width: 14%">
                                 <asp:TextBox runat="server" ID="txtPrecio" class="form-control" ReadOnly="true" />
@@ -174,7 +174,7 @@
 
                     <div class="mb-3">
                         <asp:Button ID="btnFacturar" runat="server" CssClass="btn btn-success" Text="Facturar" OnClick="btnFacturar_Click" />
-                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" />
+                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_Click"/>
                     </div>
                     <div>
                     </div>
@@ -191,7 +191,7 @@
                                             <div class="col-md-5">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" id="txtDescuentoFactura" class="form-control col-md-4" style="text-align: right" runat="server">
+                                                    <input type="number" id="txtDescuentoFactura" class="form-control col-md-4" style="text-align: right" runat="server" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
@@ -205,7 +205,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" id="txtSubtotalFactura" class="form-control col-md-4" disabled="" style="text-align: right" runat="server">
+                                                    <input type="number" id="txtSubtotalFactura" class="form-control col-md-4" disabled="" style="text-align: right" runat="server">
                                                 </div>
                                             </div>
                                         </div>
@@ -215,7 +215,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" id="txtTotalFactura" class="form-control col-md-4" disabled="" style="text-align: right" runat="server">
+                                                    <input type="number" id="txtTotalFactura" class="form-control col-md-4" disabled="" style="text-align: right" runat="server">
                                                 </div>
                                             </div>
                                         </div>

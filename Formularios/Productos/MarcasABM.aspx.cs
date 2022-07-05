@@ -16,19 +16,20 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         {
             try
             {
-                if (Session["dtMarca"] == null)
+                alerta();
+                if (Session["dtMarcas"] == null)
                 {
                     ProductoNegocio pn = new ProductoNegocio();
-                    Session.Add("dtMarca", pn.obtenerMarcas());
+                    Session.Add("dtMarcas", pn.obtenerMarcas());
                 }
 
-                dgvMarcas.DataSource = Session["dtMarca"];
+                dgvMarcas.DataSource = Session["dtMarcas"];
                 dgvMarcas.DataBind();
 
                 if (Request.QueryString["id"] != null)
                 {
                     int id = int.Parse(Request.QueryString["id"].ToString());
-                    DataTable dtTemp = (DataTable)Session["dtMarca"];
+                    DataTable dtTemp = (DataTable)Session["dtMarcas"];
                     btnAgregar.Visible = false;
                     btnModificarOk.Visible = true;
                     for (int i = 0; i < dtTemp.Rows.Count; i++)
@@ -58,7 +59,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "swal('Marca agregada', '', 'success')", true);
 
-                    Session["dtMarca"] = null;
+                    Session["dtMarcas"] = null;
                     Session["alerta"] = "agregado";
                     Response.Redirect("MarcasABM.aspx");
                 }
@@ -82,7 +83,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "swal('Marca modificada', '', 'success')", true);
 
-                    Session["dtMarca"] = null;
+                    Session["dtMarcas"] = null;
                     Session["alerta"] = "modificado";
                     Response.Redirect("MarcasABM.aspx");
                 }

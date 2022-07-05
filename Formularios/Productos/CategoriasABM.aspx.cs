@@ -16,6 +16,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         {
             try
             {
+                alerta();
                 if (Session["dtCategorias"] == null)
                 {
                     ProductoNegocio pn = new ProductoNegocio();

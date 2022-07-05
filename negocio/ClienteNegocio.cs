@@ -33,6 +33,7 @@ namespace negocios
                     c.Cuit = (string)conexion.Lector["Cuit"];
                     c.Telefono = (string)conexion.Lector["Telefono"];
                     c.Email = (string)conexion.Lector["Email"];
+                    c.TipoCliente = (int)conexion.Lector["idTipoCliente"];
 
                     lista.Add(c);
                 }
@@ -67,7 +68,7 @@ namespace negocios
                 return dt;
             }
         }
-        public bool agregarCliente(Cliente c, Direccion d)
+        public bool agregarCliente(Cliente c, Direccion d, int idTipoCliente)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -81,6 +82,7 @@ namespace negocios
                 conexion.setearParametro("@Cuit", c.Cuit);
                 conexion.setearParametro("@Telefono", c.Telefono);
                 conexion.setearParametro("@Email", c.Email);
+                conexion.setearParametro("@idTipoCliente", idTipoCliente);
                 conexion.setearParametro("@Direccion", d.Domicilio);
                 conexion.setearParametro("@Localidad", d.Localidad);
                 conexion.setearParametro("@CodigoPostal", d.CodigoPostal);
@@ -99,7 +101,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool modificarCliente(Cliente c, Direccion d)
+        public bool modificarCliente(Cliente c, Direccion d, int idTipoCliente)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -113,6 +115,7 @@ namespace negocios
                 conexion.setearParametro("@IdDomicilio", c.IdDireccion);
                 conexion.setearParametro("@Telefono", c.Telefono);
                 conexion.setearParametro("@Email", c.Email);
+                conexion.setearParametro("@idTipoCliente", idTipoCliente);
                 conexion.setearParametro("@Direccion", d.Domicilio);
                 conexion.setearParametro("@Localidad", d.Localidad);
                 conexion.setearParametro("@CodigoPostal", d.CodigoPostal);
@@ -150,6 +153,24 @@ namespace negocios
             finally
             {
                 conexion.cerrarConexion();
+            }
+        }
+        public DataTable obtenerTipoClientes()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                {
+                    conexion.setearProcedure("ObtenerTipoClientes");
+                    dt.Load(conexion.ejecutarConexion());
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
             }
         }
     }

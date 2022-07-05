@@ -13,9 +13,7 @@
                     </td>
                     <td style="width: 1%">
                         <div class="col-md-1">
-                            <asp:LinkButton runat="server" ID="btnAgregar" OnClick="btnAgregar_Click" CssClass="btn btn-success">
-                            <i style="font-size: 15px;">Agregar</i>
-                            </asp:LinkButton>
+                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
                         </div>
                     </td>
                 </tr>

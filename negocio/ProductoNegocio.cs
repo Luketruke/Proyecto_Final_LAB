@@ -282,7 +282,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("EliminarMarca");
+                conexion.setearProcedure("EliminarMarcas");
                 conexion.setearParametro("@Id", IdMarca);
 
                 conexion.ejecutarConexion();

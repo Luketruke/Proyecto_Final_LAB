@@ -15,13 +15,27 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
         protected void Page_Load(object sender, EventArgs e)
         {
             ClienteNegocio cn = new ClienteNegocio();
+            ListItem li;
             try
             {
+                DataTable dtTipoClientes = cn.obtenerTipoClientes();
+                if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
+                {
+                    ddlTipoCliente.Items.Add("Seleccione tipo...");
+                }
+
+                foreach (DataRow r in dtTipoClientes.Rows)
+                {
+                    li = new ListItem(r["TipoCliente"].ToString(), r["Id"].ToString());
+                    ddlTipoCliente.Items.Add(li);
+                }
+
                 if (Convert.ToInt32(Request.QueryString["accion"]) == 2 && !IsPostBack)
                 {
                     int id = Convert.ToInt32(Request.QueryString["id"]);
                     List<Cliente> temp = (List<Cliente>)Session["listaClientes"];
                     DataTable dt = cn.obtenerDireccionCliente(id);
+                    DataTable dtTipoCliente = cn.obtenerTipoClientes();
                     Cliente selected = temp.Find(x => x.Id == id);
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
@@ -32,6 +46,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                     txtCuit.Text = selected.Cuit;
                     txtTelefono.Text = selected.Telefono;
                     txtEmail.Text = selected.Email;
+                    ddlTipoCliente.SelectedValue = selected.TipoCliente.ToString();
                     txtDomicilio.Text = dt.Rows[0]["Direccion"].ToString();
                     txtLocalidad.Text = dt.Rows[0]["Localidad"].ToString();
                     txtCodigoPostal.Text = dt.Rows[0]["CodigoPostal"].ToString();
@@ -62,8 +77,9 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 d.Localidad = txtLocalidad.Text;
                 d.CodigoPostal = txtCodigoPostal.Text;
                 d.Observaciones = txtObservaciones.Text;
+                int idTipoCliente = Convert.ToInt32(ddlTipoCliente.SelectedValue);
 
-                if (cn.agregarCliente(c, d))
+                if (cn.agregarCliente(c, d, idTipoCliente))
                 {
                     Session["alerta"] = "agregado";
                     Response.Redirect("Clientes.aspx");
@@ -93,8 +109,9 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 d.Localidad = txtLocalidad.Text;
                 d.CodigoPostal = txtCodigoPostal.Text;
                 d.Observaciones = txtObservaciones.Text;
+                int idTipoCliente = Convert.ToInt32(ddlTipoCliente.SelectedValue);
 
-                if (cn.modificarCliente(c, d))
+                if (cn.modificarCliente(c, d, idTipoCliente))
                 {
                     Session["alerta"] = "modificado";
                     Response.Redirect("Clientes.aspx");

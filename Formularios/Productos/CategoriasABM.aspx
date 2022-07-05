@@ -2,8 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%--<h2><%: Title %>Categorias</h2>--%>
-
     <table style="width: 100%" class="table table-striped table-bordered">
         <tbody>
             <tr>
@@ -11,19 +9,15 @@
                     <div class="form-group">
                         <label style="font-size: 20px;" class="col-md-2">Categoria</label>
                         <div class="col-md-6">
-                            <asp:TextBox runat="server" ID="txtCategoria" class="form-control" style="min-width: 800px; height: 30px"/>
+                            <asp:TextBox runat="server" ID="txtCategoria" class="form-control" Style="min-width: 800px; height: 30px" />
                         </div>
                     </div>
                 </td>
                 <td style="width: 1%">
                     <div class="col-md-1">
                         <div class="shortcuts">
-                            <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success">
-                            <i style="font-size: 15px;">Agregar</i>
-                            </asp:LinkButton>
-                            <asp:LinkButton ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Visible="false">
-                            <i style="font-size: 15px;">Modificar</i>
-                            </asp:LinkButton>
+                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar"/>
+                            <asp:Button ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
                         </div>
                     </div>
                 </td>
@@ -40,10 +34,10 @@
                     <ItemTemplate>
                         <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
                             <i class="fa-solid fa-pencil"></i>
-                            </asp:LinkButton>
+                        </asp:LinkButton>
                         <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar la categoria?');">
                             <i class="fa-solid fa-trash"></i>
-                            </asp:LinkButton>
+                        </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

@@ -18,12 +18,8 @@
                 <td style="width: 1%">
                     <div class="col-md-1">
                         <div class="shortcuts">
-                            <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success">
-                            <i style="font-size: 15px;">Agregar</i>
-                            </asp:LinkButton>
-                            <asp:LinkButton ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Visible="false" OnClientClick="return confirm('Estas seguro de eliminar la marca?');">
-                            <i style="font-size: 15px;">Modificar</i>
-                            </asp:LinkButton>
+                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar"/>
+                            <asp:Button ID="btnModificarOk" OnClick="btnModificarOk_Click" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
                         </div>
                     </div>
                 </td>
@@ -43,7 +39,7 @@
                         <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
                             <i class="fa-solid fa-pencil"></i>
                             </asp:LinkButton>
-                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info">
+                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar la categoria?');">
                             <i class="fa-solid fa-trash"></i>
                             </asp:LinkButton>
                     </ItemTemplate>

@@ -15,7 +15,7 @@
                 <td style="width: 10%">
                     <div class="col-md-1">
                         <div class="shortcuts">
-                            <asp:LinkButton href="ProveedoresABM.aspx" ID="btnAgregar" class="btn btn-secondary btn-lg" Text="Agregar" runat="server"></asp:LinkButton>
+                            <asp:Button ID="btnAgregar" CssClass="btn btn-success" Text="Agregar" runat="server" OnClick="btnAgregar_Click"  />                       
                         </div>
                     </div>
                 </td>
@@ -32,7 +32,18 @@
             <asp:BoundField HeaderText="Domicilio" DataField="Domicilio"/>
             <asp:BoundField HeaderText="Telefono" DataField="Telefono"/>
             <asp:BoundField HeaderText="Email" DataField="Email"/>
-            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Eliminar"/>
+            <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100">
+                <ItemTemplate>
+                    <asp:LinkButton ID="btnModificar" runat="server" CssClass="btn btn-info" OnClick="btnModificar_Click">
+                            <i class="fa-solid fa-pencil"></i>
+                    </asp:LinkButton>
+
+                    <asp:LinkButton ID="btnEliminar" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Seguro desea eliminar este Proveedor?');" OnClick="btnEliminar_Click">
+                            <i class="fa-solid fa-trash"></i>
+            </asp:LinkButton>
+
+                </ItemTemplate>
+            </asp:TemplateField>
             
         </Columns>
 

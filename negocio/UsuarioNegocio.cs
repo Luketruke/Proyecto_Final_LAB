@@ -44,10 +44,5 @@ namespace negocios
             }
             else return false;
         }
-
-     
-
-
-
     }
 }

@@ -14,86 +14,19 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                Session["listaProveedores"] = null;
-                alerta();
-                if (Session["listaProveedores"] == null)
-                {
-                    ProveedorNegocio pn = new ProveedorNegocio();
-                    Session.Add("listaProveedores", pn.listar());
-                }
-                dgvProveedores.DataSource = Session["listaProveedores"];
-                dgvProveedores.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
             Title = "Proveedores";
+           
+             ProveedorNegocio pv = new ProveedorNegocio();
+             dgvProveedores.DataSource = pv.obtenerProveedores();
+             dgvProveedores.DataBind();
+           
         }
 
         protected void dgvProveedores_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Id = dgvProveedores.SelectedDataKey.Value.ToString();
-        }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ProveedorNegocio pn = new ProveedorNegocio();
-                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-                GridView gv = clickedRow.NamingContainer as GridView;
-                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                pn.eliminarProveedor(Convert.ToInt32(id));
-                Session["alerta"] = "eliminado";
-                Session["listaProveedores"] = null;
-                Response.Redirect("Proveedores.aspx");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-                GridView gv = clickedRow.NamingContainer as GridView;
-                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                Response.Redirect("ProveedoresABM.aspx?accion=2&id=" + id);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-
-
-        protected void alerta()
-        {
-            switch (Session["alerta"])
-            {
-                case "agregado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Proveedor agregado')", true);
-                    Session["alerta"] = null;
-                    break;
-                case "eliminado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Cliente eliminado')", true);
-                    Session["alerta"] = null;
-                    break;
-                case "modificado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Cliente modificado')", true);
-                    Session["alerta"] = null;
-                    break;
-            }
-        }
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ProveedoresABM.aspx?accion=1");
+          //  Response.Redirect("ProveedoresABM.aspx?id=" + Id);
         }
     }
    

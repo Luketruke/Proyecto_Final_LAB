@@ -32,10 +32,10 @@
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
                 <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
+                        <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info"  data-toggle="tooltip" ToolTip="Modificar">
                             <i class="fa-solid fa-pencil"></i>
                         </asp:LinkButton>
-                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar la categoria?');">
+                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar la categoria?');"  data-toggle="tooltip" ToolTip="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </asp:LinkButton>
                     </ItemTemplate>
@@ -43,5 +43,11 @@
             </Columns>
         </asp:GridView>
     </div>
+    
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
 </asp:Content>

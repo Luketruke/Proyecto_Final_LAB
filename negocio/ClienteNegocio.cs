@@ -25,7 +25,7 @@ namespace negocios
                     Cliente c = new Cliente();
 
                     c.Id = (int)conexion.Lector["Id"];
-                    c.Codigo = (string)conexion.Lector["Codigo"];
+                    c.Codigo = (int)conexion.Lector["Codigo"];
                     c.Nombres = (string)conexion.Lector["Nombres"];
                     c.Apellidos = (string)conexion.Lector["Apellidos"];
                     c.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
@@ -171,6 +171,29 @@ namespace negocios
             {
                 dt = null;
                 return dt;
+            }
+        }
+
+        public int obtenerUltimoCodigo()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.setearProcedure("ObtenerUltimoCodigoCliente");
+                dt.Load(conexion.ejecutarConexion());
+
+                int codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
+
+                return codigo;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
     }

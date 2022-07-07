@@ -19,8 +19,8 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 alerta();
                 if (Session["dtCategorias"] == null)
                 {
-                    ProductoNegocio pn = new ProductoNegocio();
-                    Session.Add("dtCategorias", pn.obtenerCategorias());
+                    CategoriasNegocio cn = new CategoriasNegocio();
+                    Session.Add("dtCategorias", cn.obtenerCategorias());
                 }
 
                 dgvCategorias.DataSource = Session["dtCategorias"];
@@ -48,13 +48,13 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         }
         public void btnAgregar_Click(object sender, EventArgs e)
         {
-            ProductoNegocio pn = new ProductoNegocio();
+            CategoriasNegocio cn = new CategoriasNegocio();
             CategoriaProducto c = new CategoriaProducto();
             try
             {
                 c.Categoria = txtCategoria.Text;
 
-                if (pn.agregarCategoria(c))
+                if (cn.agregarCategoria(c))
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "swal('Categoria agregada', '', 'success')", true);
@@ -72,14 +72,14 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         }
         public void btnModificarOk_Click(object sender, EventArgs e)
         {
-            ProductoNegocio pn = new ProductoNegocio();
+            CategoriasNegocio cn = new CategoriasNegocio();
             CategoriaProducto c = new CategoriaProducto();
             try
             {
                 c.Id = int.Parse(Request.QueryString["id"].ToString());
                 c.Categoria = txtCategoria.Text;
 
-                if (pn.modificarCategoria(c))
+                if (cn.modificarCategoria(c))
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "swal('Categoria modificada', '', 'success')", true);
@@ -112,11 +112,11 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         {
             try
             {
-                ProductoNegocio pn = new ProductoNegocio();
+                CategoriasNegocio cn = new CategoriasNegocio();
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                pn.eliminarCategoria(Convert.ToInt32(id));
+                cn.eliminarCategoria(Convert.ToInt32(id));
                 Session["alerta"] = "eliminado";
                 Session["dtCategorias"] = null;
                 Response.Redirect("CategoriasABM.aspx");

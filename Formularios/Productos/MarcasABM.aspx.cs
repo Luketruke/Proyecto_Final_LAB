@@ -19,8 +19,8 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 alerta();
                 if (Session["dtMarcas"] == null)
                 {
-                    ProductoNegocio pn = new ProductoNegocio();
-                    Session.Add("dtMarcas", pn.obtenerMarcas());
+                    MarcasNegocio mn = new MarcasNegocio();
+                    Session.Add("dtMarcas", mn.obtenerMarcas());
                 }
 
                 dgvMarcas.DataSource = Session["dtMarcas"];
@@ -48,13 +48,13 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         }
         public void btnAgregar_Click(object sender, EventArgs e)
         {
-            ProductoNegocio pn = new ProductoNegocio();
+            MarcasNegocio mn = new MarcasNegocio();
             Marca m = new Marca();
             try
             {
                 m.Descripcion = txtMarca.Text;
 
-                if (pn.agregarMarca(m))
+                if (mn.agregarMarca(m))
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "swal('Marca agregada', '', 'success')", true);
@@ -71,14 +71,14 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         }
         public void btnModificarOk_Click(object sender, EventArgs e)
         {
-            ProductoNegocio pn = new ProductoNegocio();
+            MarcasNegocio mn = new MarcasNegocio();
             Marca m = new Marca();
             try
             {
                 m.Id = int.Parse(Request.QueryString["id"].ToString());
                 m.Descripcion = txtMarca.Text;
 
-                if (pn.modificarMarca(m))
+                if (mn.modificarMarca(m))
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                         "swal('Marca modificada', '', 'success')", true);
@@ -111,11 +111,11 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         {
             try
             {
-                ProductoNegocio pn = new ProductoNegocio();
+                MarcasNegocio mn = new MarcasNegocio();
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                pn.eliminarMarca(Convert.ToInt32(id));
+                mn.eliminarMarca(Convert.ToInt32(id));
                 Session["alerta"] = "eliminado";
                 Session["dtMarcas"] = null;
                 Response.Redirect("MarcasABM.aspx");

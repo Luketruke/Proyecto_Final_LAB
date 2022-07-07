@@ -14,15 +14,26 @@ namespace Proyecto_Final_LAB.Formularios.Productos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CategoriasNegocio cn = new CategoriasNegocio();
             ProductoNegocio pn = new ProductoNegocio();
+            MarcasNegocio mn = new MarcasNegocio();
             try
             {
-                DataTable dtCagerorias = pn.obtenerCategorias();
-                DataTable dtMarcas = pn.obtenerMarcas();
+                DataTable dtCagerorias = cn.obtenerCategorias();
+                DataTable dtMarcas = mn.obtenerMarcas();
                 ListItem li;
 
                 if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
                 {
+                    int codigo = pn.obtenerUltimoCodigo();
+                    if (codigo == -1) {
+                        txtCodigo.Text = 1.ToString();
+                    }
+                    else
+                    {
+                        codigo = codigo+1;
+                        txtCodigo.Text = codigo.ToString();
+                    }
                     ddlCategoria.Items.Add("Seleccione categoria...");
                     ddlMarca.Items.Add("Seleccione marca...");
                 }
@@ -46,13 +57,14 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                     Producto selected = temp.Find(x => x.Id == id);
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
-                    txtCodigo.Text = selected.Codigo;
+                    txtCodigo.Text = selected.Codigo.ToString();
                     txtDescripcion.Text = selected.Descripcion;
                     txtPrecioVenta.Text = selected.PrecioVenta.ToString();
                     txtCosto.Text = selected.Costo.ToString();
                     txtObservaciones.Text = selected.Observaciones;
                     ddlCategoria.SelectedValue = selected.Categoria.Id.ToString();
                     ddlMarca.SelectedValue = selected.Marca.Id.ToString();
+                    txtStockMinimo.Text = selected.Stock.StockMinimo.ToString();
                 }
 
                 Session["listaProductos"] = null;
@@ -65,23 +77,45 @@ namespace Proyecto_Final_LAB.Formularios.Productos
 
         public void btnAgregar_Click(object sender, EventArgs e)
         {
+            List<Sucursal> listaSucursales = new List<Sucursal>();
             ProductoNegocio pn = new ProductoNegocio();
+            StockNegocio sn = new StockNegocio();
             Producto p = new Producto();
+            Stock s = new Stock();
 
             try
             {
-                p.Codigo = txtCodigo.Text;
+                p.Codigo = Convert.ToInt32(txtCodigo.Text);
                 p.Descripcion = txtDescripcion.Text;
                 p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
                 p.Costo = Convert.ToDecimal(txtCosto.Text);
-                int idCategoria = Convert.ToInt32(ddlCategoria.SelectedValue);
-                int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+                p.Categoria = new CategoriaProducto();
+                p.Categoria.Id = Convert.ToInt32(ddlCategoria.SelectedValue);
+                p.Marca = new Marca();
+                p.Marca.Id = Convert.ToInt32(ddlMarca.SelectedValue);
                 p.Observaciones = txtObservaciones.Text;
 
-                if (pn.agregarProducto(p, idCategoria, idMarca))
+                int idProducto = pn.agregarProducto(p);
+
+                s.Producto = new Producto();
+                s.Producto.Id = idProducto;
+                s.StockMinimo = Convert.ToInt32(txtStockMinimo.Text);
+
+                if (idProducto > 1)
                 {
-                    Session["alerta"] = "agregado";
-                    Response.Redirect("Productos.aspx");
+                    listaSucursales = sn.obtenerSucursales();
+
+                    for(int i = 0; i < listaSucursales.Count; i++)
+                    {
+                        s.Sucursal = new Sucursal();
+                        s.Sucursal.Id = Convert.ToInt32(listaSucursales[i].Id);
+
+                        if (sn.agregarStock(s))
+                        {
+                            Session["alerta"] = "agregado";
+                            Response.Redirect("Productos.aspx");
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -97,7 +131,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             try
             {
                 p.Id = int.Parse(Request.QueryString["id"].ToString());
-                p.Codigo = txtCodigo.Text;
+                p.Codigo = Convert.ToInt32(txtCodigo.Text);
                 p.Descripcion = txtDescripcion.Text;
                 p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
                 p.Costo = Convert.ToDecimal(txtCosto.Text);

@@ -27,7 +27,12 @@ namespace negocios
                 dt = null;
                 return dt;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
+
 
         public DataTable obtenerPuntosDeVenta(int idSucursal)
         {
@@ -45,6 +50,10 @@ namespace negocios
             {
                 dt = null;
                 return dt;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public DataTable obtenerVendedoresFactura(int idSucursal)
@@ -64,6 +73,10 @@ namespace negocios
                 dt = null;
                 return dt;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
         public DataTable obtenerClientesFactura()
         {
@@ -80,6 +93,10 @@ namespace negocios
             {
                 dt = null;
                 return dt;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
 
@@ -100,6 +117,10 @@ namespace negocios
                 dt = null;
                 return dt;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
         public DataTable obtenerSucursales()
         {
@@ -116,6 +137,10 @@ namespace negocios
             {
                 dt = null;
                 return dt;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public string obtenerNumeroFactura(int idPuntoVenta, int idTipoDocumento)
@@ -136,6 +161,10 @@ namespace negocios
             {
                 return null;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
         public string obtenerTipoFactura(int idTipoDocumento)
         {
@@ -153,6 +182,10 @@ namespace negocios
             catch (Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public int obtenerTipoClienteEspecifico(int idCliente)
@@ -173,25 +206,29 @@ namespace negocios
                 dt = null;
                 return -1;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
-        public int agregarFactura(Factura f, int idCliente, int idVendedor, int idFormaPago, int idSucursal, int idPuntoVenta, int idTipoDocumento)
+        public int agregarFactura(Factura f)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 conexion.setearProcedure("AgregarFactura");
                 conexion.setearParametro("@NumeroFactura", f.NumeroFactura);
-                conexion.setearParametro("@idCliente", idCliente);
-                conexion.setearParametro("@idVendedor", idVendedor);
-                conexion.setearParametro("@idFormaDePago", idFormaPago);
+                conexion.setearParametro("@idCliente", f.Cliente.Id);
+                conexion.setearParametro("@idVendedor", f.Vendedor.Id);
+                conexion.setearParametro("@idFormaDePago", f.FormaPago.Id);
                 conexion.setearParametro("@Subtotal", f.SubTotal);
                 conexion.setearParametro("@Descuento", f.Descuento);
                 conexion.setearParametro("@Total", f.Total);
                 conexion.setearParametro("@Fecha", f.Fecha);
                 conexion.setearParametro("@Observaciones", f.Observaciones);
-                conexion.setearParametro("@idSucursal", idSucursal);
-                conexion.setearParametro("@idTipoDocumento", idTipoDocumento);
-                conexion.setearParametro("@idPuntoDeVenta", idPuntoVenta);
+                conexion.setearParametro("@idSucursal", f.Sucursal.Id);
+                conexion.setearParametro("@idTipoDocumento", f.TipoDocumento.Id);
+                conexion.setearParametro("@idPuntoDeVenta", f.PuntoVenta.Id);
 
                 int idFactura = conexion.ejecutarScalar();
         
@@ -200,6 +237,10 @@ namespace negocios
             catch (Exception ex)
             {
                 return -1;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
 
@@ -227,6 +268,10 @@ namespace negocios
             {
                 return false;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
 
         public bool modificarNumeracion(int idTipoDocumento, int idPuntoVenta)
@@ -246,27 +291,58 @@ namespace negocios
             {
                 return false;
             }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
         }
 
-        public List<Producto> listarProductosFactura()
+        public bool anularFacturaFallada(int idFactura)
         {
-            List<Producto> lista = new List<Producto>();
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("ObtenerProductosTodos");
+                conexion.setearProcedure("AnularFacturaFallada");
+                conexion.setearParametro("@idFactura", idFactura);
+
+                SqlCommand command = conexion.ejecutarComando();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public List<Factura> obtenerFacturasTodas()
+        {
+            List<Factura> lista = new List<Factura>();
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ObtenerFacturasTodas");
                 conexion.ejecutarConexion();
 
                 while (conexion.Lector.Read())
                 {
-                    Producto p = new Producto();
+                    Factura f = new Factura();
 
-                    p.Id = (int)conexion.Lector["Id"];
-                    p.Codigo = (string)conexion.Lector["Codigo"];
-                    p.Descripcion = (string)conexion.Lector["Descripcion"];
-                    p.PrecioVenta = (decimal)conexion.Lector["PrecioVenta"];
+                    f.Id = (int)conexion.Lector["Id"];
+                    f.NumeroFactura = (string)conexion.Lector["NumeroFactura"];
+                    f.Fecha = (DateTime)conexion.Lector["Fecha"];
+                    f.TipoDocumento = new TipoDocumento();
+                    f.TipoDocumento.Tipo = (string)conexion.Lector["TipoDocumento"];
+                    f.Cliente = new Cliente();
+                    f.Cliente.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
+                    f.SubTotal = (decimal)conexion.Lector["SubTotal"];
+                    f.Descuento = (decimal)conexion.Lector["Descuento"];
+                    f.Total = (decimal)conexion.Lector["Total"];
 
-                    lista.Add(p);
+                    lista.Add(f);
                 }
 
                 return lista;

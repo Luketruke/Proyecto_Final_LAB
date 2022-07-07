@@ -14,6 +14,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         {
             try
             {
+                Session["listaProductos"] = null;
                 alerta();
                 if (Session["listaProductos"] == null)
                 {
@@ -59,6 +60,20 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 Session["alerta"] = "eliminado";
                 Session["listaProductos"] = null;
                 Response.Redirect("Productos.aspx");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Response.Redirect("../Stock/StockABM.aspx?idProducto=" + id);
             }
             catch (Exception ex)
             {

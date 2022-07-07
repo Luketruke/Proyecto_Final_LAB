@@ -21,6 +21,16 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 DataTable dtTipoClientes = cn.obtenerTipoClientes();
                 if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
                 {
+                    int codigo = cn.obtenerUltimoCodigo();
+                    if (codigo == -1)
+                    {
+                        txtCodigo.Text = 1.ToString();
+                    }
+                    else
+                    {
+                        codigo = codigo+1;
+                        txtCodigo.Text = codigo.ToString();
+                    }
                     ddlTipoCliente.Items.Add("Seleccione tipo...");
                 }
 
@@ -39,7 +49,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                     Cliente selected = temp.Find(x => x.Id == id);
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
-                    txtCodigo.Text = selected.Codigo;
+                    txtCodigo.Text = selected.Codigo.ToString();
                     txtNombres.Text = selected.Nombres;
                     txtApellidos.Text = selected.Apellidos;
                     txtFechaNacimiento.Text = selected.FechaNacimiento.ToString("yyyy-MM-dd");
@@ -66,7 +76,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 ClienteNegocio cn = new ClienteNegocio();
                 Direccion d = new Direccion();
                 Cliente c = new Cliente();
-                c.Codigo = txtCodigo.Text;
+                c.Codigo = Convert.ToInt32(txtCodigo.Text);
                 c.Nombres = txtNombres.Text;
                 c.Apellidos = txtApellidos.Text;
                 c.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
@@ -98,7 +108,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 ClienteNegocio cn = new ClienteNegocio();
                 Direccion d = new Direccion();
                 Cliente c = new Cliente();
-                c.Codigo = txtCodigo.Text;
+                c.Codigo = Convert.ToInt32(txtCodigo.Text);
                 c.Nombres = txtNombres.Text;
                 c.Apellidos = txtApellidos.Text;
                 c.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);

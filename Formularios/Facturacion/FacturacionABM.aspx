@@ -114,7 +114,7 @@
                         <tr>
                             <td style="width: 25%">
                                 <div class="col-md-8">
-                                    <asp:TextBox runat="server" ID="txtCodigoProducto" class="form-control" ReadOnly="true" />
+                                    <asp:TextBox runat="server" ID="txtCodigoProducto" class="form-control" disabled="" />
                                     <label class="col-md-4"></label>
                                 </div>
                                 <asp:LinkButton ID="btnModalItemsFactura" runat="server" CssClass="btn btn-info" data-toggle="modal" data-target="#myModal">
@@ -123,16 +123,19 @@
                             </td>
                             <td style="width: 12%">
                                 <asp:TextBox runat="server" ID="txtId" class="form-control" Visible="false" />
-                                <asp:TextBox runat="server" ID="txtCantidad" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');"/>
+                                <asp:TextBox runat="server" ID="txtCantidad" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             </td>
                             <td style="width: 25%">
-                                <asp:TextBox runat="server" ID="txtDescripcion" class="form-control" ReadOnly="true" />
+                                <asp:TextBox runat="server" ID="txtDescripcion" class="form-control" disabled="" />
                             </td>
                             <td style="width: 7%">
-                                <asp:TextBox runat="server" ID="txtDescuento" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');"/>
+                                <asp:TextBox runat="server" ID="txtDescuento" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             </td>
                             <td style="width: 14%">
-                                <asp:TextBox runat="server" ID="txtPrecio" class="form-control" ReadOnly="true" />
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="number" id="txtPrecio" class="form-control col-md-4" disabled="" runat="server">
+                                </div>
                             </td>
                             <td style="width: 3%">
                                 <asp:LinkButton ID="btnAgregarProducto" runat="server" CssClass="btn btn-info" OnClick="btnAgregarProducto_Click" AutoPostBack="true">
@@ -174,7 +177,7 @@
 
                     <div class="mb-3">
                         <asp:Button ID="btnFacturar" runat="server" CssClass="btn btn-success" Text="Facturar" OnClick="btnFacturar_Click" />
-                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_Click"/>
+                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_Click" />
                     </div>
                     <div>
                     </div>
@@ -229,37 +232,50 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Productos</h4>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <asp:GridView ID="dgvProductos" runat="server" DataKeyNames="Id" CssClass="table table-bordered border-primary" AutoGenerateColumns="false">
-                            <Columns>
-                                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                <asp:BoundField HeaderText="PrecioVenta" DataField="PrecioVenta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                <asp:TemplateField HeaderText="Agregar" ItemStyle-Width="35" HeaderStyle-Width="35" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btnAgregarItem" runat="server" CssClass="btn btn-info" OnClick="btnAgregarItem_Click" OnClientClick="closeModal();">
-                            <i class="fa-solid fa-plus"></i>
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+
+    <asp:UpdatePanel>
+        <div id="myModal" class="modal fade" role="dialog" autopostback="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="col-md-5">
+                            <div>
+                                <input type="text" id="txtFiltrarProductos" class="form-control col-md-4" runat="server">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <asp:LinkButton ID="btnFiltrarProductos" OnClick="btnFiltrarProductos_Click" runat="server" CssClass="btn btn-info" AutoPostBack="true">
+                            <i class="fa-solid fa-search"></i>
+                            </asp:LinkButton>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Cerrar</button>
+                    <div class="modal-body">
+                        <div>
+                            <asp:GridView ID="dgvProductos" runat="server" DataKeyNames="Id" CssClass="table table-bordered border-primary" AutoGenerateColumns="false" AutoPostBack="true">
+                                <Columns>
+                                    <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                    <asp:BoundField HeaderText="Stock" DataField="StockActual" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                    <asp:BoundField HeaderText="PrecioVenta" DataField="PrecioVenta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                    <asp:TemplateField HeaderText="Agregar" ItemStyle-Width="35" HeaderStyle-Width="35" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnAgregarItem" runat="server" CssClass="btn btn-info" OnClick="btnAgregarItem_Click" OnClientClick="closeModal();">
+                            <i class="fa-solid fa-plus"></i>
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </asp:UpdatePanel>
 
     <script type="text/javascript">
         function openModal() {

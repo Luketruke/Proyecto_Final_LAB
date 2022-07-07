@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocios;
+using dominios;
 
 namespace Proyecto_Final_LAB.Formularios.Facturacion
 {
@@ -11,7 +13,22 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            alerta();
+            try
+            {
+                Session["listaFacturas"] = null;
+                alerta();
+                if (Session["listaFacturas"] == null)
+                {
+                    FacturasNegocio fn = new FacturasNegocio();
+                    Session.Add("listaFacturas", fn.obtenerFacturasTodas());
+                }
+                dgvFacturas.DataSource = Session["listaFacturas"];
+                dgvFacturas.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         protected void alerta()
         {
@@ -30,6 +47,11 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     Session["alerta"] = null;
                     break;
             }
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FacturacionABM.aspx");
         }
     }
 }

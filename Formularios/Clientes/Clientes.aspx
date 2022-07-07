@@ -13,7 +13,7 @@
                     </td>
                     <td style="width: 1%">
                         <div class="col-md-1">
-                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
+                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Nuevo cliente" />
                         </div>
                     </td>
                 </tr>
@@ -34,11 +34,11 @@
             <asp:BoundField HeaderText="Mail" DataField="Email" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
             <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
+                    <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Modificar">
                             <i class="fa-solid fa-pencil"></i>
                     </asp:LinkButton>
 
-                    <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar el cliente?');">
+                    <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar el cliente?');" data-toggle="tooltip" ToolTip="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                     </asp:LinkButton>
 
@@ -46,4 +46,11 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+    
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
 </asp:Content>

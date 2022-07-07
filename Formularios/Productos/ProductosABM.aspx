@@ -8,7 +8,7 @@
 
     <div class="mb-3">
         <label for="txtCodigo" class="form-label">Codigo</label>
-        <asp:TextBox runat="server" ID="txtCodigo" class="form-control" />
+        <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled=""/>
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCodigo" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 
@@ -30,7 +30,13 @@
         <asp:TextBox runat="server" ID="txtCosto" class="form-control"
             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCosto" ErrorMessage="*"></asp:RequiredFieldValidator>
+    </div>
 
+    <div class="mb-3">
+        <label for="txtStockMinimo" class="form-label">Stock Minimo</label>
+        <asp:TextBox runat="server" ID="txtStockMinimo" class="form-control"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtStockMinimo" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 
     <div>

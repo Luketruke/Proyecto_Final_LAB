@@ -165,7 +165,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtPrecio;
 
         /// <summary>
         /// Control btnAgregarProducto.
@@ -247,6 +247,24 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtTotalFactura;
+
+        /// <summary>
+        /// Control txtFiltrarProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFiltrarProductos;
+
+        /// <summary>
+        /// Control btnFiltrarProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltrarProductos;
 
         /// <summary>
         /// Control dgvProductos.

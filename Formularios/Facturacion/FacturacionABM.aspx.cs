@@ -15,6 +15,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         protected void Page_Load(object sender, EventArgs e)
         {
             FacturasNegocio fn = new FacturasNegocio();
+            ProductoNegocio pn = new ProductoNegocio();
             try
             {
                 if (!IsPostBack)
@@ -24,7 +25,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     //y ahi se deberia enviar otro parametro
                     int idSucursal = Convert.ToInt32(Session["Sucursal"]);
 
-                    if (Session["listaProductos"] == null) Session.Add("listaProductos", fn.listarProductosFactura());
+                    if (Session["listaProductos"] == null) Session.Add("listaProductos", pn.listarProductosFactura(idSucursal));
 
                     Session["listaItemsFactura"] = null;
 
@@ -182,9 +183,9 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 List<Producto> temp = (List<Producto>)Session["listaProductos"];
                 Producto selected = temp.Find(x => x.Id == id);
                 Session["idProductoSeleccionado"] = selected.Id.ToString();
-                txtCodigoProducto.Text = selected.Codigo;
+                txtCodigoProducto.Text = selected.Codigo.ToString();
                 txtDescripcion.Text = selected.Descripcion;
-                txtPrecio.Text = selected.PrecioVenta.ToString();
+                txtPrecio.Value = selected.PrecioVenta.ToString();
                 txtCantidad.Text = "1";
                 txtDescuento.Text = "0";
             }
@@ -214,31 +215,48 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
                 i.IdProducto = Convert.ToInt32(Session["idProductoSeleccionado"]);
                 i.Codigo = txtCodigoProducto.Text;
-                i.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                i.Descripcion = txtDescripcion.Text;
-                i.Descuento = Convert.ToDecimal(txtDescuento.Text);
-                i.PrecioVenta = Convert.ToDecimal(txtPrecio.Text);
-                i.PrecioTotal = Convert.ToDecimal(Convert.ToInt32(txtCantidad.Text)*Convert.ToDecimal(txtPrecio.Text));
 
-                txtCodigoProducto.Text = "";
-                txtDescripcion.Text = "";
-                txtPrecio.Text = "";
-                txtCantidad.Text = "";
-                txtDescuento.Text = "";
+                if (Convert.ToInt32(txtCantidad.Text)>0)
+                {
+                    i.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                    i.Descripcion = txtDescripcion.Text;
+                    i.PrecioVenta = Convert.ToDecimal(txtPrecio.Value);
+                    i.PrecioTotal = Convert.ToDecimal(Convert.ToInt32(txtCantidad.Text)*Convert.ToDecimal(txtPrecio.Value));
 
-                listaItemsFactura.Add(i);
+                    if (Convert.ToInt32(txtDescuento.Text)>=0 && Convert.ToInt32(txtDescuento.Text)<=100)
+                    {
+                        i.Descuento = (Convert.ToInt32(txtDescuento.Text) * i.PrecioTotal)/100;
+                        i.PrecioTotal = i.PrecioTotal - i.Descuento;
 
-                Session["listaItemsFactura"] = listaItemsFactura;
+                        txtCodigoProducto.Text = "";
+                        txtDescripcion.Text = "";
+                        txtPrecio.Value = "";
+                        txtCantidad.Text = "";
+                        txtDescuento.Text = "";
 
-                decimal precioTotal = Convert.ToDecimal(txtTotalFactura.Value);
-                precioTotal = precioTotal + i.PrecioTotal;
+                        listaItemsFactura.Add(i);
 
-                txtSubtotalFactura.Value = precioTotal.ToString();
-                txtTotalFactura.Value = precioTotal.ToString();
+                        Session["listaItemsFactura"] = listaItemsFactura;
 
+                        decimal precioTotal = Convert.ToDecimal(txtTotalFactura.Value);
+                        precioTotal = precioTotal + i.PrecioTotal;
+                        txtSubtotalFactura.Value = precioTotal.ToString();
+                        txtTotalFactura.Value = precioTotal.ToString();
 
-                dgvItemsFactura.DataSource = Session["listaItemsFactura"];
-                dgvItemsFactura.DataBind();
+                        dgvItemsFactura.DataSource = Session["listaItemsFactura"];
+                        dgvItemsFactura.DataBind();
+                    }
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('El descuento no es valido' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('La cantidad debe ser mayor a 1' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                }
             }
             catch (Exception ex)
             {
@@ -268,13 +286,22 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
                 decimal precioTotal = NuevoSubtotal - Convert.ToDecimal(txtDescuentoFactura.Value);
 
-                txtSubtotalFactura.Value = NuevoSubtotal.ToString();
-                txtTotalFactura.Value = precioTotal.ToString();
+                if (precioTotal > 0)
+                {
+                    txtSubtotalFactura.Value = NuevoSubtotal.ToString();
+                    txtTotalFactura.Value = precioTotal.ToString();
 
-                Session["listaItemsFactura"] = listaItemsFactura;
+                    Session["listaItemsFactura"] = listaItemsFactura;
 
-                dgvItemsFactura.DataSource = Session["listaItemsFactura"];
-                dgvItemsFactura.DataBind();
+                    dgvItemsFactura.DataSource = Session["listaItemsFactura"];
+                    dgvItemsFactura.DataBind();
+                }
+                else if (precioTotal < 0)
+                {
+                    txtDescuentoFactura.Value = "0.00";
+                    txtSubtotalFactura.Value = "0.00";
+                    txtTotalFactura.Value = "0.00";
+                }
             }
             catch (Exception ex)
             {
@@ -289,39 +316,62 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
             try
             {
                 f.NumeroFactura = lblNroFactura.Text;
-                int idCliente = Convert.ToInt32(ddlClientes.SelectedValue);
-                int idVendedor = Convert.ToInt32(ddlVendedor.SelectedValue);
-                int idFormaPago = Convert.ToInt32(ddlFormaPago.SelectedValue);
+                f.Cliente = new Cliente();
+                f.Cliente.Id = Convert.ToInt32(ddlClientes.SelectedValue);
+                f.Vendedor = new Vendedor();
+                f.Vendedor.Id = Convert.ToInt32(ddlVendedor.SelectedValue);
+                f.FormaPago = new FormaPago();
+                f.FormaPago.Id = Convert.ToInt32(ddlFormaPago.SelectedValue);
                 f.SubTotal = Convert.ToDecimal(txtSubtotalFactura.Value);
                 f.Descuento = Convert.ToDecimal(txtDescuentoFactura.Value);
                 f.Total = Convert.ToDecimal(txtTotalFactura.Value);
                 f.Fecha = DateTime.Parse(txtFechaFactura.Text);
                 f.Observaciones = txtObservaciones.Text;
-                int idSucursal = 1;
-                int idTipoDocumento = Convert.ToInt32(Session["TipoCliente"]);
-                int idPuntoVenta = Convert.ToInt32(ddlPuntoVenta.SelectedValue);
+                f.Sucursal = new Sucursal();
+                f.Sucursal.Id = 1;
+                f.TipoDocumento = new TipoDocumento();
+                f.TipoDocumento.Id = Convert.ToInt32(Session["TipoCliente"]);
+                f.PuntoVenta = new PuntoVenta();
+                f.PuntoVenta.Id = Convert.ToInt32(ddlPuntoVenta.SelectedValue);
 
-                int idFactura = fn.agregarFactura(f, idCliente, idVendedor, idFormaPago, idSucursal, idPuntoVenta, idTipoDocumento);
+                int idFactura = fn.agregarFactura(f);
 
-                List<ItemFactura> temp = (List<ItemFactura>)Session["listaItemsFactura"];
-
-                for (int x = 0; x < temp.Count; x++)
+                if (idFactura > 0)
                 {
-                    i.IdProducto = temp[x].IdProducto;
-                    i.Cantidad = temp[x].Cantidad;
-                    i.SubTotal = temp[x].SubTotal;
-                    i.Descuento = temp[x].Descuento;
-                    i.PrecioTotal = temp[x].PrecioTotal;
-                    i.Codigo = temp[x].Codigo;
-                    i.PrecioVenta = temp[x].PrecioVenta;
-                    i.Descripcion = temp[x].Descripcion;
 
-                    fn.agregarItemsFactura(i, idFactura);
+                    List<ItemFactura> temp = (List<ItemFactura>)Session["listaItemsFactura"];
+
+                    if (temp.Count>0)
+                    {
+
+                        for (int x = 0; x < temp.Count; x++)
+                        {
+                            i.IdProducto = temp[x].IdProducto;
+                            i.Cantidad = temp[x].Cantidad;
+                            i.SubTotal = temp[x].SubTotal;
+                            i.Descuento = temp[x].Descuento;
+                            i.PrecioTotal = temp[x].PrecioTotal;
+                            i.Codigo = temp[x].Codigo;
+                            i.PrecioVenta = temp[x].PrecioVenta;
+                            i.Descripcion = temp[x].Descripcion;
+                            fn.agregarItemsFactura(i, idFactura);
+                        }
+                    }
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('Debe agregar productos a la factura' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
+                    fn.modificarNumeracion(f.TipoDocumento.Id, f.PuntoVenta.Id);
+                    Session["alerta"] = "agregado";
+                    Response.Redirect("Facturas.aspx");
                 }
-
-                fn.modificarNumeracion(idTipoDocumento, idPuntoVenta);
-                Session["alerta"] = "agregado";
-                Response.Redirect("Facturas.aspx");
+                else
+                {
+                    fn.anularFacturaFallada(idFactura);
+                    Session["alerta"] = "cancelado";
+                    Response.Redirect("Facturas.aspx");
+                }
             }
             catch (Exception ex)
             {
@@ -336,18 +386,30 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 decimal precioTotal = Convert.ToDecimal(txtSubtotalFactura.Value);
                 decimal descuento = Convert.ToDecimal(txtDescuentoFactura.Value);
                 precioTotal = precioTotal - descuento;
-                txtTotalFactura.Value = precioTotal.ToString();
+                if (precioTotal > 0) txtTotalFactura.Value = precioTotal.ToString();
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('El precio total debe ser mayor a 0' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                }
             }
             catch (Exception ex)
             {
 
             }
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Session["alerta"] = "cancelado";
             Response.Redirect("Facturas.aspx");
+        }
+
+        protected void btnFiltrarProductos_Click(object sender, EventArgs e)
+        {
+            ProductoNegocio pn = new ProductoNegocio();
+
+            dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), Convert.ToInt32(ddlSucursal.SelectedValue));
+            dgvProductos.DataBind();
         }
     }
 }

@@ -14,11 +14,10 @@
                     </td>
                     <td style="width: 1%">
                         <div class="col-md-1">
-                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
+                            <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar producto" />
                         </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </div>
@@ -29,17 +28,20 @@
     <div>
         <asp:GridView ID="dgvProductos" runat="server" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
             <Columns>
-                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                <asp:BoundField HeaderText="Precio Venta" DataField="PrecioVenta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                <asp:BoundField HeaderText="Marca" DataField="Marca" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                <asp:BoundField HeaderText="Categoria" DataField="Categoria" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                <asp:BoundField HeaderText="Precio Venta" DataField="PrecioVenta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                <asp:BoundField HeaderText="Marca" DataField="Marca" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                <asp:BoundField HeaderText="Categoria" DataField="Categoria" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info">
+                        <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Modificar">
                             <i class="fa-solid fa-pencil"></i>
                         </asp:LinkButton>
-                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar el producto?');">
+                        <asp:LinkButton ID="btnStock" OnClick="btnStock_Click" runat="server" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Stock">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar el producto?');" data-toggle="tooltip" ToolTip="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </asp:LinkButton>
                     </ItemTemplate>
@@ -47,4 +49,11 @@
             </Columns>
         </asp:GridView>
     </div>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
 </asp:Content>

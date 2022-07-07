@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="txtCodigo" class="form-label">Codigo</label>
-                <asp:TextBox runat="server" ID="txtCodigo" class="form-control" />
+                <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled=""/>
                 <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtCodigo" ErrorMessage="*"></asp:RequiredFieldValidator>
             </div>
 

@@ -7,29 +7,29 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Proyecto_Final_LAB.Formularios.Facturacion
+namespace Proyecto_Final_LAB.Formularios.StockProductos
 {
 
 
-    public partial class Facturas
+    public partial class StockABM
     {
 
         /// <summary>
-        /// Control btnAgregar.
+        /// Control lblStockTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar;
+        protected global::System.Web.UI.WebControls.Label lblStockTotal;
 
         /// <summary>
-        /// Control dgvFacturas.
+        /// Control dgvStock.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvFacturas;
+        protected global::System.Web.UI.WebControls.GridView dgvStock;
     }
 }

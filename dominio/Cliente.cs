@@ -10,7 +10,7 @@ namespace dominios
     public class Cliente
     {
         public int Id { get; set; }
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string NombreCompleto { get; set; }

@@ -68,6 +68,10 @@ namespace negocios
 
                     p.Observaciones = (string)conexion.Lector["Observaciones"];
 
+                    p.Stock = new Stock();
+                    p.Stock.StockMinimo = (int)conexion.Lector["StockMinimo"];
+                    p.Stock.StockActual = (int)conexion.Lector["StockActual"];
+
                     lista.Add(p);
                 }
 

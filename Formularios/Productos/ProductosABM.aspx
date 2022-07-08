@@ -21,7 +21,7 @@
     <div class="mb-3">
         <label for="txtPrecioVenta" class="form-label">Precio Venta</label>
         <asp:TextBox runat="server" ID="txtPrecioVenta" class="form-control"
-            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtPrecioVenta" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 

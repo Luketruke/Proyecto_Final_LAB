@@ -25,7 +25,8 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     //y ahi se deberia enviar otro parametro
                     int idSucursal = Convert.ToInt32(Session["Sucursal"]);
 
-                    if (Session["listaProductos"] == null) Session.Add("listaProductos", pn.listarProductosFactura(idSucursal));
+                    if (Session["listaProductos"] == null)
+                        Session.Add("listaProductos", pn.listarProductosFactura(idSucursal));
 
                     Session["listaItemsFactura"] = null;
 

@@ -34,6 +34,50 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public bool modificarStock(int IdStock, int Cantidad)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarStock");
+                conexion.setearParametro("@IdStock", IdStock);
+                conexion.setearParametro("@Cantidad", Cantidad);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool agregarMovimientoStock(int IdStock, int Cantidad)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarMovimientoStock");
+                conexion.setearParametro("@IdStock", IdStock);
+                conexion.setearParametro("@Cantidad", Cantidad);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public List<Sucursal> obtenerSucursales()
         {
             List<Sucursal> lista = new List<Sucursal>();

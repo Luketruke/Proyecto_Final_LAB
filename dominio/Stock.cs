@@ -13,5 +13,6 @@ namespace dominios
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
         public Sucursal Sucursal { get; set; }
+        public DateTime FechaMovStock { get; set; }
     }
 }

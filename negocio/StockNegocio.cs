@@ -148,5 +148,43 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+
+        public List<Stock> obtenerStockHistorico(int IdStock)
+        {
+            List<Stock> lista = new List<Stock>();
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ObtenerStockHistorico");
+                conexion.setearParametro("@IdStock", IdStock);
+                conexion.ejecutarConexion();
+
+                while (conexion.Lector.Read())
+                {
+                    Stock s = new Stock();
+
+                    s.Id = (int)conexion.Lector["Id"];
+                    s.Producto = new Producto();
+                    s.Producto.Descripcion = (string)conexion.Lector["Descripcion"];
+                    s.StockActual = (int)conexion.Lector["Cantidad"];
+                    s.Sucursal = new Sucursal();
+                    s.Sucursal.Nombre = (string)conexion.Lector["NombreSucursal"];
+                    s.FechaMovStock = (DateTime)conexion.Lector["Fecha"];
+
+                    lista.Add(s);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                lista = null;
+                return lista;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
     }
 }

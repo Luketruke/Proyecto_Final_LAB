@@ -20,6 +20,7 @@ namespace Proyecto_Final_LAB.Formularios.StockProductos
                 int idProducto = Convert.ToInt32(Request.QueryString["idProducto"]);
                 int StockTotal = 0;
                 Session["listaStock"] = null;
+                Session["idStock"] = null;
                 if (Session["listaStock"] == null)
                 {
                     Session.Add("listaStock", st.obtenerStockProductos(idProducto));
@@ -42,17 +43,28 @@ namespace Proyecto_Final_LAB.Formularios.StockProductos
                 Console.WriteLine(ex);
             }
         }
+        //Luego se va a agregar un historico general para el producto, este va a ser solo por sucursal.
         protected void btnStockHistorico_Click(object sender, EventArgs e)
         {
-
-        }
-        protected void btnEditarStock_Click(object sender, EventArgs e)
-        {
+            StockNegocio sn = new StockNegocio();
             GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
             GridView gv = clickedRow.NamingContainer as GridView;
             var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
             Session["idStock"] = id.ToString();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "openModal('show')", true);
+
+            dgvStockHistorico.DataSource = sn.obtenerStockHistorico(Convert.ToInt32(id));
+            dgvStockHistorico.DataBind();
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalStockHistorico", "openModalStockHistorico('show')", true);
+        }
+        protected void btnEditarStock_Click(object sender, EventArgs e)
+        {
+            StockNegocio sn = new StockNegocio();
+            GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+            GridView gv = clickedRow.NamingContainer as GridView;
+            var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+            Session["idStock"] = id.ToString();
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "modalModificarStock", "openModal('show')", true);
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {

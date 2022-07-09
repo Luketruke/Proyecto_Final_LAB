@@ -94,7 +94,6 @@ namespace negocios
             {
                 conexion.setearProcedure("ModificarProducto");
                 conexion.setearParametro("@Id", p.Id);
-                conexion.setearParametro("@Codigo", p.Codigo);
                 conexion.setearParametro("@Descripcion", p.Descripcion);
                 conexion.setearParametro("@PrevioVenta", p.PrecioVenta);
                 conexion.setearParametro("@Costo", p.Costo);

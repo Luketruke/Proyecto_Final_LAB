@@ -108,7 +108,7 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 ClienteNegocio cn = new ClienteNegocio();
                 Direccion d = new Direccion();
                 Cliente c = new Cliente();
-                c.Codigo = Convert.ToInt32(txtCodigo.Text);
+                c.Id = Convert.ToInt32(Request.QueryString["Id"]);
                 c.Nombres = txtNombres.Text;
                 c.Apellidos = txtApellidos.Text;
                 c.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);

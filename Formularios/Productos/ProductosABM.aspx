@@ -35,7 +35,7 @@
     <div class="mb-3">
         <label for="txtStockMinimo" class="form-label">Stock Minimo</label>
         <asp:TextBox runat="server" ID="txtStockMinimo" class="form-control"
-            oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" />
+            oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"/>
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtStockMinimo" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
 

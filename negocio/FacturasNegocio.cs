@@ -32,8 +32,6 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-
-
         public DataTable obtenerPuntosDeVenta(int idSucursal)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -41,28 +39,6 @@ namespace negocios
             try
             {
                 conexion.setearProcedure("ObtenerPuntosDeVenta");
-                conexion.setearParametro("@idSucursal", idSucursal);
-                dt.Load(conexion.ejecutarConexion());
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-        public DataTable obtenerVendedoresFactura(int idSucursal)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
-            {
-                conexion.setearProcedure("ObtenerVendedoresFactura");
                 conexion.setearParametro("@idSucursal", idSucursal);
                 dt.Load(conexion.ejecutarConexion());
 
@@ -108,27 +84,6 @@ namespace negocios
             {
                 conexion.setearProcedure("ObtenerClientesFacturaFiltrados");
                 conexion.setearParametro("@filtro", filtro);
-                dt.Load(conexion.ejecutarConexion());
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-        public DataTable obtenerSucursales()
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
-            {
-                conexion.setearProcedure("ObtenerSucursales");
                 dt.Load(conexion.ejecutarConexion());
 
                 return dt;

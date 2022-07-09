@@ -58,12 +58,13 @@
         </div>
     </div>
 
-    <div id="modalStockHistorico" class="modal fade" role="dialog">
+    <div id="modalStockHistorico" class="modal fade" role="dialog" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h2 class="modal-title">Stock historico</h2>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="height: 50vh; overflow-y: auto;">
                     <asp:GridView ID="dgvStockHistorico" runat="server" DataKeyNames="Id" CssClass="table table-dark table-hover" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField HeaderText="Cantidad" DataField="StockActual" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>

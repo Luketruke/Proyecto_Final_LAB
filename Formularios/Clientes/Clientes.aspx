@@ -8,7 +8,7 @@
                 <tr>
                     <td style="width: 90%">
                         <div class="form-group">
-                            <label style="font-size: 20px;" class="col-md-2">Herramientas</label>
+                            <label style="font-size: 20px;" class="col-md-2">Clientes</label>
                         </div>
                     </td>
                     <td style="width: 1%">

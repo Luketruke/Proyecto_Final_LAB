@@ -131,7 +131,6 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             try
             {
                 p.Id = int.Parse(Request.QueryString["id"].ToString());
-                p.Codigo = Convert.ToInt32(txtCodigo.Text);
                 p.Descripcion = txtDescripcion.Text;
                 p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
                 p.Costo = Convert.ToDecimal(txtCosto.Text);

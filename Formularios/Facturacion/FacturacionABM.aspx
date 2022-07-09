@@ -231,51 +231,47 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <asp:UpdatePanel runat="server">
-        <ContentTemplate>
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="col-md-5">
-                                <div>
-                                    <input type="text" id="txtFiltrarProductos" placeholder="Ingrese descripcion..." class="form-control col-md-4" runat="server">
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <asp:LinkButton ID="btnFiltrarProductos" OnClick="btnFiltrarProductos_Click" runat="server" CssClass="btn btn-info" AutoPostBack="true" data-toggle="tooltip" ToolTip="Filtrar">
-                            <i class="fa-solid fa-search"></i>
-                                </asp:LinkButton>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                <asp:GridView ID="dgvProductos" runat="server" DataKeyNames="Id" CssClass="table table-bordered border-primary" AutoGenerateColumns="false" AutoPostBack="true">
-                                    <Columns>
-                                        <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                        <asp:BoundField HeaderText="Descripción" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                        <asp:BoundField HeaderText="Stock" DataField="Stock.StockActual" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                        <asp:BoundField HeaderText="PrecioVenta" DataField="PrecioVenta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                                        <asp:TemplateField HeaderText="Agregar" ItemStyle-Width="35" HeaderStyle-Width="35" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="btnAgregarItem" runat="server" CssClass="btn btn-info" OnClick="btnAgregarItem_Click" OnClientClick="closeModal();" data-toggle="tooltip" ToolTip="Agregar">
-                            <i class="fa-solid fa-plus"></i>
-                                                </asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                Cerrar</button>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="col-md-5">
+                        <div>
+                            <input type="text" id="txtFiltrarProductos" placeholder="Ingrese descripcion..." class="form-control col-md-4" runat="server">
                         </div>
                     </div>
+                    <div class="col-md-1">
+                        <asp:LinkButton ID="btnFiltrarProductos" OnClick="btnFiltrarProductos_Click" runat="server" CssClass="btn btn-info" AutoPostBack="true" data-toggle="tooltip" ToolTip="Filtrar">
+                            <i class="fa-solid fa-search"></i>
+                        </asp:LinkButton>
+                    </div>
+                </div>
+                <div class="modal-body" style="height: 40vh; overflow-y: auto;">
+                    <div>
+                        <asp:GridView ID="dgvProductos" runat="server" DataKeyNames="Id" CssClass="table table-bordered border-primary" AutoGenerateColumns="false" AutoPostBack="true">
+                            <Columns>
+                                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                <asp:BoundField HeaderText="Descripción" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                <asp:BoundField HeaderText="Stock" DataField="Stock.StockActual" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                <asp:BoundField HeaderText="PrecioVenta" DataField="PrecioVenta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                                <asp:TemplateField HeaderText="Agregar" ItemStyle-Width="35" HeaderStyle-Width="35" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnAgregarItem" runat="server" CssClass="btn btn-info" OnClick="btnAgregarItem_Click" OnClientClick="closeModal();" data-toggle="tooltip" ToolTip="Agregar">
+                            <i class="fa-solid fa-plus"></i>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Cerrar</button>
                 </div>
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </div>
+    </div>
 
     <script type="text/javascript">
         function openModal() {

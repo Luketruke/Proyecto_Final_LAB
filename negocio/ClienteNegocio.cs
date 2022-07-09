@@ -107,7 +107,7 @@ namespace negocios
             try
             {
                 conexion.setearProcedure("ModificarCliente");
-                conexion.setearParametro("@Codigo", c.Codigo);
+                conexion.setearParametro("@Id", c.Id);
                 conexion.setearParametro("@Nombres", c.Nombres);
                 conexion.setearParametro("@Apellidos", c.Apellidos);
                 conexion.setearParametro("@FechaNacimiento", c.FechaNacimiento);
@@ -173,7 +173,6 @@ namespace negocios
                 return dt;
             }
         }
-
         public int obtenerUltimoCodigo()
         {
             ConexionSQL conexion = new ConexionSQL();

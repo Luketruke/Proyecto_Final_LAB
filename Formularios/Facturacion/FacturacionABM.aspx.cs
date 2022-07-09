@@ -14,6 +14,8 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            VendedoresNegocio vn = new VendedoresNegocio();
+            SucursalesNegocio sn = new SucursalesNegocio();
             FacturasNegocio fn = new FacturasNegocio();
             ProductoNegocio pn = new ProductoNegocio();
             try
@@ -35,9 +37,9 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
                     DataTable dtCliente = fn.obtenerClientesFactura();
                     DataTable dtFormasPago = fn.obtenerFormasDePago();
-                    DataTable dtSucursales = fn.obtenerSucursales();
+                    DataTable dtSucursales = sn.obtenerSucursales();
                     DataTable dtPuntosVenta = fn.obtenerPuntosDeVenta(1);
-                    DataTable dtVendedores = fn.obtenerVendedoresFactura(1);
+                    DataTable dtVendedores = vn.obtenerVendedoresFactura(1);
                     ListItem li;
 
                     ddlClientes.Items.Add("Seleccione...");
@@ -108,12 +110,13 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
         protected void ddlSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
+            VendedoresNegocio vn = new VendedoresNegocio();
             FacturasNegocio fn = new FacturasNegocio();
             ListItem li;
             try
             {
                 int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
-                DataTable dtVendedores = fn.obtenerVendedoresFactura(idSucursal);
+                DataTable dtVendedores = vn.obtenerVendedoresFactura(idSucursal);
                 DataTable dtPuntoVenta = fn.obtenerPuntosDeVenta(idSucursal);
 
                 ddlVendedor.Items.Clear();

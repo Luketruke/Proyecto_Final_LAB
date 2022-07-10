@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="Proveedores.aspx.cs" Inherits="Proyecto_Final_LAB.Formularios.Proveedores.ProveedoresABM" %>
+﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="Proveedores.aspx.cs" EnableEventValidation="false" Inherits="Proyecto_Final_LAB.Formularios.Proveedores.ProveedoresABM" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>  
@@ -47,7 +47,9 @@
         </Columns>
 
     </asp:GridView>
-       
+        <div>
+        <asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" OnClick="btnExcel_Click" CssClass="btn btn-success"/>
+            </div>
     </div>
 
 </asp:Content>

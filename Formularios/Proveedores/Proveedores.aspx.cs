@@ -95,6 +95,32 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
         {
             Response.Redirect("ProveedoresABM.aspx?accion=1");
         }
+
+        /*
+       
+        */
+
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=Proveedores.xls");
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application / vnd.xls";
+           //application / vnd.pdf
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+
+            dgvProveedores.RenderControl(htmlWrite);
+            Response.Write(stringWrite.ToString());
+            Response.End();
+        }
+
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+    }
     }
    
-}

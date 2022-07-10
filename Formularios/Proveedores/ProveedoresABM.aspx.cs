@@ -70,26 +70,29 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
 
 
         protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-             /*
+        {  
             ProveedorNegocio pn = new ProveedorNegocio();
+               Direccion d = new Direccion();
                Proveedor p = new Proveedor();
 
                p.Codigo = txtCodigo.Text;
                p.RazonSocial = txtRazonSocial.Text;
-               p.Cuit = txtCUIT.Text;
-               p.Domicilio = txtDomicilio.Text;
+               p.Cuit = txtCUIT.Text;            
                p.Telefono= txtTelefono.Text;
                p.Email= txtEmail.Text;
-              
-               if (pn.agregarProveedor(p))
+               d.Domicilio = txtDomicilio.Text;
+               d.Localidad = txtLocalidad.Text;
+               d.CodigoPostal = txtCodigoPostal.Text;
+               d.Observaciones = txtObservaciones.Text;
+        
+            if (pn.agregarProveedor(p, d))
                {
                 Session["alerta"] = "agregado";
                 Response.Redirect("Proveedores.aspx");
                 // ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 //   "swal('Proveedor agregado', '', 'success')", true);
             }   
-             */
+             
         }
 
 

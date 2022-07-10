@@ -66,18 +66,22 @@ namespace negocios
 
 
 
-        public bool agregarProveedor(Proveedor pv)
+        public bool agregarProveedor(Proveedor pv, Direccion d)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("AgregarProveedor");
+                conexion.setearProcedure("AgregarProv");
+                conexion.setearParametro("@idProveedor", 0);
                 conexion.setearParametro("@Codigo", pv.Codigo);
                 conexion.setearParametro("@RazonSocial", pv.RazonSocial);
                 conexion.setearParametro("@CUIT", pv.Cuit);
-              //  conexion.setearParametro("@domicilio", pv.Domicilio);
                 conexion.setearParametro("@telefono", pv.Telefono);
                 conexion.setearParametro("@Email", pv.Email);
+                conexion.setearParametro("@Direccion", d.Domicilio);
+                conexion.setearParametro("@Localidad", d.Localidad);
+                conexion.setearParametro("@CodigoPostal", d.CodigoPostal);
+                conexion.setearParametro("@Observaciones", d.Observaciones);
 
                 conexion.ejecutarConexion();
 

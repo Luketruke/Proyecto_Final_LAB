@@ -29,7 +29,7 @@
             <asp:BoundField HeaderText="Codigo" DataField="Codigo"/>
             <asp:BoundField HeaderText="Razon Social" DataField="RazonSocial"/>
             <asp:BoundField HeaderText="CUIT" DataField="Cuit" />
-            <asp:BoundField HeaderText="Domicilio" DataField="Domicilio"/>
+            <%--<asp:BoundField HeaderText="Domicilio" DataField="Domicilio"/>--%>
             <asp:BoundField HeaderText="Telefono" DataField="Telefono"/>
             <asp:BoundField HeaderText="Email" DataField="Email"/>
             <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100">

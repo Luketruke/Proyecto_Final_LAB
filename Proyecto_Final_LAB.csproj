@@ -138,6 +138,7 @@
     <Content Include="Formularios\Productos\MarcasABM.aspx" />
     <Content Include="Formularios\Productos\Productos.aspx" />
     <Content Include="Formularios\Productos\ProductosABM.aspx" />
+    <Content Include="Formularios\Proveedores\CompraProveedores.aspx" />
     <Content Include="Formularios\Proveedores\Proveedores.aspx" />
     <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
     <Content Include="Formularios\Proveedores\Usuarios\UsuariosABM.aspx" />
@@ -303,6 +304,13 @@
     </Compile>
     <Compile Include="Formularios\Productos\ProductosABM.aspx.designer.cs">
       <DependentUpon>ProductosABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\CompraProveedores.aspx.cs">
+      <DependentUpon>CompraProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\CompraProveedores.aspx.designer.cs">
+      <DependentUpon>CompraProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Proveedores\Proveedores.aspx.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>

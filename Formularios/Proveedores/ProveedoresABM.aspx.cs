@@ -29,7 +29,7 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
                     txtCodigo.Text = selected.Codigo;
                     txtRazonSocial.Text = selected.RazonSocial;
                     txtCUIT.Text = selected.Cuit;
-                    txtDomicilio.Text = selected.Domicilio;
+                   // txtDomicilio.Text = selected.Domicilio;
                     txtTelefono.Text = selected.Telefono;
                     txtEmail.Text = selected.Email;                    
                 }
@@ -43,6 +43,7 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            /*
             try
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
@@ -64,12 +65,13 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
             {
                 Console.WriteLine(ex);
             }
+            */
         }
 
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-
+             /*
             ProveedorNegocio pn = new ProveedorNegocio();
                Proveedor p = new Proveedor();
 
@@ -86,7 +88,8 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
                 Response.Redirect("Proveedores.aspx");
                 // ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                 //   "swal('Proveedor agregado', '', 'success')", true);
-            }           
+            }   
+             */
         }
 
 

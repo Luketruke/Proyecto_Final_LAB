@@ -36,13 +36,21 @@ namespace negocios
             try
             {
 
-                conexion.setearProcedure("ObtenerProveedores");
+                conexion.setearProcedure("ObtenerProveedoresTodos");
                 conexion.ejecutarConexion();
 
                 while (conexion.Lector.Read())
                 {
-                    aux = new Proveedor((int)conexion.Lector["Id"], (string)conexion.Lector["Codigo"], (string)conexion.Lector["RazonSocial"], (string)conexion.Lector["Cuit"], (string)conexion.Lector["Domicilio"], (string)conexion.Lector["Telefono"], (string)conexion.Lector["Email"]);
-                    lista.Add(aux);
+                    Proveedor p = new Proveedor();
+
+                    p.Id = (int)conexion.Lector["Id"];
+                    p.Codigo = (string)conexion.Lector["Codigo"];
+                    p.RazonSocial = (string)conexion.Lector["RazonSocial"];
+                    p.Cuit = (string)conexion.Lector["Cuit"];
+                    p.Telefono = (string)conexion.Lector["Telefono"];
+                    p.Email = (string)conexion.Lector["Email"];
+
+                    lista.Add(p);
                 }
                 return lista;
             }
@@ -67,7 +75,7 @@ namespace negocios
                 conexion.setearParametro("@Codigo", pv.Codigo);
                 conexion.setearParametro("@RazonSocial", pv.RazonSocial);
                 conexion.setearParametro("@CUIT", pv.Cuit);
-                conexion.setearParametro("@domicilio", pv.Domicilio);
+              //  conexion.setearParametro("@domicilio", pv.Domicilio);
                 conexion.setearParametro("@telefono", pv.Telefono);
                 conexion.setearParametro("@Email", pv.Email);
 
@@ -127,35 +135,36 @@ namespace negocios
             }
         }
 
-        public bool modificarProveedor(Proveedor p, int id)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            try
-            {
-                conexion.setearProcedure("ModificarProveedor");
-                conexion.setearParametro("@Id", id);
-                conexion.setearParametro("@Codigo", p.Codigo);
-                conexion.setearParametro("@razonSocial", p.RazonSocial);
-                conexion.setearParametro("@CUIT", p.Cuit);
-                conexion.setearParametro("@domicilio", p.Domicilio);
-                conexion.setearParametro("@Telefono", p.Telefono);
-                conexion.setearParametro("@email", p.Email);
-                
-                conexion.ejecutarConexion();
+        /*  public bool modificarProveedor(Proveedor p, int id)
+           {
+               ConexionSQL conexion = new ConexionSQL();
+               try
+               {
+                   conexion.setearProcedure("ModificarProveedor");
+                   conexion.setearParametro("@Id", id);
+                   conexion.setearParametro("@Codigo", p.Codigo);
+                   conexion.setearParametro("@razonSocial", p.RazonSocial);
+                   conexion.setearParametro("@CUIT", p.Cuit);
+                   conexion.setearParametro("@domicilio", p.Domicilio);
+                   conexion.setearParametro("@Telefono", p.Telefono);
+                   conexion.setearParametro("@email", p.Email);
 
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
+                   conexion.ejecutarConexion();
 
-
+                   return true;
+               }
+               catch (Exception)
+               {
+                   return false;
+               }
+               finally
+               {
+                   conexion.cerrarConexion();
+               }
+           */
     }
+
+
 }
+
 

@@ -4,6 +4,8 @@
     <h1>Proveedor</h1>
     <br />
 
+    <div class="row">
+        <div class="col-md-6">
     <div class="mb-3">
         <label for="txtCodigo" class="form-label">Codigo</label>       
         <asp:TextBox runat="server" ID="txtCodigo" class="form-control" />
@@ -19,11 +21,7 @@
         <asp:TextBox runat="server" ID="txtCUIT" class="form-control" />
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtCuit" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
-     <div class="mb-3">
-        <label for="txtDomicilio" class="form-label">Domicilio</label>       
-        <asp:TextBox runat="server" ID="txtDomicilio" class="form-control" />
-        <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtDomicilio" ErrorMessage="*"></asp:RequiredFieldValidator>
-    </div>
+    
       <div class="mb-3">
         <label for="txtTelefono" class="form-label">Telefono</label>       
         <asp:TextBox runat="server" ID="txtTelefono" class="form-control" />
@@ -34,6 +32,30 @@
         <asp:TextBox runat="server" ID="txtEmail" class="form-control" />
         <asp:RequiredFieldValidator style="color:red; font-size: 15px" runat="server" ControlToValidate="txtEmail" ErrorMessage="*"></asp:RequiredFieldValidator>
     </div>
+  </div>
+         <div class="col-md-6">
+             <div class="mb-3">
+                <label for="txtDomicilio" class="form-label">Domicilio</label>
+                <asp:TextBox runat="server" ID="txtDomicilio" class="form-control" />
+                <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtDomicilio" ErrorMessage="*"></asp:RequiredFieldValidator>
+            </div>
+               <div class="mb-3">
+                <label for="txtLocalidad" class="form-label">Localidad</label>
+                <asp:TextBox runat="server" ID="txtLocalidad" class="form-control" />
+                <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtLocalidad" ErrorMessage="*"></asp:RequiredFieldValidator>
+            </div>
+            <div class="mb-3">
+                <label for="txtCodigoPostal" class="form-label">Codigo Postal</label>
+                <asp:TextBox runat="server" ID="txtCodigoPostal" class="form-control" />
+                <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtCodigoPostal" ErrorMessage="*"></asp:RequiredFieldValidator>
+            </div>
+            <div class="mb-3">
+                <label for="txtObservaciones" class="form-label">Observaciones Direccion</label>
+                <asp:TextBox runat="server" ID="txtObservaciones" class="form-control" TextMode="MultiLine" Rows="8" />
+            </div>
+           </div>
+         </div>
+        
 
    <br />
   

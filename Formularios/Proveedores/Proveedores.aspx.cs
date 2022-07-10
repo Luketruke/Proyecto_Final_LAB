@@ -81,11 +81,11 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
                     Session["alerta"] = null;
                     break;
                 case "eliminado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Cliente eliminado')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Proveedor eliminado')", true);
                     Session["alerta"] = null;
                     break;
                 case "modificado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Cliente modificado')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Proveedor modificado')", true);
                     Session["alerta"] = null;
                     break;
             }

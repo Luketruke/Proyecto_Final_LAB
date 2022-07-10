@@ -30,7 +30,6 @@ namespace negocios
     }
         public List<Proveedor> listar()
         {
-            Proveedor aux;
             ConexionSQL conexion = new ConexionSQL();
             List<Proveedor> lista = new List<Proveedor>();
             try
@@ -71,7 +70,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("AgregarProv");
+                conexion.setearProcedure("AgregarProveedor");
                 conexion.setearParametro("@idProveedor", 0);
                 conexion.setearParametro("@Codigo", pv.Codigo);
                 conexion.setearParametro("@RazonSocial", pv.RazonSocial);
@@ -102,7 +101,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("EliminarProveedores");
+                conexion.setearProcedure("EliminarProveedor");
                 conexion.setearParametro("@Id", IdProveedor);
 
                 conexion.ejecutarConexion();
@@ -118,6 +117,41 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+
+ 
+
+         public bool modificarProveedor(Proveedor p, Direccion d, int id)
+           {
+               ConexionSQL conexion = new ConexionSQL();
+               try
+               {
+                   conexion.setearProcedure("ModificarProveedor");
+                   conexion.setearParametro("@Id", id);
+                   conexion.setearParametro("@Codigo", p.Codigo);
+                   conexion.setearParametro("@razonSocial", p.RazonSocial);
+                   conexion.setearParametro("@IdDomicilio", p.IdDireccion);
+                   conexion.setearParametro("@CUIT", p.Cuit);
+                   conexion.setearParametro("@Telefono", p.Telefono);
+                   conexion.setearParametro("@email", p.Email);
+                   conexion.setearParametro("@Direccion", d.Domicilio);
+                   conexion.setearParametro("@Localidad", d.Localidad);
+                   conexion.setearParametro("@CodigoPostal", d.CodigoPostal);
+                   conexion.setearParametro("@Observaciones", d.Observaciones);
+
+                conexion.ejecutarConexion();
+
+                   return true;
+               }
+               catch (Exception)
+               {
+                   return false;
+               }
+               finally
+               {
+                   conexion.cerrarConexion();
+               }
+          
+    }
 
         public DataTable obtenerDireccionProveedor(int idProveedor)
         {
@@ -138,37 +172,7 @@ namespace negocios
                 return dt;
             }
         }
-
-        /*  public bool modificarProveedor(Proveedor p, int id)
-           {
-               ConexionSQL conexion = new ConexionSQL();
-               try
-               {
-                   conexion.setearProcedure("ModificarProveedor");
-                   conexion.setearParametro("@Id", id);
-                   conexion.setearParametro("@Codigo", p.Codigo);
-                   conexion.setearParametro("@razonSocial", p.RazonSocial);
-                   conexion.setearParametro("@CUIT", p.Cuit);
-                   conexion.setearParametro("@domicilio", p.Domicilio);
-                   conexion.setearParametro("@Telefono", p.Telefono);
-                   conexion.setearParametro("@email", p.Email);
-
-                   conexion.ejecutarConexion();
-
-                   return true;
-               }
-               catch (Exception)
-               {
-                   return false;
-               }
-               finally
-               {
-                   conexion.cerrarConexion();
-               }
-           */
     }
 
-
 }
-
 

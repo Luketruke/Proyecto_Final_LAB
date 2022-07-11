@@ -62,7 +62,6 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                     txtCodigoPostal.Text = dt.Rows[0]["CodigoPostal"].ToString();
                     txtObservaciones.Text = dt.Rows[0]["Observaciones"].ToString();
                 }
-                Session["listaClientes"] = null;
             }
             catch (Exception ex)
             {

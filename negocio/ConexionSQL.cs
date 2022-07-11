@@ -18,8 +18,8 @@ namespace negocios
             try
             {
                 comando = new SqlCommand();
-                //conexion = new SqlConnection("server=localhost; database=COMERCIO_P3; integrated security=true;"); //Lucas
-                conexion = new SqlConnection("server=.\\SQLEXPRESS; database=COMERCIO_P3; integrated security=true;"); //Gaston
+                conexion = new SqlConnection("server=localhost; database=COMERCIO_P3; integrated security=true;"); //Lucas
+                //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=COMERCIO_P3; integrated security=true;"); //Gaston
             }
             catch (Exception ex)
             {

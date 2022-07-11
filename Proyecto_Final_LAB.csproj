@@ -45,6 +45,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.WebForms.10.0.40219.1\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -127,7 +139,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Formularios\Clientes\Clientes.aspx" />
     <Content Include="Formularios\Clientes\ClientesABM.aspx" />
-    <Content Include="Formularios\Clientes\CuentaCorrienteClientes.aspx" />
     <Content Include="Formularios\Compras\ComprasABM.aspx" />
     <Content Include="Formularios\Configuraciones\Configuraciones.aspx" />
     <Content Include="Formularios\Facturacion\FacturacionABM.aspx" />
@@ -143,6 +154,10 @@
     <Content Include="Formularios\Proveedores\ProveedoresABM.aspx" />
     <Content Include="Formularios\Proveedores\Usuarios\UsuariosABM.aspx" />
     <Content Include="Formularios\Stock\StockABM.aspx" />
+    <Content Include="Formularios\Sucursales\PuntosVenta.aspx" />
+    <Content Include="Formularios\Sucursales\PuntosVentaABM.aspx" />
+    <Content Include="Formularios\Sucursales\Sucursales.aspx" />
+    <Content Include="Formularios\Sucursales\SucursalesABM.aspx" />
     <Content Include="Formularios\Vendedores\Vendedores.aspx" />
     <Content Include="Formularios\Vendedores\VendedoresABM.aspx" />
     <Content Include="Global.asax" />
@@ -154,6 +169,17 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Datasets\dsImpresionFactura.xsc">
+      <DependentUpon>dsImpresionFactura.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\dsImpresionFactura.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsImpresionFactura.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\dsImpresionFactura.xss">
+      <DependentUpon>dsImpresionFactura.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Formularios\Login\Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -207,6 +233,11 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\dsImpresionFactura.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsImpresionFactura.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -227,13 +258,6 @@
     </Compile>
     <Compile Include="Formularios\Clientes\ClientesABM.aspx.designer.cs">
       <DependentUpon>ClientesABM.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Clientes\CuentaCorrienteClientes.aspx.cs">
-      <DependentUpon>CuentaCorrienteClientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Clientes\CuentaCorrienteClientes.aspx.designer.cs">
-      <DependentUpon>CuentaCorrienteClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Compras\ComprasABM.aspx.cs">
       <DependentUpon>ComprasABM.aspx</DependentUpon>
@@ -340,6 +364,34 @@
     <Compile Include="Formularios\Stock\StockABM.aspx.designer.cs">
       <DependentUpon>StockABM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Sucursales\PuntosVenta.aspx.cs">
+      <DependentUpon>PuntosVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\PuntosVenta.aspx.designer.cs">
+      <DependentUpon>PuntosVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\PuntosVentaABM.aspx.cs">
+      <DependentUpon>PuntosVentaABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\PuntosVentaABM.aspx.designer.cs">
+      <DependentUpon>PuntosVentaABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\Sucursales.aspx.cs">
+      <DependentUpon>Sucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\Sucursales.aspx.designer.cs">
+      <DependentUpon>Sucursales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\SucursalesABM.aspx.cs">
+      <DependentUpon>SucursalesABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Sucursales\SucursalesABM.aspx.designer.cs">
+      <DependentUpon>SucursalesABM.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Vendedores\Vendedores.aspx.cs">
       <DependentUpon>Vendedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -410,6 +462,10 @@
       <Project>{1a939514-3a67-4a3a-9708-9725f46eceb1}</Project>
       <Name>negocios</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\FacturaRA.rdlc" />
+    <EmbeddedResource Include="Reportes\FacturaRB.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

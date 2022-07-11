@@ -20,7 +20,7 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
             ListItem li;
             try
             {
-                DataTable dtSucursales = sn.obtenerSucursales();
+                DataTable dtSucursales = sn.obtenerSucursalesFactura();
                 if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
                 {
                     int codigo = vn.obtenerUltimoCodigo();

@@ -15,13 +15,12 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
         {
             try
             {
-                Session["listaClientes"] = null;
+                ClienteNegocio cn = new ClienteNegocio();
                 alerta();
-                if (Session["listaClientes"] == null)
-                {
-                    ClienteNegocio cn = new ClienteNegocio();
-                    Session.Add("listaClientes", cn.obtenerClientesTodos());
-                }
+
+                Session["listaClientes"] = null;
+
+                Session.Add("listaClientes", cn.obtenerClientesTodos());
                 dgvClientes.DataSource = Session["listaClientes"];
                 dgvClientes.DataBind();
             }

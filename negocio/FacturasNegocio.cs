@@ -32,28 +32,6 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerPuntosDeVenta(int idSucursal)
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
-            {
-                conexion.setearProcedure("ObtenerPuntosDeVenta");
-                conexion.setearParametro("@idSucursal", idSucursal);
-                dt.Load(conexion.ejecutarConexion());
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
         public DataTable obtenerClientesFactura()
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -306,6 +284,51 @@ namespace negocios
             {
                 lista = null;
                 return lista;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public DataTable obtenerDatosFacturaImpresion(int idFactura)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.setearProcedure("ObtenerDatosFacturaImpresion");
+                conexion.setearParametro("@idFactura", idFactura);
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable obtenerItemsFacturaImpresion(int idFactura)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.setearProcedure("ObtenerItemsFacturaImpresion");
+                conexion.setearParametro("@idFactura", idFactura);
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
             }
             finally
             {

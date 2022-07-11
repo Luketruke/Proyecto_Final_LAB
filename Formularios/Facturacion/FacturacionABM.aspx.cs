@@ -37,8 +37,8 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
                     DataTable dtCliente = fn.obtenerClientesFactura();
                     DataTable dtFormasPago = fn.obtenerFormasDePago();
-                    DataTable dtSucursales = sn.obtenerSucursales();
-                    DataTable dtPuntosVenta = fn.obtenerPuntosDeVenta(1);
+                    DataTable dtSucursales = sn.obtenerSucursalesFactura();
+                    DataTable dtPuntosVenta = sn.obtenerPuntosDeVentaFactura(1);
                     DataTable dtVendedores = vn.obtenerVendedoresFactura(1);
                     ListItem li;
 
@@ -111,13 +111,13 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         protected void ddlSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
             VendedoresNegocio vn = new VendedoresNegocio();
-            FacturasNegocio fn = new FacturasNegocio();
+            SucursalesNegocio sn = new SucursalesNegocio();
             ListItem li;
             try
             {
                 int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
                 DataTable dtVendedores = vn.obtenerVendedoresFactura(idSucursal);
-                DataTable dtPuntoVenta = fn.obtenerPuntosDeVenta(idSucursal);
+                DataTable dtPuntoVenta = sn.obtenerPuntosDeVentaFactura(idSucursal);
 
                 ddlVendedor.Items.Clear();
                 ddlVendedor.Items.Add("Seleccione...");
@@ -294,11 +294,6 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 {
                     txtSubtotalFactura.Value = NuevoSubtotal.ToString();
                     txtTotalFactura.Value = precioTotal.ToString();
-
-                    Session["listaItemsFactura"] = listaItemsFactura;
-
-                    dgvItemsFactura.DataSource = Session["listaItemsFactura"];
-                    dgvItemsFactura.DataBind();
                 }
                 else if (precioTotal < 0)
                 {
@@ -306,6 +301,10 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     txtSubtotalFactura.Value = "0.00";
                     txtTotalFactura.Value = "0.00";
                 }
+
+                Session["listaItemsFactura"] = listaItemsFactura;
+                dgvItemsFactura.DataSource = Session["listaItemsFactura"];
+                dgvItemsFactura.DataBind();
             }
             catch (Exception ex)
             {

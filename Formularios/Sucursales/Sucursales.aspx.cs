@@ -42,7 +42,7 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                Response.Redirect("PuntosVenta.aspx?accion=1&s=" + id);
+                Response.Redirect("PuntosVenta.aspx?s=" + id);
             }
             catch (Exception ex)
             {

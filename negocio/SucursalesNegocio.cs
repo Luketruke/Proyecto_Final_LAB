@@ -190,7 +190,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool agregarPuntoVenta(PuntoVenta pv)
+        public int agregarPuntoVenta(PuntoVenta pv)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -199,13 +199,14 @@ namespace negocios
                 conexion.setearParametro("@Numero", pv.Numero);
                 conexion.setearParametro("@Nombre", pv.Nombre);
                 conexion.setearParametro("@IdSucursal", pv.Sucursal.Id);
-                conexion.ejecutarConexion();
 
-                return true;
+                int idPv = conexion.ejecutarScalar();
+
+                return idPv;
             }
             catch (Exception)
             {
-                return false;
+                return -1;
             }
             finally
             {
@@ -241,6 +242,26 @@ namespace negocios
             {
                 conexion.setearProcedure("EliminarPuntoDeVenta");
                 conexion.setearParametro("@IdPuntoVenta", id);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool agregarNumeracion(int pv)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarNumeracionDocumentos");
+                conexion.setearParametro("@IdPuntoVenta", pv);
                 conexion.ejecutarConexion();
 
                 return true;

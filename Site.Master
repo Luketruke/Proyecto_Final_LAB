@@ -15,7 +15,7 @@
 
     <%--STYLESHEETS--%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <%--SCRIPTS--%>
@@ -25,7 +25,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
 </head>
 <body style="padding-top: 0px">
     <form runat="server">
@@ -60,14 +60,6 @@
                         <a class="nav-link" style="font-size: 20px" href="/Default.aspx">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlFacturas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facturacion
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/Facturas.aspx">Facturas</a>
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/FacturacionABM.aspx">Agregar factura</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlProductos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -79,25 +71,28 @@
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Clientes/Clientes.aspx">Clientes</a>
                     </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlProveedores" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Proveedores
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Proveedores/Proveedores.aspx">Proveedores</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlFacturas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facturacion
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Proveedores/Proveedores.aspx">Proveedores</a>
-                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Proveedores/CompraProveedores.aspx">Carga Compras</a>                         
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/Facturas.aspx">Facturas</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/FacturacionABM.aspx">Agregar factura</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Vendedores/Vendedores.aspx">Vendedores</a>
+                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Proveedores/CompraProveedores.aspx">Compras</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Sucursales/Sucursales.aspx">Sucursales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Configuraciones/Configuraciones.aspx">Configuracion</a>
-                    </li>
-                      <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Login/Login.aspx">Login</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlAdministracion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administracion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Vendedores/Vendedores.aspx">Vendedores</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Sucursales/Sucursales.aspx">Sucursales</a>
+                            <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Vendedores/Vendedores.aspx">Usuarios</a>
+                        </div>
                     </li>
                 </ul>
             </div>

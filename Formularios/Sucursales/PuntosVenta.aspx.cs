@@ -71,15 +71,15 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
             switch (Session["alerta"])
             {
                 case "agregado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Punto de Venta agregado')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Punto de venta agregado')", true);
                     Session["alerta"] = null;
                     break;
                 case "eliminado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Punto de Venta eliminado')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Punto de venta eliminado')", true);
                     Session["alerta"] = null;
                     break;
                 case "modificado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Punto de Venta modificado')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Punto de venta modificado')", true);
                     Session["alerta"] = null;
                     break;
             }

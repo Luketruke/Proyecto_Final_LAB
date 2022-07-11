@@ -51,7 +51,6 @@
 
     <rsweb:ReportViewer ID="FacturaRA" runat="server" Visible="false"></rsweb:ReportViewer>
     <rsweb:ReportViewer ID="FacturaRB" runat="server" Visible="false"></rsweb:ReportViewer>
-    <%--<asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>--%>
 
     <script>
         $(function () {

@@ -31,7 +31,7 @@
                 <asp:BoundField HeaderText="Alias" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
                 <asp:BoundField HeaderText="Sucursal" DataField="Sucursal.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
                 <asp:BoundField HeaderText="Direccion" DataField="Sucursal.DireccionCompleta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center"/>
-                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                <asp:TemplateField HeaderText="Accion" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info"  data-toggle="tooltip" ToolTip="Modificar">
                             <i class="fa-solid fa-pencil"></i>

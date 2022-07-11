@@ -338,6 +338,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         protected void btnFacturar_Click(object sender, EventArgs e)
         {
             FacturasNegocio fn = new FacturasNegocio();
+            StockNegocio sn = new StockNegocio();
             ItemFactura i = new ItemFactura();
             Factura f = new Factura();
 
@@ -367,7 +368,6 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 if (idFactura > 0)
                 {
                     List<ItemFactura> temp = (List<ItemFactura>)Session["listaItemsFactura"];
-
                     if (temp.Count>0)
                     {
                         for (int x = 0; x < temp.Count; x++)
@@ -380,7 +380,11 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                             i.Codigo = temp[x].Codigo;
                             i.PrecioVenta = temp[x].PrecioVenta;
                             i.Descripcion = temp[x].Descripcion;
-                            fn.agregarItemsFactura(i, idFactura);
+                            if(fn.agregarItemsFactura(i, idFactura))
+                            {
+                                int idStock = sn.modificarStockFactura(i.IdProducto, i.Cantidad, f.Sucursal.Id);
+                                sn.agregarMovimientoStockFactura(i.IdProducto, idStock, i.Cantidad, f.Sucursal.Id);
+                            }
                         }
                     }
                     else
@@ -404,7 +408,6 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
             }
         }
-
         protected void btnDescuentoFactura_Click(object sender, EventArgs e)
         {
             try

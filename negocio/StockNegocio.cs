@@ -56,6 +56,29 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public int modificarStockFactura(int IdProducto, int Cantidad, int IdSucursal)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarStockFactura");
+                conexion.setearParametro("@IdProducto", IdProducto);
+                conexion.setearParametro("@Cantidad", Cantidad);
+                conexion.setearParametro("@IdSucursal", IdSucursal);
+
+                int idStock = conexion.ejecutarScalar();
+
+                return idStock;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public bool agregarMovimientoStock(int IdStock, int Cantidad)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -64,6 +87,30 @@ namespace negocios
                 conexion.setearProcedure("AgregarMovimientoStock");
                 conexion.setearParametro("@IdStock", IdStock);
                 conexion.setearParametro("@Cantidad", Cantidad);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool agregarMovimientoStockFactura(int IdProducto, int IdStock, int Cantidad, int IdSucursal)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarMovimientoStock");
+                conexion.setearParametro("@IdProducto", IdProducto);
+                conexion.setearParametro("@IdStock", IdStock);
+                conexion.setearParametro("@Cantidad", Cantidad);
+                conexion.setearParametro("@IdSucursal", IdSucursal);
 
                 conexion.ejecutarConexion();
 
@@ -93,7 +140,7 @@ namespace negocios
 
                     s.Id = (int)conexion.Lector["Id"];
                     s.Nombre = (string)conexion.Lector["Nombre"];
-                   
+
                     lista.Add(s);
                 }
 

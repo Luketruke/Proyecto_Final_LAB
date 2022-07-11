@@ -45,10 +45,10 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 pv.Sucursal = new Sucursal();
                 pv.Sucursal.Id = Convert.ToInt32(Request.QueryString["s"]);
 
-                if (sn.agregarPuntoVenta(pv))
+                if (sn.agregarNumeracion(sn.agregarPuntoVenta(pv)))
                 {
                     Session["alerta"] = "agregado";
-                    Response.Redirect("PuntosVenta.aspx");
+                    Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
                 }
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 if (sn.modificarPuntoVenta(pv))
                 {
                     Session["alerta"] = "modificado";
-                    Response.Redirect("PuntosVenta.aspx");
+                    Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
                 }
             }
             catch (Exception ex)

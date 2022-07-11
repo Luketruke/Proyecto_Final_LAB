@@ -107,7 +107,6 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
             {
             }
         }
-
         protected void ddlSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
             VendedoresNegocio vn = new VendedoresNegocio();
@@ -181,17 +180,31 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         {
             try
             {
+                Session["dtStock"] = null;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("valor", typeof(int));
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 int id = Convert.ToInt32(gv.DataKeys[clickedRow.RowIndex].Values[0]);
                 List<Producto> temp = (List<Producto>)Session["listaProductos"];
                 Producto selected = temp.Find(x => x.Id == id);
-                Session["idProductoSeleccionado"] = selected.Id.ToString();
-                txtCodigoProducto.Text = selected.Codigo.ToString();
-                txtDescripcion.Text = selected.Descripcion;
-                txtPrecio.Value = selected.PrecioVenta.ToString();
-                txtCantidad.Text = "1";
-                txtDescuento.Text = "0";
+
+                if (selected.Stock.StockActual > selected.Stock.StockMinimo)
+                {
+                    dt.Rows.Add(selected.Id);                                                 //Posicion 0 = IdProducto
+                    dt.Rows.Add((selected.Stock.StockMinimo-selected.Stock.StockActual)*-1);  //Posicion 1 = StockPosible
+                    Session["dtStock"] = dt;
+                    txtCodigoProducto.Text = selected.Codigo.ToString();
+                    txtDescripcion.Text = selected.Descripcion;
+                    txtPrecio.Value = selected.PrecioVenta.ToString();
+                    txtCantidad.Text = "1";
+                    txtDescuento.Text = "0";
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('No hay suficiente stock para seleccionar el producto' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                }
             }
             catch (Exception ex)
             {
@@ -201,8 +214,10 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         {
             try
             {
+                DataTable dt = new DataTable();
                 List<ItemFactura> listaItemsFactura = new List<ItemFactura>();
                 ItemFactura i = new ItemFactura();
+                dt = (DataTable)Session["dtStock"];
 
                 if (Session["listaItemsFactura"] != null)
                 {
@@ -217,42 +232,52 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     i.NumeroItem = 1;
                 }
 
-                i.IdProducto = Convert.ToInt32(Session["idProductoSeleccionado"]);
-                i.Codigo = txtCodigoProducto.Text;
+                i.IdProducto = Convert.ToInt32(dt.Rows[0]["valor"]);
+                int StockPosible = Convert.ToInt32(dt.Rows[1]["valor"]);
 
                 if (Convert.ToInt32(txtCantidad.Text)>0)
                 {
-                    i.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                    i.Descripcion = txtDescripcion.Text;
-                    i.PrecioVenta = Convert.ToDecimal(txtPrecio.Value);
-                    i.PrecioTotal = Convert.ToDecimal(Convert.ToInt32(txtCantidad.Text)*Convert.ToDecimal(txtPrecio.Value));
-
-                    if (Convert.ToInt32(txtDescuento.Text)>=0 && Convert.ToInt32(txtDescuento.Text)<=100)
+                    if (Convert.ToInt32(txtCantidad.Text) <= StockPosible)
                     {
-                        i.Descuento = (Convert.ToInt32(txtDescuento.Text) * i.PrecioTotal)/100;
-                        i.PrecioTotal = i.PrecioTotal - i.Descuento;
+                        i.Codigo = txtCodigoProducto.Text;
+                        i.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                        i.Descripcion = txtDescripcion.Text;
+                        i.PrecioVenta = Convert.ToDecimal(txtPrecio.Value);
+                        i.PrecioTotal = Convert.ToDecimal(Convert.ToInt32(txtCantidad.Text)*Convert.ToDecimal(txtPrecio.Value));
 
-                        txtCodigoProducto.Text = "";
-                        txtDescripcion.Text = "";
-                        txtPrecio.Value = "";
-                        txtCantidad.Text = "";
-                        txtDescuento.Text = "";
+                        if (Convert.ToInt32(txtDescuento.Text)>=0 && Convert.ToInt32(txtDescuento.Text)<=100)
+                        {
+                            i.Descuento = (Convert.ToInt32(txtDescuento.Text) * i.PrecioTotal)/100;
+                            i.PrecioTotal = i.PrecioTotal - i.Descuento;
 
-                        listaItemsFactura.Add(i);
+                            txtCodigoProducto.Text = "";
+                            txtDescripcion.Text = "";
+                            txtPrecio.Value = "";
+                            txtCantidad.Text = "";
+                            txtDescuento.Text = "";
 
-                        Session["listaItemsFactura"] = listaItemsFactura;
+                            listaItemsFactura.Add(i);
 
-                        decimal precioTotal = Convert.ToDecimal(txtTotalFactura.Value);
-                        precioTotal = precioTotal + i.PrecioTotal;
-                        txtSubtotalFactura.Value = precioTotal.ToString();
-                        txtTotalFactura.Value = precioTotal.ToString();
+                            Session["listaItemsFactura"] = listaItemsFactura;
 
-                        dgvItemsFactura.DataSource = Session["listaItemsFactura"];
-                        dgvItemsFactura.DataBind();
+                            decimal precioTotal = Convert.ToDecimal(txtTotalFactura.Value);
+                            precioTotal = precioTotal + i.PrecioTotal;
+                            txtSubtotalFactura.Value = precioTotal.ToString();
+                            txtTotalFactura.Value = precioTotal.ToString();
+
+                            dgvItemsFactura.DataSource = Session["listaItemsFactura"];
+                            dgvItemsFactura.DataBind();
+                        }
+                        else
+                        {
+                            string script = String.Format(@"<script type='text/javascript'>alert('El descuento no es valido' );</script>", "0033");
+                            ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                        }
+
                     }
                     else
                     {
-                        string script = String.Format(@"<script type='text/javascript'>alert('El descuento no es valido' );</script>", "0033");
+                        string script = String.Format(@"<script type='text/javascript'>alert('El stock no es suficiente, ingrese otra cantidad' );</script>", "0033");
                         ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                     }
                 }
@@ -341,12 +366,10 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
 
                 if (idFactura > 0)
                 {
-
                     List<ItemFactura> temp = (List<ItemFactura>)Session["listaItemsFactura"];
 
                     if (temp.Count>0)
                     {
-
                         for (int x = 0; x < temp.Count; x++)
                         {
                             i.IdProducto = temp[x].IdProducto;

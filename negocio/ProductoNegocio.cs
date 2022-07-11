@@ -156,6 +156,7 @@ namespace negocios
                     p.PrecioVenta = (decimal)conexion.Lector["PrecioVenta"];
                     p.Stock = new Stock();
                     p.Stock.StockActual = (int)conexion.Lector["StockActual"];
+                    p.Stock.StockMinimo = (int)conexion.Lector["StockMinimo"];
 
                     lista.Add(p);
                 }

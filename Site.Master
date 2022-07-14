@@ -92,15 +92,16 @@
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Vendedores/Vendedores.aspx">Vendedores</a>
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Sucursales/Sucursales.aspx">Sucursales</a>
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Vendedores/Vendedores.aspx">Usuarios</a>
-                        </div>                     
+                        </div>
                     </li>
-                     <%if (Session["USUARIO"] != null) { %>
-                        
-                    <li class="nav-item">                         
-                        <asp:Button ID="btnsalir" OnClick="btnsalir_Click" CssClass="nav-link active btn btn-danger navlogin"  runat="server" Text="Desloguearme" />
-                    </li>
-                        <%} %>
+                    <%if (Session["USUARIO"] != null)
+                        { %>
                     
+                        <asp:LinkButton ID="btnSalir" runat="server" CssClass="btn btn-danger" OnClick="btnSalir_Click" OnClientClick="return confirm('Seguro desea desloguearse?');">                             
+                            <i class="fa-solid fa-trash">desloguear</i>
+                        </asp:LinkButton>
+                    
+                    <%} %>
                 </ul>
             </div>
         </div>

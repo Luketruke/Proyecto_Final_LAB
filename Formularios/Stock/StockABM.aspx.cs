@@ -20,7 +20,7 @@ namespace Proyecto_Final_LAB.Formularios.StockProductos
                 int idProducto = Convert.ToInt32(Request.QueryString["idProducto"]);
                 int StockTotal = 0;
                 Session["listaStock"] = null;
-                Session["idStock"] = null;
+
                 if (Session["listaStock"] == null)
                 {
                     Session.Add("listaStock", st.obtenerStockProductos(idProducto));

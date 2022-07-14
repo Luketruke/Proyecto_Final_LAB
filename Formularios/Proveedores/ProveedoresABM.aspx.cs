@@ -47,8 +47,7 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
-        {
-           
+        {   
             try
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
@@ -76,8 +75,6 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
             }
            
         }
-
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {  
             ProveedorNegocio pn = new ProveedorNegocio();
@@ -103,11 +100,5 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
             }   
              
         }
-
-
-
-
-
-
     }
 }

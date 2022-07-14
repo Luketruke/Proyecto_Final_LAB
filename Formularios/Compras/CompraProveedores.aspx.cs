@@ -24,16 +24,7 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
                     //DataTable dtProductos = CN.
                     ddlProveedores.Items.Add("Seleccione...");
 
-
-
                     txtFechaTicket.Text = DateTime.Now.ToString("yyyy-MM-dd");
-
-
-                    foreach (DataRow r in dtProveedor.Rows)
-                    {
-                        li = new ListItem(r["nombreProveedor"].ToString(), r["Id"].ToString());
-                        ddlProveedores.Items.Add(li);
-                    }
 
                 }
             }

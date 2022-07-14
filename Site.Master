@@ -71,9 +71,6 @@
                     <li class="nav-item">
                         <a class="nav-link" style="font-size: 20px" href="/Formularios/Clientes/Clientes.aspx">Clientes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Proveedores/Proveedores.aspx">Proveedores</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlFacturas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facturacion
                         </a>
@@ -81,10 +78,7 @@
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/Facturas.aspx">Facturas</a>
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Facturacion/FacturacionABM.aspx">Agregar factura</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size: 20px" href="/Formularios/Compras/CompraProveedores.aspx">Compras</a>
-                    </li>
+                    </li>   
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="font-size: 20px" href="#" id="ddlAdministracion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administracion
                         </a>
@@ -93,14 +87,7 @@
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Sucursales/Sucursales.aspx">Sucursales</a>
                             <a class="dropdown-item" style="font-size: 15px" href="/Formularios/Vendedores/Vendedores.aspx">Usuarios</a>
                         </div>                     
-                    </li>
-                     <%if (Session["USUARIO"] != null) { %>
-                        
-                    <li class="nav-item">                         
-                        <asp:Button ID="btnsalir" OnClick="btnsalir_Click" CssClass="nav-link active btn btn-danger navlogin"  runat="server" Text="Desloguearme" />
-                    </li>
-                        <%} %>
-                    
+                    </li>    
                 </ul>
             </div>
         </div>

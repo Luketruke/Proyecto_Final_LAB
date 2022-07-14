@@ -101,7 +101,7 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 s.Producto.Id = idProducto;
                 s.StockMinimo = Convert.ToInt32(txtStockMinimo.Text);
 
-                if (idProducto > 1)
+                if (idProducto > 0)
                 {
                     listaSucursales = sn.obtenerSucursales();
 

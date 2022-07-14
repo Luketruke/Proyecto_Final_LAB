@@ -25,12 +25,12 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     //Si el usuario no es super admin tiene bloqueado el ddl de sucursales,
                     //por ende hay que obtener la sucursal de la sesion, en caso de ser super admin puede editar la sucursal
                     //y ahi se deberia enviar otro parametro
-                    int idSucursal = Convert.ToInt32(Session["Sucursal"]);
-
-                    if (Session["listaProductos"] == null)
-                        Session.Add("listaProductos", pn.listarProductosFactura(idSucursal));
+                    int idSucursal = Convert.ToInt32(Session["idSucursal"]);
 
                     Session["listaItemsFactura"] = null;
+                    Session["listaProductos"] = null;
+
+                    Session.Add("listaProductos", pn.listarProductosFactura(idSucursal));
 
                     dgvProductos.DataSource = Session["listaProductos"];
                     dgvProductos.DataBind();
@@ -117,6 +117,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
                 DataTable dtVendedores = vn.obtenerVendedoresFactura(idSucursal);
                 DataTable dtPuntoVenta = sn.obtenerPuntosDeVentaFactura(idSucursal);
+                Session["idSucursal"] = idSucursal.ToString();
 
                 ddlVendedor.Items.Clear();
                 ddlVendedor.Items.Add("Seleccione...");
@@ -320,7 +321,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     txtSubtotalFactura.Value = NuevoSubtotal.ToString();
                     txtTotalFactura.Value = precioTotal.ToString();
                 }
-                else if (precioTotal < 0)
+                else if (precioTotal <= 0)
                 {
                     txtDescuentoFactura.Value = "0.00";
                     txtSubtotalFactura.Value = "0.00";
@@ -357,7 +358,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 f.Fecha = DateTime.Parse(txtFechaFactura.Text);
                 f.Observaciones = txtObservaciones.Text;
                 f.Sucursal = new Sucursal();
-                f.Sucursal.Id = 1;
+                f.Sucursal.Id = Convert.ToInt32(Session["idSucursal"]);
                 f.TipoDocumento = new TipoDocumento();
                 f.TipoDocumento.Id = Convert.ToInt32(Session["TipoCliente"]);
                 f.PuntoVenta = new PuntoVenta();
@@ -380,7 +381,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                             i.Codigo = temp[x].Codigo;
                             i.PrecioVenta = temp[x].PrecioVenta;
                             i.Descripcion = temp[x].Descripcion;
-                            if(fn.agregarItemsFactura(i, idFactura))
+                            if (fn.agregarItemsFactura(i, idFactura))
                             {
                                 int idStock = sn.modificarStockFactura(i.IdProducto, i.Cantidad, f.Sucursal.Id);
                                 sn.agregarMovimientoStockFactura(i.IdProducto, idStock, i.Cantidad, f.Sucursal.Id);

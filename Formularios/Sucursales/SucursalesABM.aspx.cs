@@ -69,7 +69,7 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 s.Localidad = txtLocalidad.Text;
                 s.CodigoPostal = txtCodigoPostal.Text;
 
-                if (sn.agregarSucursal(s))
+                if (sn.modificarSucursal(s))
                 {
                     Session["alerta"] = "modificado";
                     Response.Redirect("Sucursales.aspx");

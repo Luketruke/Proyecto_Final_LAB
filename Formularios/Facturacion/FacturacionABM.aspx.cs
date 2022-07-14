@@ -383,7 +383,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                             if(fn.agregarItemsFactura(i, idFactura))
                             {
                                 int idStock = sn.modificarStockFactura(i.IdProducto, i.Cantidad, f.Sucursal.Id);
-                                sn.agregarMovimientoStockFactura(i.IdProducto, idStock, -i.Cantidad, f.Sucursal.Id);
+                                sn.agregarMovimientoStockFactura(i.IdProducto, idStock, i.Cantidad, f.Sucursal.Id);
                             }
                         }
                     }

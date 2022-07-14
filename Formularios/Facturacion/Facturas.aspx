@@ -61,10 +61,7 @@
     <script type="text/javascript">
         function openInNewTab() {
             window.document.forms[0].target = '_blank';
-            setTimeout(function () {
-                window.document.forms[0].target = '';
-                document.location.reload(true);
-            })
+            setTimeout(function () { window.document.forms[0].target = ''; })
         }
     </script>
 

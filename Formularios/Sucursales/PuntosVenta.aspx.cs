@@ -29,7 +29,6 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 Console.WriteLine(ex);
             }
         }
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("PuntosVentaABM.aspx?accion=1&s=" + Convert.ToInt32(Request.QueryString["s"]));

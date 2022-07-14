@@ -137,7 +137,7 @@
                                 </div>
                             </td>
                             <td style="width: 3%">
-                                <asp:LinkButton ID="btnAgregarProducto" runat="server" CssClass="btn btn-info" OnClick="btnAgregarProducto_Click" AutoPostBack="true" data-toggle="tooltip" ToolTip="Agregar">
+                                <asp:LinkButton ID="btnAgregarProducto" runat="server" CssClass="btn btn-info" OnClick="btnAgregarProducto_Click" AutoPostBack="true">
                             <i class="fa-solid fa-plus"></i>
                                 </asp:LinkButton>
                             </td>

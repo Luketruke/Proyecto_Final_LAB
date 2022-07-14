@@ -106,7 +106,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("AgregarMovimientoStock");
+                conexion.setearProcedure("AgregarMovimientoStockFactura");
                 conexion.setearParametro("@IdProducto", IdProducto);
                 conexion.setearParametro("@IdStock", IdStock);
                 conexion.setearParametro("@Cantidad", Cantidad);

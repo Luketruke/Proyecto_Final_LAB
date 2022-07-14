@@ -18,7 +18,8 @@
                             <td style="width: 40%">
                                 <div class="form-group">
                                     <div class="col-md-8">
-                                        <asp:TextBox runat="server" ID="txtProveedor" class="form-control" />                            
+                                        <asp:DropDownList ID="ddlProveedores" runat="server" Height="26px" Width="166px"></asp:DropDownList>
+                                        <asp:TextBox runat="server" ID="txtProveedor" class="form-control" Height="34px" Width="452px" />                            
                                     </div>                              
                                 </div>
                              
@@ -26,7 +27,7 @@
                             <td style="width: 60%">
                                 <div class="form-group">
                                     <div class="col-md-3">
-                                        <asp:TextBox runat="server" ID="txtFechaFactura" TextMode="Date" class="form-control" />
+                                        <asp:TextBox runat="server" ID="txtFechaTicket" TextMode="Date" class="form-control" />
                                     </div>
                                     <div class="col-md-9" style="text-align: right">
                                         <asp:Label class="labels" ID="lblTipoFactura" runat="server" />

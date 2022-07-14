@@ -15,6 +15,15 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
     {
 
         /// <summary>
+        /// Control ddlProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProveedores;
+
+        /// <summary>
         /// Control txtProveedor.
         /// </summary>
         /// <remarks>
@@ -24,13 +33,13 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
         protected global::System.Web.UI.WebControls.TextBox txtProveedor;
 
         /// <summary>
-        /// Control txtFechaFactura.
+        /// Control txtFechaTicket.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaFactura;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaTicket;
 
         /// <summary>
         /// Control lblTipoFactura.

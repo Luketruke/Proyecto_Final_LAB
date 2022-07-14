@@ -32,6 +32,27 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public DataTable obtenerProductosCompra()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = new DataTable();
+            try
+            {
+                conexion.setearProcedure("ObtenerProductosCompra");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                return dt;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
 
 
 

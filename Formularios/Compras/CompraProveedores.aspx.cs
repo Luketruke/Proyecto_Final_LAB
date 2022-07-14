@@ -21,6 +21,7 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
                     CompraNegocio CN = new CompraNegocio();
                     ListItem li;
                     DataTable dtProveedor = CN.obtenerProveedoresCompra();
+                    //DataTable dtProductos = CN.
                     ddlProveedores.Items.Add("Seleccione...");
 
 
@@ -42,7 +43,12 @@ namespace Proyecto_Final_LAB.Formularios.Proveedores
             }
 
         }
-}
+
+        protected void ddlProveedores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 
 }
   

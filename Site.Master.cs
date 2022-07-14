@@ -13,5 +13,10 @@ namespace Proyecto_Final_LAB
         {
 
         }
+
+        protected void btnsalir_Click(object sender, EventArgs e)
+        {
+            Session["USUARIO"] = null;
+        }
     }
 }

@@ -45,7 +45,6 @@ namespace negocios
             try
             {
                 conexion.setearProcedure("ObtenerProductosTodos");
-                conexion.setearParametro("@IdSucursal", 0);
                 conexion.ejecutarConexion();
 
                 while (conexion.Lector.Read())
@@ -87,7 +86,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool modificarProducto(Producto p, int idCategoria, int idMarca)
+        public bool modificarProducto(Producto p)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -97,8 +96,8 @@ namespace negocios
                 conexion.setearParametro("@Descripcion", p.Descripcion);
                 conexion.setearParametro("@PrevioVenta", p.PrecioVenta);
                 conexion.setearParametro("@Costo", p.Costo);
-                conexion.setearParametro("@IdCategoria", idCategoria);
-                conexion.setearParametro("@IdMarca", idMarca);
+                conexion.setearParametro("@IdCategoria", p.Categoria.Id);
+                conexion.setearParametro("@IdMarca", p.Marca.Id);
                 conexion.setearParametro("@Observaciones", p.Observaciones);
 
                 conexion.ejecutarConexion();
@@ -120,7 +119,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("EliminarProducto");
+                conexion.setearProcedure("EliminarProductos");
                 conexion.setearParametro("@Id", IdProducto);
 
                 conexion.ejecutarConexion();
@@ -142,7 +141,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("ObtenerProductosTodos");
+                conexion.setearProcedure("ObtenerProductosFactura");
                 conexion.setearParametro("@IdSucursal", IdSucursal);
                 conexion.ejecutarConexion();
 
@@ -179,7 +178,7 @@ namespace negocios
             ConexionSQL conexion = new ConexionSQL();
             try
             {
-                conexion.setearProcedure("ObtenerProductosFiltrados");
+                conexion.setearProcedure("ObtenerProductosFacturaFiltrados");
                 conexion.setearParametro("@filtro", filtro);
                 conexion.setearParametro("@IdSucursal", IdSucursal);
                 conexion.ejecutarConexion();

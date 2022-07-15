@@ -19,7 +19,8 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                 SucursalesNegocio sn = new SucursalesNegocio();
                 alerta();
 
-                Session["listaSucursales"] = null;
+                if (!IsPostBack)
+                    Session["listaSucursales"] = null;
 
                 Session.Add("listaSucursales", sn.obtenerSucursales());
 
@@ -95,6 +96,10 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                     break;
                 case "modificado":
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Sucursal modificada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "cancelado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Accion cancelada')", true);
                     Session["alerta"] = null;
                     break;
             }

@@ -41,7 +41,7 @@
                             <asp:Label Text="Nuevo stock" runat="server" Style="font-weight: bold; text-align: center" />
                         </div>
                         <div class="col-md-7">
-                            <asp:TextBox runat="server" ID="txtStockAgregar" class="form-control" oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\--*)\-/g, '$1');" />
+                            <asp:TextBox runat="server" ID="txtStockAgregar" MaxLength="10" class="form-control" oninput="this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\--*)\-/g, '$1');"/>
                         </div>
                         <div class="col-md-2">
                             <asp:LinkButton ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Aceptar">

@@ -18,7 +18,8 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 SucursalesNegocio sn = new SucursalesNegocio();
                 alerta();
 
-                Session["listaPuntosVenta"] = null;
+                if (!IsPostBack)
+                    Session["listaPuntosVenta"] = null;
 
                 Session.Add("listaPuntosVenta", sn.obtenerPuntosDeVenta(Convert.ToInt32(Request.QueryString["s"])));
                 dgvPuntosVenta.DataSource = Session["listaPuntosVenta"];
@@ -80,6 +81,10 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                     break;
                 case "modificado":
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Punto de venta modificado')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "cancelado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Accion cancelada')", true);
                     Session["alerta"] = null;
                     break;
             }

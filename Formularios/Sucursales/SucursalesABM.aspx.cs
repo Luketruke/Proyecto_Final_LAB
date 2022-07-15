@@ -80,5 +80,11 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 Console.WriteLine(ex);
             }
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Session["alerta"] = "cancelado";
+            Response.Redirect("Sucursales.aspx");
+        }
     }
 }

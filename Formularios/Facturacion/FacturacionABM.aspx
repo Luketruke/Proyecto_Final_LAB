@@ -19,10 +19,12 @@
                             <td style="width: 40%">
                                 <div class="form-group">
                                     <div class="col-md-8">
-                                        <asp:TextBox runat="server" ID="txtCliente" class="form-control" />
+                                        <asp:TextBox runat="server" ID="txtCliente" class="form-control" onkeypress="javascript:return SoloLetras(event)"/>
                                         <asp:DropDownList ID="ddlClientes" CssClass="form-select" runat="server"
-                                            OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged" AutoPostBack="true">
+                                            OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="ClienteSeleccionado">
                                         </asp:DropDownList>
+                                        <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlClientes"
+                                            ErrorMessage="*" ValidationGroup="ValidarFactura" InitialValue="Seleccione..."></asp:RequiredFieldValidator>
                                     </div>
                                     <div class="col-md-4">
                                         <asp:LinkButton ID="btnBuscar" runat="server" CssClass="btn btn-info" OnClick="btnBuscar_Click" AutoPostBack="true" data-toggle="tooltip" ToolTip="Filtrar">
@@ -70,11 +72,15 @@
                             <th style="width: 30%">
                                 <div class="col-md-10">
                                     <asp:DropDownList ID="ddlVendedor" CssClass="form-select" runat="server"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlVendedor"
+                                        ErrorMessage="*" ValidationGroup="ValidarFactura" InitialValue="Seleccione..."></asp:RequiredFieldValidator>
                                 </div>
                             </th>
                             <th style="width: 20%">
                                 <div class="col-md-8">
                                     <asp:DropDownList ID="ddlFormaPago" CssClass="form-select" runat="server"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlFormaPago"
+                                        ErrorMessage="*" ValidationGroup="ValidarFactura" InitialValue="Seleccione..."></asp:RequiredFieldValidator>
                                 </div>
                             </th>
                             <th style="width: 25%">
@@ -82,6 +88,8 @@
                                     <asp:DropDownList ID="ddlSucursal" CssClass="form-select" runat="server"
                                         OnSelectedIndexChanged="ddlSucursal_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
+                                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlSucursal"
+                                        ErrorMessage="*" ValidationGroup="ValidarFactura" InitialValue="Seleccione..."></asp:RequiredFieldValidator>
                                 </div>
                             </th>
                             <th style="width: 25%">
@@ -89,6 +97,8 @@
                                     <asp:DropDownList ID="ddlPuntoVenta" CssClass="form-select" runat="server"
                                         OnSelectedIndexChanged="ddlPuntoVenta_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
+                                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPuntoVenta"
+                                        ErrorMessage="*" ValidationGroup="ValidarFactura" InitialValue="Seleccione..."></asp:RequiredFieldValidator>
                                 </div>
                             </th>
                         </tr>
@@ -122,13 +132,13 @@
                             </td>
                             <td style="width: 12%">
                                 <asp:TextBox runat="server" ID="txtId" class="form-control" Visible="false" />
-                                <asp:TextBox runat="server" ID="txtCantidad" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                <asp:TextBox runat="server" ID="txtCantidad" MaxLength="8" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                             </td>
                             <td style="width: 25%">
                                 <asp:TextBox runat="server" ID="txtDescripcion" class="form-control" disabled="" />
                             </td>
                             <td style="width: 7%">
-                                <asp:TextBox runat="server" ID="txtDescuento" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                <asp:TextBox runat="server" ID="txtDescuento" MaxLength="5" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                             </td>
                             <td style="width: 14%">
                                 <div class="input-group">
@@ -137,7 +147,7 @@
                                 </div>
                             </td>
                             <td style="width: 3%">
-                                <asp:LinkButton ID="btnAgregarProducto" runat="server" CssClass="btn btn-info" OnClick="btnAgregarProducto_Click" AutoPostBack="true" data-toggle="tooltip" ToolTip="Agregar">
+                                <asp:LinkButton ID="btnAgregarProducto" runat="server" CssClass="btn btn-info" OnClick="btnAgregarProducto_Click" AutoPostBack="true">
                             <i class="fa-solid fa-plus"></i>
                                 </asp:LinkButton>
                             </td>
@@ -175,8 +185,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <asp:Button ID="btnFacturar" runat="server" CssClass="btn btn-success" Text="Facturar" OnClick="btnFacturar_Click" />
-                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_Click" />
+                        <asp:Button ID="btnFacturar" runat="server" ValidationGroup="ValidarFactura" CssClass="btn btn-success" Text="Facturar" OnClick="btnFacturar_Click" />
+                        <asp:Button ID="btnCancelar" runat="server" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_Click" />
                     </div>
                     <div>
                     </div>
@@ -193,7 +203,8 @@
                                             <div class="col-md-5">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="number" id="txtDescuentoFactura" class="form-control col-md-4" style="text-align: right" runat="server" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                                    <input type="number" id="txtDescuentoFactura" class="form-control col-md-4" style="text-align: right" runat="server"
+                                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
@@ -286,6 +297,11 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        function SoloLetras(e) {
+            return (/^[a-zA-Z ]*$/.test(e.key));
+        }
+
     </script>
 
 </asp:Content>

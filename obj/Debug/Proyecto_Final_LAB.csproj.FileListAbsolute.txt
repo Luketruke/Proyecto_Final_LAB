@@ -57,6 +57,10 @@ C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Pro
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.ReportViewer.WebForms.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\bin\Microsoft.Web.Infrastructure.dll

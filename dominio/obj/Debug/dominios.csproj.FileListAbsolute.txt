@@ -1,21 +1,6 @@
-C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\dominio\bin\Debug\dominios.dll
-C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\dominio\bin\Debug\dominios.pdb
-C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\dominio\obj\Debug\dominios.csproj.AssemblyReference.cache
-C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\dominio\obj\Debug\dominios.csproj.CoreCompileInputs.cache
-C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\dominio\obj\Debug\dominios.dll
-C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\dominio\obj\Debug\dominios.pdb
-<<<<<<< HEAD
-C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\dominio\bin\Debug\dominios.dll
-C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\dominio\bin\Debug\dominios.pdb
-C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.csproj.AssemblyReference.cache
-C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.csproj.CoreCompileInputs.cache
-C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.dll
-C:\Users\Usuario\Desktop\ULTIM ULTIMO PROGRA 3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.pdb
-=======
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\dominio\bin\Debug\dominios.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\dominio\bin\Debug\dominios.pdb
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.csproj.AssemblyReference.cache
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.csproj.CoreCompileInputs.cache
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.dll
 C:\Users\Luketruke\Desktop\Proyecto Final Programacion 3\Proyecto_Final_LAB3\Proyecto_Final_LAB\dominio\obj\Debug\dominios.pdb
->>>>>>> parent of 96f5054 (Revert "agregados clientes y mejoras")

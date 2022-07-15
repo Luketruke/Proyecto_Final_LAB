@@ -14,7 +14,9 @@ namespace Proyecto_Final_LAB.Formularios.Productos
         {
             try
             {
+                if(!IsPostBack)
                 Session["listaProductos"] = null;
+
                 alerta();
                 if (Session["listaProductos"] == null)
                 {
@@ -94,6 +96,10 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                     break;
                 case "modificado":
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Producto modificado')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "cancelado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Accion cancelada')", true);
                     Session["alerta"] = null;
                     break;
             }

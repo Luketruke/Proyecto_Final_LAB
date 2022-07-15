@@ -45,10 +45,18 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 pv.Sucursal = new Sucursal();
                 pv.Sucursal.Id = Convert.ToInt32(Request.QueryString["s"]);
 
-                if (sn.agregarNumeracion(sn.agregarPuntoVenta(pv)))
+                if (pv.Numero.Length == 4)
                 {
-                    Session["alerta"] = "agregado";
-                    Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
+                    if (sn.agregarNumeracion(sn.agregarPuntoVenta(pv)))
+                    {
+                        Session["alerta"] = "agregado";
+                        Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
+                    }
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('El punto de venta debe tener 4 numeros' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                 }
             }
             catch (Exception ex)
@@ -65,16 +73,29 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 pv.Numero = txtNumero.Text;
                 pv.Nombre = txtNombre.Text;
 
-                if (sn.modificarPuntoVenta(pv))
+                if (pv.Numero.Length == 4)
                 {
-                    Session["alerta"] = "modificado";
-                    Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
+                    if (sn.modificarPuntoVenta(pv))
+                    {
+                        Session["alerta"] = "modificado";
+                        Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
+                    }
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('El punto de venta debe tener 4 numeros' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Session["alerta"] = "cancelado";
+            Response.Redirect("PuntosVenta.aspx?s=" + Convert.ToInt32(Request.QueryString["s"]));
         }
     }
 }

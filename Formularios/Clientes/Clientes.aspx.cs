@@ -18,7 +18,8 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                 ClienteNegocio cn = new ClienteNegocio();
                 alerta();
 
-                Session["listaClientes"] = null;
+                if (!IsPostBack)
+                    Session["listaClientes"] = null;
 
                 Session.Add("listaClientes", cn.obtenerClientesTodos());
                 dgvClientes.DataSource = Session["listaClientes"];
@@ -82,6 +83,10 @@ namespace Proyecto_Final_LAB.Formularios.Clientes
                     break;
                 case "modificado":
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Cliente modificado')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "cancelado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Accion cancelada')", true);
                     Session["alerta"] = null;
                     break;
             }

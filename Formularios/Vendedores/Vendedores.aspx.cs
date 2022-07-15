@@ -14,7 +14,9 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
         {
             try
             {
-                Session["listaVendedores"] = null;
+                if (!IsPostBack)
+                    Session["listaVendedores"] = null;
+
                 alerta();
                 if (Session["listaVendedores"] == null)
                 {
@@ -83,6 +85,10 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                     break;
                 case "eliminado":
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Vendedor eliminado')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "cancelado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Accion cancelada')", true);
                     Session["alerta"] = null;
                     break;
             }

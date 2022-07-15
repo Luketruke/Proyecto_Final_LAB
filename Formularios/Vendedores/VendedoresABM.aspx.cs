@@ -35,6 +35,7 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                     }
                     ddlSucursales.Items.Add("Seleccione sucursal...");
                     txtFechaAlta.Text =  DateTime.Now.ToString("yyyy-MM-dd");
+                    txtPorcentajeVenta.Text = "0.00";
                 }
 
                 foreach (DataRow r in dtSucursales.Rows)
@@ -77,15 +78,31 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                 v.FechaAlta = DateTime.Parse(txtFechaAlta.Text);
                 v.Telefono = txtTelefono.Text;
                 v.Email = txtEmail.Text;
-                v.PorcentajeXVenta = Convert.ToDecimal(txtPorcentajeVenta.Text);
                 v.Sucursal = new Sucursal();
                 v.Sucursal.Id = Convert.ToInt32(ddlSucursales.SelectedValue);
-
-                if (vn.agregarVendedor(v))
+                if (txtPorcentajeVenta.Text != ".")
                 {
-                    Session["alerta"] = "agregado";
-                    Response.Redirect("Vendedores.aspx");
+                    v.PorcentajeXVenta = Convert.ToDecimal(txtPorcentajeVenta.Text);
+                    if (v.PorcentajeXVenta>=0 && v.PorcentajeXVenta<=100)
+                    {
+                        if (vn.agregarVendedor(v))
+                        {
+                            Session["alerta"] = "agregado";
+                            Response.Redirect("Vendedores.aspx");
+                        }
+                    }
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('El porcentaje X venta no es valido' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
                 }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('Caracter invalido en el porcentaje X venta' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                }
+
             }
             catch (Exception ex)
             {
@@ -104,20 +121,41 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                 v.FechaAlta = DateTime.Parse(txtFechaAlta.Text);
                 v.Telefono = txtTelefono.Text;
                 v.Email = txtEmail.Text;
-                v.PorcentajeXVenta = Convert.ToDecimal(txtPorcentajeVenta.Text);
                 v.Sucursal = new Sucursal();
                 v.Sucursal.Id = Convert.ToInt32(ddlSucursales.SelectedValue);
 
-                if (vn.modificarVendedor(v))
+                if (txtPorcentajeVenta.Text != ".")
                 {
-                    Session["alerta"] = "modificado";
-                    Response.Redirect("Vendedores.aspx");
+                    v.PorcentajeXVenta = Convert.ToDecimal(txtPorcentajeVenta.Text);
+                    if (v.PorcentajeXVenta>=0 && v.PorcentajeXVenta<=100)
+                    {
+                        if (vn.modificarVendedor(v))
+                        {
+                            Session["alerta"] = "modificado";
+                            Response.Redirect("Vendedores.aspx");
+                        }
+                    }
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('El porcentaje X venta no es valido' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('Caracter invalido en el porcentaje X venta' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Session["alerta"] = "cancelado";
+            Response.Redirect("Vendedores.aspx");
         }
     }
 }

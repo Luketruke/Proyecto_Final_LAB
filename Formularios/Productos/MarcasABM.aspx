@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label style="font-size: 20px;" class="col-md-2">Marcas</label>
                         <div class="col-md-6">
-                            <asp:TextBox runat="server" ID="txtMarca" class="form-control" style="min-width: 800px; height: 30px"/>
+                            <asp:TextBox runat="server" ID="txtMarca" MaxLength="50" class="form-control" style="min-width: 800px; height: 30px"/>
                         </div>
                     </div>
                 </td>

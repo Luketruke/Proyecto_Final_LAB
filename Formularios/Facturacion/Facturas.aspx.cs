@@ -18,7 +18,9 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         {
             try
             {
-                Session["listaFacturas"] = null;
+                if (!IsPostBack)
+                    Session["listaFacturas"] = null;
+
                 alerta();
                 if (Session["listaFacturas"] == null)
                 {
@@ -33,25 +35,6 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 Console.WriteLine(ex);
             }
         }
-        protected void alerta()
-        {
-            switch (Session["alerta"])
-            {
-                case "agregado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Factura agregada')", true);
-                    Session["alerta"] = null;
-                    break;
-                case "cancelado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Factura cancelada')", true);
-                    Session["alerta"] = null;
-                    break;
-                case "eliminado":
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Factura eliminada')", true);
-                    Session["alerta"] = null;
-                    break;
-            }
-        }
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("FacturacionABM.aspx");
@@ -112,6 +95,24 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+        protected void alerta()
+        {
+            switch (Session["alerta"])
+            {
+                case "agregado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['success']('Factura agregada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "cancelado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Factura cancelada')", true);
+                    Session["alerta"] = null;
+                    break;
+                case "eliminado":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "SomeKey", "toastr['warning']('Factura eliminada')", true);
+                    Session["alerta"] = null;
+                    break;
             }
         }
     }

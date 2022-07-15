@@ -26,7 +26,8 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 if (Convert.ToInt32(Request.QueryString["accion"]) == 1)
                 {
                     int codigo = pn.obtenerUltimoCodigo();
-                    if (codigo == -1) {
+                    if (codigo == -1)
+                    {
                         txtCodigo.Text = 1.ToString();
                     }
                     else
@@ -36,6 +37,8 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                     }
                     ddlCategoria.Items.Add("Seleccione categoria...");
                     ddlMarca.Items.Add("Seleccione marca...");
+                    txtPrecioVenta.Text = "0.00";
+                    txtCosto.Text = "0.00";
                 }
 
                 foreach (DataRow r in dtCagerorias.Rows)
@@ -87,35 +90,56 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             {
                 p.Codigo = Convert.ToInt32(txtCodigo.Text);
                 p.Descripcion = txtDescripcion.Text;
-                p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
-                p.Costo = Convert.ToDecimal(txtCosto.Text);
-                p.Categoria = new CategoriaProducto();
-                p.Categoria.Id = Convert.ToInt32(ddlCategoria.SelectedValue);
-                p.Marca = new Marca();
-                p.Marca.Id = Convert.ToInt32(ddlMarca.SelectedValue);
-                p.Observaciones = txtObservaciones.Text;
-
-                int idProducto = pn.agregarProducto(p);
-
-                s.Producto = new Producto();
-                s.Producto.Id = idProducto;
-                s.StockMinimo = Convert.ToInt32(txtStockMinimo.Text);
-
-                if (idProducto > 0)
+                if (txtPrecioVenta.Text != ".")
                 {
-                    listaSucursales = sn.obtenerSucursales();
-
-                    for(int i = 0; i < listaSucursales.Count; i++)
+                    p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
+                    if (txtCosto.Text != ".")
                     {
-                        s.Sucursal = new Sucursal();
-                        s.Sucursal.Id = Convert.ToInt32(listaSucursales[i].Id);
-
-                        if (sn.agregarStock(s))
+                        if (p.PrecioVenta > 0)
                         {
-                            Session["alerta"] = "agregado";
-                            Response.Redirect("Productos.aspx");
+                            p.Costo = Convert.ToDecimal(txtCosto.Text);
+                            p.Categoria = new CategoriaProducto();
+                            p.Categoria.Id = Convert.ToInt32(ddlCategoria.SelectedValue);
+                            p.Marca = new Marca();
+                            p.Marca.Id = Convert.ToInt32(ddlMarca.SelectedValue);
+                            p.Observaciones = txtObservaciones.Text;
+
+                            int idProducto = pn.agregarProducto(p);
+
+                            s.Producto = new Producto();
+                            s.Producto.Id = idProducto;
+                            s.StockMinimo = Convert.ToInt32(txtStockMinimo.Text);
+
+                            if (idProducto > 0)
+                            {
+                                listaSucursales = sn.obtenerSucursales();
+
+                                for (int i = 0; i < listaSucursales.Count; i++)
+                                {
+                                    s.Sucursal = new Sucursal();
+                                    s.Sucursal.Id = Convert.ToInt32(listaSucursales[i].Id);
+                                    sn.agregarStock(s);
+                                }
+                                Session["alerta"] = "agregado";
+                                Response.Redirect("Productos.aspx");
+                            }
+                        }
+                        else
+                        {
+                            string script = String.Format(@"<script type='text/javascript'>alert('El precio de venta debe ser mayor a 0' );</script>", "0033");
+                            ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                         }
                     }
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('Caracter invalido en el costo' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('Caracter invalido en el precio' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                 }
             }
             catch (Exception ex)
@@ -132,22 +156,53 @@ namespace Proyecto_Final_LAB.Formularios.Productos
             {
                 p.Id = int.Parse(Request.QueryString["id"].ToString());
                 p.Descripcion = txtDescripcion.Text;
-                p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
-                p.Costo = Convert.ToDecimal(txtCosto.Text);
-                int idCategoria = Convert.ToInt32(ddlCategoria.SelectedValue);
-                int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
-                p.Observaciones = txtObservaciones.Text;
-
-                if (pn.modificarProducto(p, idCategoria, idMarca))
+                if (txtPrecioVenta.Text != ".")
                 {
-                    Session["alerta"] = "modificado";
-                    Response.Redirect("Productos.aspx");
+                    if (txtCosto.Text != ".")
+                    {
+                        p.PrecioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
+                        if (p.PrecioVenta > 0)
+                        {
+                            p.Costo = Convert.ToDecimal(txtCosto.Text);
+                            p.Categoria = new CategoriaProducto();
+                            p.Categoria.Id = Convert.ToInt32(ddlCategoria.SelectedValue);
+                            p.Marca = new Marca();
+                            p.Marca.Id = Convert.ToInt32(ddlMarca.SelectedValue);
+                            p.Observaciones = txtObservaciones.Text;
+
+                            if (pn.modificarProducto(p))
+                            {
+                                Session["alerta"] = "modificado";
+                                Response.Redirect("Productos.aspx");
+                            }
+                        }
+                        else
+                        {
+                            string script = String.Format(@"<script type='text/javascript'>alert('El precio de venta debe ser mayor a 0' );</script>", "0033");
+                            ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                        }
+                    }
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('Caracter invalido en el costo' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
+                }
+                else
+                {
+                    string script = String.Format(@"<script type='text/javascript'>alert('Caracter invalido en el precio' );</script>", "0033");
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Session["alerta"] = "cancelado";
+            Response.Redirect("Productos.aspx");
         }
     }
 }

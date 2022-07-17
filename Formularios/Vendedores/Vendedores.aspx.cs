@@ -60,10 +60,12 @@ namespace Proyecto_Final_LAB.Formularios.Vendedores
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                vn.eliminarVendedor(Convert.ToInt32(id));
-                Session["alerta"] = "eliminado";
-                Session["listaVendedores"] = null;
-                Response.Redirect("Vendedores.aspx");
+                if (vn.eliminarVendedor(Convert.ToInt32(id)))
+                {
+                    Session["alerta"] = "eliminado";
+                    Session["listaVendedores"] = null;
+                    Response.Redirect("Vendedores.aspx");
+                }
             }
             catch (Exception ex)
             {

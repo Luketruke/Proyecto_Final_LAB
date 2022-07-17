@@ -119,7 +119,7 @@ namespace negocios
             try
             {
                 conexion.setearProcedure("EliminarSucursal");
-                conexion.setearParametro("@Id", IdSucursal);
+                conexion.setearParametro("@IdSucursal", IdSucursal);
                 conexion.ejecutarConexion();
 
                 return true;

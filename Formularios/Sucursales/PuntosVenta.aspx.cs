@@ -57,10 +57,12 @@ namespace Proyecto_Final_LAB.Formularios.Sucursales
                 GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                sn.eliminarPuntoVenta(Convert.ToInt32(id));
-                Session["alerta"] = "eliminado";
-                Session["listaPuntosVenta"] = null;
-                Response.Redirect("PuntosVenta.aspx");
+                if (sn.eliminarPuntoVenta(Convert.ToInt32(id)))
+                {
+                    Session["alerta"] = "eliminado";
+                    Session["listaPuntosVenta"] = null;
+                    Response.Redirect("PuntosVenta.aspx");
+                }
             }
             catch (Exception ex)
             {

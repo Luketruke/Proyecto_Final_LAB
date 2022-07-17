@@ -464,8 +464,18 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         protected void btnFiltrarProductos_Click(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();
+            int idSucursal = Convert.ToInt32(Session["idSucursal"]);
 
-            dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), Convert.ToInt32(ddlSucursal.SelectedValue));
+            if (idSucursal==0)
+            {
+                //Hardcodeado en 3, esto deberia funcionar la sucursal del usuario activo.
+                dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), 3);
+            }
+            else
+            {
+                dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), idSucursal);
+            }
+
             dgvProductos.DataBind();
         }
     }

@@ -248,7 +248,7 @@
                 <div class="modal-header">
                     <div class="col-md-5">
                         <div>
-                            <input type="text" id="txtFiltrarProductos" placeholder="Ingrese descripcion..." class="form-control col-md-4" runat="server">
+                            <input type="text" id="txtFiltrarProductos" placeholder="Ingrese descripcion..." class="form-control col-md-12" runat="server">
                         </div>
                     </div>
                     <div class="col-md-1">

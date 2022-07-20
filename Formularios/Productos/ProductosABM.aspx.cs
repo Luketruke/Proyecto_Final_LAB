@@ -35,10 +35,13 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                         codigo = codigo+1;
                         txtCodigo.Text = codigo.ToString();
                     }
-                    ddlCategoria.Items.Add("Seleccione categoria...");
-                    ddlMarca.Items.Add("Seleccione marca...");
-                    txtPrecioVenta.Text = "0.00";
-                    txtCosto.Text = "0.00";
+                    if (!IsPostBack)
+                    {
+                        ddlCategoria.Items.Add("Seleccione categoria...");
+                        ddlMarca.Items.Add("Seleccione marca...");
+                        txtPrecioVenta.Text = "0.00";
+                        txtCosto.Text = "0.00";
+                    }
                 }
 
                 foreach (DataRow r in dtCagerorias.Rows)

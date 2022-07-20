@@ -19,7 +19,7 @@
                             <td style="width: 40%">
                                 <div class="form-group">
                                     <div class="col-md-8">
-                                        <asp:TextBox runat="server" ID="txtCliente" class="form-control" onkeypress="javascript:return SoloLetras(event)"/>
+                                        <asp:TextBox runat="server" ID="txtCliente" class="form-control" onkeypress="javascript:return SoloLetras(event)" />
                                         <asp:DropDownList ID="ddlClientes" CssClass="form-select" runat="server"
                                             OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="ClienteSeleccionado">
                                         </asp:DropDownList>

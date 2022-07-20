@@ -22,22 +22,11 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
             {
                 if (!IsPostBack)
                 {
-                    int idSucursal = Convert.ToInt32(Session["idSucursal"]);
-
                     Session["listaItemsFactura"] = null;
                     Session["listaProductos"] = null;
                     Session["dtProdSelected"] = null;
 
-                    //Esto no deberia ser asi de hardcodeado, pero como lo de login no se va a terminar va a quedar de esta manera.
-                    //La idea realmente seria que Session["idSucursal"] tenga la sucursal del usuario y precargar la sucursal con los items.
-                    if (idSucursal==0)
-                    {
-                        Session.Add("listaProductos", pn.listarProductosFactura(3));
-                    }
-                    else
-                    {
-                        Session.Add("listaProductos", pn.listarProductosFactura(idSucursal));
-                    }
+                    Session.Add("listaProductos", pn.listarProductosFactura(1003));
 
                     dgvProductos.DataSource = Session["listaProductos"];
                     dgvProductos.DataBind();
@@ -118,13 +107,13 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         {
             VendedoresNegocio vn = new VendedoresNegocio();
             SucursalesNegocio sn = new SucursalesNegocio();
+            ProductoNegocio pn = new ProductoNegocio();
             ListItem li;
             try
             {
                 int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
                 DataTable dtVendedores = vn.obtenerVendedoresFactura(idSucursal);
                 DataTable dtPuntoVenta = sn.obtenerPuntosDeVentaFactura(idSucursal);
-                Session["idSucursal"] = idSucursal.ToString();
 
                 ddlVendedor.Items.Clear();
                 ddlVendedor.Items.Add("Seleccione...");
@@ -388,7 +377,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 f.Fecha = DateTime.Parse(txtFechaFactura.Text);
                 f.Observaciones = txtObservaciones.Text;
                 f.Sucursal = new Sucursal();
-                f.Sucursal.Id = Convert.ToInt32(Session["idSucursal"]);
+                f.Sucursal.Id = Convert.ToInt32(ddlSucursal.SelectedValue);
                 f.TipoDocumento = new TipoDocumento();
                 f.TipoDocumento.Id = Convert.ToInt32(Session["TipoCliente"]);
                 f.PuntoVenta = new PuntoVenta();
@@ -398,25 +387,33 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                 if (temp != null)
                 {
                     int idFactura = fn.agregarFactura(f);
-                    for (int x = 0; x < temp.Count; x++)
+                    if (idFactura > 0)
                     {
-                        i.IdProducto = temp[x].IdProducto;
-                        i.Cantidad = temp[x].Cantidad;
-                        i.SubTotal = temp[x].SubTotal;
-                        i.Descuento = temp[x].Descuento;
-                        i.PrecioTotal = temp[x].PrecioTotal;
-                        i.Codigo = temp[x].Codigo;
-                        i.PrecioVenta = temp[x].PrecioVenta;
-                        i.Descripcion = temp[x].Descripcion;
-                        if (fn.agregarItemsFactura(i, idFactura))
+                        for (int x = 0; x < temp.Count; x++)
                         {
-                            int idStock = sn.modificarStockFactura(i.IdProducto, i.Cantidad, f.Sucursal.Id);
-                            sn.agregarMovimientoStockFactura(i.IdProducto, idStock, i.Cantidad, f.Sucursal.Id);
+                            i.IdProducto = temp[x].IdProducto;
+                            i.Cantidad = temp[x].Cantidad;
+                            i.SubTotal = temp[x].SubTotal;
+                            i.Descuento = temp[x].Descuento;
+                            i.PrecioTotal = temp[x].PrecioTotal;
+                            i.Codigo = temp[x].Codigo;
+                            i.PrecioVenta = temp[x].PrecioVenta;
+                            i.Descripcion = temp[x].Descripcion;
+                            if (fn.agregarItemsFactura(i, idFactura))
+                            {
+                                int idStock = sn.modificarStockFactura(i.IdProducto, i.Cantidad, f.Sucursal.Id);
+                                sn.agregarMovimientoStockFactura(i.IdProducto, idStock, i.Cantidad, f.Sucursal.Id);
+                            }
                         }
+                        fn.modificarNumeracion(f.TipoDocumento.Id, f.PuntoVenta.Id);
+                        Session["alerta"] = "agregado";
+                        Response.Redirect("Facturas.aspx");
                     }
-                    fn.modificarNumeracion(f.TipoDocumento.Id, f.PuntoVenta.Id);
-                    Session["alerta"] = "agregado";
-                    Response.Redirect("Facturas.aspx");
+                    else
+                    {
+                        string script = String.Format(@"<script type='text/javascript'>alert('Error al agregar factura' );</script>", "0033");
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
+                    }
                 }
                 else
                 {
@@ -464,18 +461,8 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
         protected void btnFiltrarProductos_Click(object sender, EventArgs e)
         {
             ProductoNegocio pn = new ProductoNegocio();
-            int idSucursal = Convert.ToInt32(Session["idSucursal"]);
-
-            if (idSucursal==0)
-            {
-                //Hardcodeado en 3, esto deberia funcionar la sucursal del usuario activo.
-                dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), 3);
-            }
-            else
-            {
-                dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), idSucursal);
-            }
-
+            //int idSucursal = Convert.ToInt32(ddlSucursal.SelectedValue);
+            dgvProductos.DataSource = pn.listarProductosFacturaFiltrados(txtFiltrarProductos.Value.ToString(), 1003);
             dgvProductos.DataBind();
         }
     }

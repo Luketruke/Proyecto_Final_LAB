@@ -76,6 +76,7 @@ namespace negocios
                 conexion.setearParametro("@Direccion", s.Direccion);
                 conexion.setearParametro("@Localidad", s.Localidad);
                 conexion.setearParametro("@CodigoPostal", s.CodigoPostal);
+
                 conexion.ejecutarConexion();
 
                 return true;

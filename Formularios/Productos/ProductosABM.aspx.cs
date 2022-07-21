@@ -80,7 +80,6 @@ namespace Proyecto_Final_LAB.Formularios.Productos
                 Console.WriteLine(ex);
             }
         }
-
         public void btnAgregar_Click(object sender, EventArgs e)
         {
             List<Sucursal> listaSucursales = new List<Sucursal>();

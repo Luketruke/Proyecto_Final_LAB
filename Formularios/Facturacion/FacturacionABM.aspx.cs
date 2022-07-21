@@ -26,6 +26,7 @@ namespace Proyecto_Final_LAB.Formularios.Facturacion
                     Session["listaProductos"] = null;
                     Session["dtProdSelected"] = null;
 
+                    //Esto deberia funcionar con el IdSucursal del usuario logeado.
                     Session.Add("listaProductos", pn.listarProductosFactura(1003));
 
                     dgvProductos.DataSource = Session["listaProductos"];

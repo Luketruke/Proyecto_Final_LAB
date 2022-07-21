@@ -195,7 +195,6 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-
         public List<Stock> obtenerStockHistorico(int IdStock)
         {
             List<Stock> lista = new List<Stock>();
